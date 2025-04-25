@@ -1,0 +1,390 @@
+:root {
+    --background-color-dark: #1a1a2e;
+    --background-color-light: #f0f0f0;
+    --text-color: #ffffff;
+    --accent-color: #e94560; /* Example accent color */
+    --glitch-color-1: #0ff;
+    --glitch-color-2: #f0f;
+    --transition-speed: 0.8s;
+    --line-delay: 1.5s; /* Time between consecutive lines in a section */
+    --section-delay: 2s; /* Time between showing sections */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color-dark);
+    overflow: hidden; /* Hide scrollbars */
+    transition: background-color var(--transition-speed) ease-in-out;
+}
+
+#manifesto-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.manifesto-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    opacity: 0; /* Initially hidden */
+    visibility: hidden;
+    transition: opacity var(--transition-speed) ease-in-out, visibility var(--transition-speed) ease-in-out;
+    background: var(--background-color-dark); /* Default background */
+}
+
+.manifesto-section.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.line {
+    opacity: 0; /* Initially hidden */
+    transform: translateY(20px); /* Start slightly below */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    margin: 10px 0;
+    font-size: 1.5em;
+    max-width: 800px;
+    line-height: 1.4;
+}
+
+.line.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Section Specific Styles & Animations */
+
+/* Intro */
+#intro {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), var(--background-color-dark));
+}
+
+/* Problem */
+#problem {
+    background: #2c394b;
+}
+
+/* Founders */
+#founders .founders-names .line {
+    font-size: 2em;
+    font-weight: 700;
+}
+#founders .project-intro {
+    font-size: 1.8em;
+    margin-top: 30px;
+}
+#founders .orby-text {
+    color: var(--accent-color);
+    font-weight: 900;
+}
+
+/* Goal */
+#goal {
+    background: #120a2e;
+}
+.glitch-container {
+    position: relative;
+    display: inline-block; /* Contain pseudo-elements */
+}
+.glitch-text {
+    position: relative;
+    font-size: 2em;
+    font-weight: 900;
+}
+
+/* Glitch Animation */
+@keyframes glitch {
+    0% { clip-path: inset(40% 0 40% 0); }
+    10% { clip-path: inset(80% 0 5% 0); }
+    20% { clip-path: inset(10% 0 70% 0); }
+    30% { clip-path: inset(60% 0 10% 0); }
+    40% { clip-path: inset(10% 0 60% 0); }
+    50% { clip-path: inset(80% 0 5% 0); }
+    60% { clip-path: inset(20% 0 50% 0); }
+    70% { clip-path: inset(70% 0 20% 0); }
+    80% { clip-path: inset(5% 0 80% 0); }
+    90% { clip-path: inset(40% 0 40% 0); }
+    100% { clip-path: inset(80% 0 5% 0); }
+}
+
+.glitch-container::before,
+.glitch-container::after {
+    content: attr(data-text); /* Use attribute to hold original text */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--background-color-dark); /* Match section background */
+    pointer-events: none;
+}
+
+.glitch-container::before {
+    left: -2px;
+    text-shadow: 1px 0 var(--glitch-color-1);
+    animation: glitch 0.5s infinite linear alternate-reverse;
+}
+
+.glitch-container::after {
+    left: 2px;
+    text-shadow: -1px 0 var(--glitch-color-2);
+    animation: glitch 0.5s infinite linear alternate;
+}
+
+.glitch-container.active .glitch-text.visible {
+    /* Hide the original text when glitch is active */
+    color: transparent;
+}
+.glitch-container.active::before,
+.glitch-container.active::after {
+     content: attr(data-text); /* Copy text to pseudo-elements */
+}
+.glitch-container:not(.active)::before,
+.glitch-container:not(.active)::after {
+     content: none; /* Hide pseudo-elements when not active */
+}
+
+
+/* Struggle/Future */
+#struggle-future {
+    background: #3a2a3b; /* Darker, richer tone */
+    position: relative;
+}
+#struggle-future .line {
+    position: relative; /* Ensure text is above phrases */
+    z-index: 1;
+}
+.overlay-phrases {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* Distribute phrases */
+    align-items: center;
+    font-size: 3em;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.1); /* Subtle, watermark-like */
+    pointer-events: none;
+    z-index: 0;
+}
+.overlay-phrase {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.overlay-phrase.visible {
+    opacity: 0.2; /* Make them slightly more visible when active */
+    transform: scale(1);
+}
+
+/* Determination */
+#determination {
+    background: #1f2833; /* Strong, grounded color */
+}
+#determination .line {
+     font-size: 1.8em;
+     font-weight: 300;
+     margin: 20px 0;
+     /* Optional: subtle scale/pan effect */
+     transition: opacity 1s ease-out, transform 1s ease-out, font-size 1s ease-out;
+}
+#determination .line:nth-child(2).visible {
+    font-weight: 700;
+}
+#determination .line:nth-child(3).visible {
+     font-weight: 900;
+     color: var(--accent-color);
+}
+
+
+/* Transformation */
+#transformation {
+    background: linear-gradient(45deg, #e94560, #ff7e5f, #feb47b, #86a8e7, #91eacb); /* Vibrant gradient */
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+#transformation .line {
+    font-size: 1.6em;
+}
+#transformation .build-more {
+     font-size: 2em;
+     font-weight: 700;
+}
+.product-list {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.product-item {
+    padding: 10px 20px;
+    border: 2px solid var(--text-color);
+    border-radius: 5px;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    font-weight: 700;
+}
+.product-item.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* Process */
+#process {
+     background: #0a1a1a; /* Tech/code feel */
+}
+#process .line {
+     font-family: monospace; /* Code-like font */
+     white-space: pre; /* Maintain spaces/indentation if needed */
+     overflow: hidden; /* Hide text before typing */
+     border-right: .15em solid orange; /* Typing cursor */
+     animation: none; /* Override default line animation */
+     margin: 20px auto; /* Center block lines */
+}
+#process .line.typing {
+     animation: typing 2s steps(40, end), blink-caret .75s step-end infinite;
+}
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange }
+}
+#process .line.typing.visible {
+     opacity: 1; /* Still need line visible class */
+     transform: none;
+}
+#process .line:not(.typing) {
+     border-right: none; /* Hide cursor when not typing */
+}
+
+
+/* Climax */
+#climax {
+    background: var(--background-color-dark); /* Start dark */
+    transition: background-color 1s ease-in-out, opacity var(--transition-speed) ease-in-out;
+}
+#climax.active {
+     background: var(--background-color-light); /* Transition to white */
+}
+#climax .big-text {
+    font-size: 4em;
+    font-weight: 900;
+    color: var(--text-color); /* Text color remains */
+    transition: color 1s ease-in-out;
+}
+#climax.active .big-text {
+    color: var(--background-color-dark); /* Change text color on white background */
+}
+
+
+/* Ending */
+#ending {
+    background: var(--background-color-light); /* Start light */
+    color: var(--background-color-dark); /* Dark text on light */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#ending .line {
+    color: var(--background-color-dark); /* Ensure dark text color */
+}
+
+.logo-animation {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#orby-logo {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+    color: var(--background-color-dark); /* Logo color */
+}
+
+#orby-logo .logo-circle {
+    stroke-dashoffset: 251.2; /* Circle circumference for r=40 */
+    transition: stroke-dashoffset 2s ease-out;
+    stroke-linecap: round;
+}
+
+#orby-logo .logo-text {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 1s ease-out 1.5s, transform 1s ease-out 1.5s; /* Delay text animation */
+}
+
+#ending.active #orby-logo .logo-circle {
+    stroke-dashoffset: 0; /* Animate circle drawing */
+}
+
+#ending.active #orby-logo .logo-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tagline {
+    margin-top: 10px;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.tagline-word {
+    display: inline-block; /* Allow individual animation */
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    margin: 0 5px;
+}
+
+/* Delay tagline word animations */
+#ending.active .tagline-word:nth-child(1) { transition-delay: 2.5s; }
+#ending.active .tagline-word:nth-child(2) { transition-delay: 2.8s; }
+#ending.active .tagline-word:nth-child(3) { transition-delay: 3.1s; }
+
+#ending.active .tagline-word {
+     opacity: 1;
+     transform: translateX(0);
+}
+
+.call-to-action {
+    margin-top: 40px;
+}
+
+#ending .cta-line {
+    /* cta-line inherits .line styles, ensure dark color */
+    color: var(--background-color-dark);
+    font-size: 1.3em;
+}
