@@ -7,7 +7,390 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --background-color-dark: #1a1a2e; /* Cor de fundo escura */
+            --background-color-light: #f0f0f0; /* Cor de fundo clara */
+            --text-color: #ffffff;             /* Cor do texto padrão (para fundo escuro) */
+            --accent-color: #e94560;           /* Cor de destaque de exemplo */
+            --glitch-color-1: #0ff;            /* Cor 1 para efeito glitch */
+            --glitch-color-2: #f0f;            /* Cor 2 para efeito glitch */
+            --transition-speed: 0.8s;          /* Velocidade da transição padrão */
+            --line-delay: 1.5s;                /* Tempo entre linhas consecutivas em uma seção (em segundos) */
+            --section-delay: 2s;               /* Tempo entre mostrar seções (em segundos) */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            background-color: var(--background-color-dark);
+            overflow: hidden; /* Esconder barras de rolagem */
+            transition: background-color var(--transition-speed) ease-in-out; /* Transição suave da cor de fundo */
+        }
+
+        #manifesto-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .manifesto-section {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            opacity: 0; /* Inicialmente oculto */
+            visibility: hidden; /* Inicialmente oculto e fora do fluxo de acessibilidade */
+            transition: opacity var(--transition-speed) ease-in-out, visibility var(--transition-speed) ease-in-out;
+            background: var(--background-color-dark); /* Fundo padrão */
+        }
+
+        .manifesto-section.active {
+            opacity: 1;
+            visibility: visible; /* Torna visível quando ativo */
+        }
+
+        .line {
+            opacity: 0; /* Inicialmente oculto */
+            transform: translateY(20px); /* Começa ligeiramente abaixo */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Animação de fade-in e subida */
+            margin: 10px 0;
+            font-size: 1.5em; /* Tamanho de fonte base para as linhas */
+            max-width: 800px; /* Largura máxima para melhor legibilidade */
+            line-height: 1.4; /* Espaçamento entre linhas */
+        }
+
+        .line.visible {
+            opacity: 1;
+            transform: translateY(0); /* Posição final */
+        }
+
+        /* Estilos Específicos da Seção & Animações */
+
+        /* Introdução */
+        #intro {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), var(--background-color-dark)); /* Gradiente sutil no topo */
+        }
+
+        /* Problema */
+        #problem {
+            background: #2c394b; /* Tom azulado escuro */
+        }
+
+        /* Fundadoras */
+        #founders .founders-names .line {
+            font-size: 2em;
+            font-weight: 700;
+        }
+        #founders .project-intro {
+            font-size: 1.8em;
+            margin-top: 30px;
+        }
+        #founders .orby-text {
+            color: var(--accent-color); /* Usa a cor de destaque */
+            font-weight: 900;
+        }
+
+        /* Objetivo */
+        #goal {
+            background: #120a2e; /* Tom roxo escuro */
+        }
+        .glitch-container {
+            position: relative;
+            display: inline-block; /* Necessário para conter pseudo-elementos posicionados absolutamente */
+        }
+        .glitch-text {
+            position: relative; /* Para que os pseudo-elementos fiquem sobre ele */
+            font-size: 2em;
+            font-weight: 900;
+        }
+
+        /* Animação Glitch */
+        @keyframes glitch { /* Define os passos da animação de falha (glitch) */
+            0% { clip-path: inset(40% 0 40% 0); }
+            10% { clip-path: inset(80% 0 5% 0); }
+            20% { clip-path: inset(10% 0 70% 0); }
+            30% { clip-path: inset(60% 0 10% 0); }
+            40% { clip-path: inset(10% 0 60% 0); }
+            50% { clip-path: inset(80% 0 5% 0); }
+            60% { clip-path: inset(20% 0 50% 0); }
+            70% { clip-path: inset(70% 0 20% 0); }
+            80% { clip-path: inset(5% 0 80% 0); }
+            90% { clip-path: inset(40% 0 40% 0); }
+            100% { clip-path: inset(80% 0 5% 0); }
+        }
+
+        .glitch-container::before,
+        .glitch-container::after {
+            content: attr(data-text); /* Usa o atributo 'data-text' para guardar o texto original */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--background-color-dark); /* Corresponde ao fundo da seção para cobrir o texto original */
+            pointer-events: none; /* Não interfere com cliques */
+        }
+
+        .glitch-container::before {
+            left: -2px;
+            text-shadow: 1px 0 var(--glitch-color-1); /* Sombra colorida para efeito glitch */
+            animation: glitch 0.5s infinite linear alternate-reverse; /* Aplica a animação glitch */
+        }
+
+        .glitch-container::after {
+            left: 2px;
+            text-shadow: -1px 0 var(--glitch-color-2); /* Sombra colorida diferente */
+            animation: glitch 0.5s infinite linear alternate; /* Aplica a animação glitch (direção oposta) */
+        }
+
+        /* Quando o glitch está ativo, esconde o texto original e mostra os pseudo-elementos */
+        .glitch-container.active .glitch-text.visible {
+            color: transparent; /* Esconde o texto original */
+        }
+        .glitch-container.active::before,
+        .glitch-container.active::after {
+             content: attr(data-text); /* Copia o texto para os pseudo-elementos */
+        }
+        /* Quando não está ativo, esconde os pseudo-elementos */
+        .glitch-container:not(.active)::before,
+        .glitch-container:not(.active)::after {
+             content: none;
+        }
+
+        /* Luta/Futuro */
+        #struggle-future {
+            background: #3a2a3b; /* Tom mais escuro e rico, arroxeado */
+            position: relative; /* Para posicionar as frases de sobreposição */
+        }
+        #struggle-future .line {
+            position: relative; /* Garante que o texto principal esteja acima das frases de sobreposição */
+            z-index: 1;
+        }
+        .overlay-phrases {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around; /* Distribui as frases verticalmente */
+            align-items: center;
+            font-size: 3em; /* Tamanho grande */
+            font-weight: 900; /* Bem forte */
+            color: rgba(255, 255, 255, 0.1); /* Sutil, como marca d'água */
+            pointer-events: none; /* Não interage com o mouse */
+            z-index: 0; /* Fica atrás do texto principal */
+        }
+        .overlay-phrase {
+            opacity: 0; /* Começa invisível */
+            transform: scale(0.8); /* Começa menor */
+            transition: opacity 1s ease-out, transform 1s ease-out; /* Animação suave */
+        }
+        .overlay-phrase.visible {
+            opacity: 0.2; /* Torna um pouco mais visível quando ativo */
+            transform: scale(1); /* Tamanho normal */
+        }
+
+        /* Determinação */
+        #determination {
+            background: #1f2833; /* Cor forte e sólida, cinza-azulado escuro */
+        }
+        #determination .line {
+             font-size: 1.8em;
+             font-weight: 300; /* Começa leve */
+             margin: 20px 0;
+             transition: opacity 1s ease-out, transform 1s ease-out, font-weight 1s ease-out, color 1s ease-out; /* Transições suaves */
+        }
+        /* Aplica estilos diferentes para linhas específicas quando visíveis */
+        #determination .line:nth-child(2).visible {
+            font-weight: 700; /* Segunda linha mais forte */
+        }
+        #determination .line:nth-child(3).visible {
+             font-weight: 900; /* Terceira linha muito forte */
+             color: var(--accent-color); /* Usa a cor de destaque */
+        }
+
+        /* Transformação */
+        #transformation {
+            background: linear-gradient(45deg, #e94560, #ff7e5f, #feb47b, #86a8e7, #91eacb); /* Gradiente vibrante */
+            background-size: 400% 400%; /* Tamanho grande para animação suave */
+            animation: gradientShift 15s ease infinite; /* Animação do gradiente */
+        }
+        @keyframes gradientShift { /* Animação que move a posição do fundo do gradiente */
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        #transformation .line {
+            font-size: 1.6em;
+        }
+        #transformation .build-more {
+             font-size: 2em;
+             font-weight: 700;
+        }
+        .product-list {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap; /* Quebra linha se necessário */
+            justify-content: center; /* Centraliza os itens */
+            gap: 20px; /* Espaço entre os itens */
+        }
+        .product-item {
+            padding: 10px 20px;
+            border: 2px solid var(--text-color); /* Borda na cor do texto */
+            border-radius: 5px;
+            opacity: 0; /* Começa invisível */
+            transform: scale(0.9); /* Começa ligeiramente menor */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Animação de entrada */
+            font-weight: 700;
+        }
+        .product-item.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Processo */
+        #process {
+             background: #0a1a1a; /* Sensação de tecnologia/código, verde bem escuro */
+        }
+        #process .line {
+             font-family: monospace; /* Fonte tipo código */
+             white-space: pre; /* Mantém espaços e quebras de linha como no código */
+             overflow: hidden; /* Esconde o texto antes de digitar */
+             border-right: .15em solid orange; /* Cursor de digitação */
+             animation: none; /* Sobrescreve a animação padrão da linha .line */
+             margin: 20px auto; /* Centraliza linhas de bloco (se width for definido) */
+             width: fit-content; /* Ajusta a largura ao conteúdo para o cursor ficar no final */
+        }
+        #process .line.typing {
+             /* Animação de digitação e cursor piscando */
+             animation: typing 2s steps(40, end), blink-caret .75s step-end infinite;
+             width: fit-content; /* Garante que a largura se ajuste */
+        }
+        @keyframes typing { /* Animação que revela o texto como se estivesse sendo digitado */
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret { /* Animação que faz o cursor piscar */
+            from, to { border-color: transparent }
+            50% { border-color: orange }
+        }
+        /* Precisa da classe visible para aparecer, mesmo com animação de digitação */
+        #process .line.typing.visible {
+             opacity: 1;
+             transform: none; /* Reseta qualquer transform da classe .line */
+        }
+        /* Esconde o cursor quando a linha não está no estado 'typing' */
+        #process .line:not(.typing) {
+             border-right: none;
+        }
+
+        /* Clímax */
+        #climax {
+            background: var(--background-color-dark); /* Começa escuro */
+            transition: background-color 1s ease-in-out, opacity var(--transition-speed) ease-in-out, visibility var(--transition-speed) ease-in-out; /* Adiciona transição de fundo */
+        }
+        #climax.active {
+             background: var(--background-color-light); /* Transição para branco */
+        }
+        #climax .big-text {
+            font-size: 4em; /* Texto bem grande */
+            font-weight: 900; /* Texto bem forte */
+            color: var(--text-color); /* Cor do texto inicial (branco) */
+            transition: color 1s ease-in-out; /* Transição suave da cor do texto */
+        }
+        #climax.active .big-text {
+            color: var(--background-color-dark); /* Muda a cor do texto no fundo branco */
+        }
+
+        /* Final */
+        #ending {
+            background: var(--background-color-light); /* Começa claro */
+            color: var(--background-color-dark); /* Texto escuro sobre claro */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* opacity e visibility gerenciados por .manifesto-section.active */
+        }
+        #ending .line {
+            color: var(--background-color-dark); /* Garante a cor escura do texto */
+        }
+
+        .logo-animation {
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #orby-logo {
+            width: 150px; /* Tamanho do logo */
+            height: auto; /* Mantém proporção */
+            margin-bottom: 20px;
+            opacity: 0; /* Começa invisível */
+            transform: scale(0.8); /* Começa menor */
+            transition: opacity 1.5s ease-out, transform 1.5s ease-out; /* Animação de entrada longa */
+            /* O atraso é gerenciado pela ativação da seção .active */
+        }
+
+        #ending.active #orby-logo {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .tagline {
+            margin-top: 10px;
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--background-color-dark); /* Texto escuro */
+        }
+
+        .tagline-word {
+            display: inline-block; /* Permite aplicar transform */
+            opacity: 0; /* Começa invisível */
+            transform: translateX(-20px); /* Começa ligeiramente à esquerda */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Animação de entrada */
+            margin: 0 5px; /* Espaçamento entre palavras */
+        }
+
+        /* Atrasar animações das palavras da tagline usando CSS */
+        #ending.active .tagline-word:nth-child(1) { transition-delay: 2.5s; } /* Primeira palavra atrasa mais */
+        #ending.active .tagline-word:nth-child(2) { transition-delay: 2.8s; } /* Segunda palavra */
+        #ending.active .tagline-word:nth-child(3) { transition-delay: 3.1s; } /* Terceira palavra */
+
+        /* Quando a seção final está ativa, anima as palavras */
+        #ending.active .tagline-word {
+             opacity: 1;
+             transform: translateX(0);
+        }
+
+        .call-to-action {
+            margin-top: 40px;
+        }
+
+        #ending .cta-line {
+            /* cta-line herda estilos de .line, garante cor escura */
+            color: var(--background-color-dark);
+            font-size: 1.3em;
+             /* A animação de entrada (.line.visible) é tratada pelo JS */
+        }
+    </style>
     <script type="importmap">
       {
         "imports": {
@@ -18,14 +401,17 @@
 <body>
     <div id="manifesto-container">
 
+        <!-- Seção 1: Intro -->
         <section id="intro" class="manifesto-section">
             <p class="line">“Há homens. Há mulheres. Mas onde estão as travestis... nos lugares de poder?”</p>
         </section>
 
+        <!-- Seção 2: Problema -->
         <section id="problem" class="manifesto-section">
             <p class="line">“Não por falta de talento, mas por falta de acesso, de respeito... de espaço.”</p>
         </section>
 
+        <!-- Seção 3: Fundadoras -->
         <section id="founders" class="manifesto-section">
              <div class="founders-names">
                 <p class="line name">Kelly.</p>
@@ -35,18 +421,23 @@
             <p class="line project-intro">“Somos três travestis. E estamos criando algo inédito: <span class="orby-text">Orby Chat</span>.”</p>
         </section>
 
+        <!-- Seção 4: Detalhes do Projeto -->
         <section id="project-details" class="manifesto-section">
              <p class="line">“Uma rede social feita de estudo, de resistência, de sonho e de verdade.”</p>
         </section>
 
+        <!-- Seção 5: Objetivo -->
         <section id="goal" class="manifesto-section">
+             <!-- Container para aplicar o efeito Glitch -->
             <div class="glitch-container" data-text="“Nosso objetivo? Entrar na lista da Forbes.”">
                  <p class="line glitch-text">“Nosso objetivo? Entrar na lista da Forbes.”</p>
             </div>
             <p class="line goal-motivation">“Não pelo dinheiro. Mas pelo direito de sermos referência.”</p>
         </section>
 
+         <!-- Seção 6: Luta / Futuro -->
          <section id="struggle-future" class="manifesto-section">
+             <!-- Frases de fundo que aparecem sutilmente -->
              <div class="overlay-phrases">
                  <span class="overlay-phrase">também posso</span>
                  <span class="overlay-phrase">também sou capaz</span>
@@ -55,15 +446,18 @@
             <p class="line future-statement">“Porque o futuro não pode ser contado sem nós.”</p>
         </section>
 
+        <!-- Seção 7: Determinação -->
         <section id="determination" class="manifesto-section">
             <p class="line">“Não sabemos si vamos conseguir.”</p>
             <p class="line">“Mas alguém tem que tentar primeiro.”</p>
             <p class="line">“E si não formos nós... quem será?”</p>
         </section>
 
+        <!-- Seção 8: Transformação / O que está sendo construído -->
         <section id="transformation" class="manifesto-section">
             <p class="line">“Estamos construindo mais que tecnologia.”</p>
             <p class="line build-more">“Estamos criando uma escola. Um legado. Um espaço onde travestis também programam, lideram, inovam.”</p>
+            <!-- Lista de "produtos" ou entregáveis -->
             <div class="product-list">
                 <span class="product-item">e-book</span>
                 <span class="product-item">diário didático</span>
@@ -72,19 +466,24 @@
             </div>
         </section>
 
+        <!-- Seção 9: Processo / Resistência -->
         <section id="process" class="manifesto-section">
+            <!-- Linhas com efeito de digitação -->
             <p class="line">“Cada linha de código é resistência.”</p>
             <p class="line">“Cada passo documentado é uma ponte para outras subirem.”</p>
         </section>
 
+        <!-- Seção 10: Clímax -->
         <section id="climax" class="manifesto-section">
             <p class="line big-text">O topo também pode ser travesti.</p>
         </section>
 
+        <!-- Seção 11: Final / Chamada para Ação -->
         <section id="ending" class="manifesto-section">
             <div class="logo-animation">
-                <!-- Image logo from provided URL -->
+                <!-- Logo em imagem da URL fornecida -->
                 <img id="orby-logo" src="https://reprograma-t.github.io/logo.png" alt="Orby Chat Logo">
+                <!-- Tagline com animação por palavra -->
                 <div class="tagline">
                     <span class="tagline-word">Travestis.</span>
                     <span class="tagline-word">Visionárias.</span>
@@ -98,6 +497,188 @@
         </section>
 
     </div>
-    <script type="module" src="script.js"></script>
+    <script>
+        const sections = document.querySelectorAll('.manifesto-section');
+        let currentSectionIndex = 0; // Índice da seção atual
+
+        // Pega os valores das variáveis CSS para usar nos cálculos de tempo
+        const computedStyle = getComputedStyle(document.documentElement);
+        const lineDelay = parseFloat(computedStyle.getPropertyValue('--line-delay')) * 1000; // Converte para milissegundos
+        const sectionDelay = parseFloat(computedStyle.getPropertyValue('--section-delay')) * 1000; // Converte para milissegundos
+        const transitionSpeed = parseFloat(computedStyle.getPropertyValue('--transition-speed')) * 1000; // Converte para milissegundos
+
+        // Função para mostrar uma seção específica e suas linhas
+        function showSection(index) {
+            if (index >= sections.length) {
+                console.log('Fim do manifesto');
+                // Opcionalmente, faça algo no final, ex: mostrar mensagem final ou repetir
+                return; // Para a execução se não houver mais seções
+            }
+
+            const currentSection = sections[index];
+            const previousSection = sections[index - 1];
+
+            // Esconde a seção anterior (se existir)
+            if (previousSection) {
+                previousSection.classList.remove('active');
+            }
+
+            // Mostra a seção atual
+            currentSection.classList.add('active');
+
+            // --- Animações específicas da seção ---
+            // Essas animações são acionadas pela classe 'active' na seção,
+            // mas algumas podem precisar de lógica adicional ou timing específico.
+
+            if (currentSection.id === 'goal') {
+                const glitchContainer = currentSection.querySelector('.glitch-container');
+                // Adiciona a classe 'active' ao container do glitch APENAS quando a linha estiver visível (tratado abaixo)
+                // Mas a remoção será feita antes de passar para a próxima seção (veja no final da função)
+            } else if (currentSection.id === 'struggle-future') {
+                const overlayPhrases = currentSection.querySelectorAll('.overlay-phrase');
+                // Escalonar a revelação das frases de sobreposição APÓS as linhas principais aparecerem
+                const linesInStruggle = currentSection.querySelectorAll('.line');
+                const delayForOverlays = linesInStruggle.length * lineDelay + 500; // Atraso baseado nas linhas + buffer
+                overlayPhrases.forEach((phrase, i) => {
+                    setTimeout(() => {
+                        phrase.classList.add('visible');
+                    }, delayForOverlays + i * 500); // Escalonamento das frases
+                });
+            } else if (currentSection.id === 'transformation') {
+                const productItems = currentSection.querySelectorAll('.product-item');
+                const linesInTransformation = currentSection.querySelectorAll('.line');
+                const delayForProducts = linesInTransformation.length * lineDelay + 500; // Atraso após as linhas
+                // Escalonar a revelação dos itens de produto após as linhas
+                productItems.forEach((item, i) => {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, delayForProducts + i * 300);
+                });
+            } else if (currentSection.id === 'process') {
+                // Efeito de digitação tratado abaixo na animação das linhas
+            } else if (currentSection.id === 'climax') {
+                // Transição CSS trata a mudança de fundo/cor em 'active'
+            } else if (currentSection.id === 'ending') {
+                // Transições CSS tratam as animações do logo e da tagline em 'active'
+                // As classes .active no #ending e os transition-delay no CSS cuidam do timing
+            }
+
+            // --- Animação das Linhas ---
+            const lines = currentSection.querySelectorAll('.line');
+            let totalTimeForLines = 0; // Para calcular a duração total da animação das linhas nesta seção
+
+            lines.forEach((line, i) => {
+                let delayForThisLine = i * lineDelay; // Atraso base para cada linha
+
+                // Lógica especial para a seção 'process' (digitação)
+                if (currentSection.id === 'process') {
+                     // O atraso da linha atual depende da duração da digitação da linha anterior
+                    if (i > 0) {
+                         const prevLine = lines[i - 1];
+                         // Estima a duração da digitação (ex: 50ms por caractere)
+                         const typingDurationPrev = (prevLine.textContent || '').length * 50;
+                         // O atraso é o tempo total acumulado até agora + duração da digitação anterior + pequeno buffer
+                         delayForThisLine = totalTimeForLines + typingDurationPrev + 500;
+                    } else {
+                         delayForThisLine = lineDelay; // Primeiro linha usa o delay padrão
+                    }
+                    totalTimeForLines = delayForThisLine; // Atualiza o tempo total acumulado
+                } else if (currentSection.id === 'goal' && line.classList.contains('glitch-text')) {
+                    // Ativa o glitch *depois* que a linha ficou visível
+                    setTimeout(() => {
+                        const glitchContainer = currentSection.querySelector('.glitch-container');
+                        glitchContainer.classList.add('active');
+                    }, delayForThisLine + transitionSpeed); // Atraso = delay da linha + duração da animação da linha
+                }
+
+                // Define o timeout para tornar a linha visível
+                setTimeout(() => {
+                    line.classList.add('visible');
+
+                    // Se for a seção 'process', inicia a animação de digitação
+                    if (currentSection.id === 'process' && line.classList.contains('line')) {
+                        // Usa um pequeno timeout para garantir que a linha esteja posicionada antes de adicionar 'typing'
+                        setTimeout(() => {
+                            line.classList.add('typing');
+                            // Estima a duração da digitação para remover a classe 'typing' (e o cursor) depois
+                            const typingDuration = (line.textContent || '').length * 50;
+                            setTimeout(() => {
+                                line.classList.remove('typing');
+                            }, typingDuration + 100); // +100ms de buffer
+                        }, 50); // Pequeno atraso após a classe 'visible' ser adicionada
+                    }
+
+                }, delayForThisLine);
+            });
+
+            // --- Calcula a Duração Total da Seção Atual ---
+            // Isso determina quando a próxima seção deve ser chamada.
+            let sectionDuration = 0;
+            const lastLineIndex = lines.length > 0 ? lines.length - 1 : 0;
+
+            if (lines.length === 0) {
+                sectionDuration = 0; // Se não houver linhas, a duração base é zero
+            } else if (currentSection.id === 'process') {
+                // Para 'process', a duração depende da última linha terminar de digitar
+                const lastLine = lines[lastLineIndex];
+                const lastLineTypingDuration = (lastLine.textContent || '').length * 50;
+                sectionDuration = totalTimeForLines + lastLineTypingDuration + 500; // Tempo acumulado + digitação da última + buffer
+            } else {
+                // Para outras seções, é o delay da última linha + sua animação
+                sectionDuration = lastLineIndex * lineDelay + transitionSpeed;
+            }
+
+            // Adiciona tempo extra para animações específicas da seção que ocorrem *depois* das linhas
+            if (currentSection.id === 'transformation') {
+                const productItems = currentSection.querySelectorAll('.product-item');
+                const lastProductDelay = (productItems.length - 1) * 300; // Delay do último item
+                const productAnimationDuration = 600; // Duração da animação do item (opacity/transform)
+                const totalProductTime = sectionDuration + lastProductDelay + productAnimationDuration; // sectionDuration aqui é o tempo até a última linha aparecer
+                 sectionDuration = Math.max(sectionDuration, totalProductTime) + 500; // Pega o maior tempo e adiciona buffer
+            } else if (currentSection.id === 'struggle-future') {
+                 const overlayPhrases = currentSection.querySelectorAll('.overlay-phrase');
+                 const lastOverlayDelay = (overlayPhrases.length - 1) * 500;
+                 const overlayAnimationDuration = 1000; // Duração da animação da frase
+                 const delayForOverlaysStart = lines.length * lineDelay + 500;
+                 const totalOverlayTime = delayForOverlaysStart + lastOverlayDelay + overlayAnimationDuration;
+                 sectionDuration = Math.max(sectionDuration, totalOverlayTime) + 500; // Pega o maior tempo e adiciona buffer
+            } else if (currentSection.id === 'ending') {
+                // A duração do final depende do mais longo entre as linhas CTA e a animação do logo/tagline
+                const ctaLinesDuration = sectionDuration; // Calculado acima baseado nas linhas .cta-line
+
+                // Tempo para logo e tagline (baseado nos delays do CSS)
+                const logoAnimationTime = 1500; // Duração da animação do logo
+                const lastTaglineWordDelay = 3100; // Delay CSS da última palavra
+                const taglineWordAnimationTime = 600; // Duração da animação da palavra
+                const logoTaglineTotalTime = Math.max(logoAnimationTime, lastTaglineWordDelay + taglineWordAnimationTime);
+
+                sectionDuration = Math.max(ctaLinesDuration, logoTaglineTotalTime) + 1000; // Pega o maior tempo + buffer final
+            }
+
+
+            // --- Chama a Próxima Seção ---
+            // Define um timeout para mostrar a próxima seção após a duração calculada da seção atual + delay entre seções
+            setTimeout(() => {
+                // Limpeza antes de passar para a próxima seção
+                if (currentSection.id === 'goal') {
+                    currentSection.querySelector('.glitch-container').classList.remove('active');
+                }
+                // Opcional: remover 'visible' das linhas se quiser que elas animem novamente ao voltar
+                // lines.forEach(line => line.classList.remove('visible'));
+
+                // Chama a função recursivamente para a próxima seção
+                showSection(index + 1);
+            }, sectionDuration + sectionDelay); // Tempo total da seção + delay padrão entre seções
+
+        }
+
+        // --- Inicia a Sequência do Manifesto ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Usa um pequeno atraso inicial antes da primeira seção aparecer
+            setTimeout(() => {
+                showSection(currentSectionIndex);
+            }, 500); // Atraso menor para a primeira seção
+        });
+    </script>
 </body>
 </html>
