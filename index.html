@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" dir="ltr"> <!-- Adicionado dir="ltr" para acessibilidade -->
+<html lang="pt-BR" dir="ltr">
 <head>
     <!-- Meta Tags Básicas -->
     <meta charset="UTF-8">
@@ -10,28 +10,27 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <!-- IMPORTANTE: Atualize esta URL para a URL final onde o manifesto será hospedado -->
-    <meta property="og:url" content="https://reprograma-t.github.io/manifesto">
+    <!-- IMPORTANTE: Atualize esta URL para a URL final -->
+    <meta property="og:url" content="https://reprograma-t.github.io/manifesto"> <!-- Atualize se necessário -->
     <meta property="og:title" content="Também Podemos Sonhar - Manifesto Orby Chat">
     <meta property="og:description" content="Travestis criando tecnologia, educação e um futuro mais inclusivo. Conheça nosso manifesto.">
-    <!-- IMPORTANTE: Crie e hospede esta imagem no caminho especificado -->
-    <meta property="og:image" content="https://reprograma-t.github.io/logo.png"> <!-- Imagem 1200x630px recomendada -->
+    <!-- IMPORTANTE: Crie e hospede uma imagem 1200x630 -->
+    <meta property="og:image" content="https://reprograma-t.github.io/logo-social.png"> <!-- Usar imagem específica p/ social -->
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <!-- IMPORTANTE: Atualize esta URL para a URL final onde o manifesto será hospedado -->
-    <meta name="twitter:url" content="https://reprograma-t.github.io/manifesto">
+     <!-- IMPORTANTE: Atualize esta URL para a URL final -->
+    <meta name="twitter:url" content="https://reprograma-t.github.io/manifesto"> <!-- Atualize se necessário -->
     <meta name="twitter:title" content="Também Podemos Sonhar - Manifesto Orby Chat">
     <meta name="twitter:description" content="Travestis criando tecnologia, educação e um futuro mais inclusivo. Conheça nosso manifesto.">
-    <!-- IMPORTANTE: Crie e hospede esta imagem no caminho especificado -->
-    <meta name="twitter:image" content="https://reprograma-t.github.io/logo.png"> <!-- Imagem 1200x630px recomendada -->
+     <!-- IMPORTANTE: Crie e hospede uma imagem 1200x630 -->
+    <meta name="twitter:image" content="https://reprograma-t.github.io/logo-social.png"> <!-- Usar imagem específica p/ social -->
 
     <!-- Favicon e ícones -->
-    <!-- IMPORTANTE: Crie e hospede estes ícones nos caminhos especificados -->
-    <link rel="icon" type="image/png" sizes="32x32" href="https://reprograma-t.github.io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://reprograma-t.github.io/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://reprograma-t.github.io/apple-touch-icon.png">
-    <!-- Opcional: Crie um arquivo manifest.json para PWA -->
+    <!-- IMPORTANTE: Crie e hospede estes ícones -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
     <link rel="manifest" href="manifest.json">
 
     <!-- Título otimizado -->
@@ -45,15 +44,16 @@
     <!-- Estilos CSS -->
     <style>
         :root {
-            --background-color-dark: #1a1a2e; /* Cor de fundo escura */
-            --background-color-light: #f0f0f0; /* Cor de fundo clara */
-            --text-color: #ffffff;             /* Cor do texto padrão (para fundo escuro) */
-            --accent-color: #e94560;           /* Cor de destaque */
-            --glitch-color-1: #0ff;            /* Cor 1 para efeito glitch (ciano) */
-            --glitch-color-2: #f0f;            /* Cor 2 para efeito glitch (magenta) */
-            --transition-speed: 0.8s;          /* Velocidade da transição padrão */
-            --line-delay: 1.5s;                /* Tempo entre linhas consecutivas em uma seção (em segundos) */
-            --section-delay: 2s;               /* Tempo entre mostrar seções (em segundos) */
+            --background-color-dark: #1a1a2e;
+            --background-color-light: #f0f0f0;
+            --text-color: #ffffff;
+            --text-color-dark: #1a1a2e; /* Para usar em fundos claros */
+            --accent-color: #e94560;
+            --glitch-color-1: #0ff;
+            --glitch-color-2: #f0f;
+            --transition-speed: 0.8s;
+            --line-delay: 1.5s;
+            --section-delay: 2s;
         }
 
         * {
@@ -62,20 +62,90 @@
             box-sizing: border-box;
         }
 
+        html {
+             /* Melhora a rolagem suave se o overflow for removido */
+             scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             color: var(--text-color);
             background-color: var(--background-color-dark);
-            overflow: hidden; /* Esconder barras de rolagem */
-            transition: background-color var(--transition-speed) ease-in-out; /* Transição suave da cor de fundo */
+            /* overflow: hidden; Comentado para permitir scroll se necessário no futuro, mas a estrutura atual não precisa */
+            transition: background-color var(--transition-speed) ease-in-out;
+            position: relative; /* Para posicionar a tela de boas-vindas */
+            min-height: 100vh;
         }
 
-        /* Usar <main> para semântica e acessibilidade */
+        /* --- Tela de Boas-Vindas --- */
+        #welcome-screen {
+            position: fixed; /* Cobre toda a tela */
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--background-color-dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100; /* Fica acima do manifesto */
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #welcome-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none; /* Impede interação após ocultar */
+        }
+
+        #welcome-screen h1 {
+            font-size: 2.5em; /* Ajustado para telas menores */
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: var(--text-color);
+             max-width: 90%;
+        }
+
+        #start-button {
+            padding: 15px 35px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--background-color-dark);
+            background-color: var(--accent-color);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #start-button:hover {
+            background-color: #d83550; /* Tom ligeiramente mais escuro */
+            transform: scale(1.05);
+        }
+        /* --- Fim da Tela de Boas-Vindas --- */
+
+
+        /* Container Principal do Manifesto - inicialmente escondido */
         #manifesto-container {
             position: relative;
             width: 100vw;
             height: 100vh;
+             /* Inicialmente escondido até a tela de boas-vindas sumir */
+             opacity: 0;
+             visibility: hidden;
+             transition: opacity 0.5s ease-in;
         }
+
+        #manifesto-container.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
 
         .manifesto-section {
             position: absolute;
@@ -87,375 +157,157 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 25px; /* Aumentar um pouco o padding geral */
             text-align: center;
-            opacity: 0; /* Inicialmente oculto */
-            visibility: hidden; /* Inicialmente oculto e fora do fluxo de acessibilidade */
+            opacity: 0;
+            visibility: hidden;
             transition: opacity var(--transition-speed) ease-in-out, visibility var(--transition-speed) ease-in-out;
             background: var(--background-color-dark); /* Fundo padrão */
         }
 
         .manifesto-section.active {
             opacity: 1;
-            visibility: visible; /* Torna visível quando ativo */
+            visibility: visible;
         }
 
         .line {
-            opacity: 0; /* Inicialmente oculto */
-            transform: translateY(20px); /* Começa ligeiramente abaixo */
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Animação de fade-in e subida */
-            margin: 10px 0;
-            font-size: 1.5em; /* Tamanho de fonte base para as linhas */
-            max-width: 800px; /* Largura máxima para melhor legibilidade */
-            line-height: 1.4; /* Espaçamento entre linhas */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            margin: 8px 0; /* Reduzir margem vertical entre linhas */
+            font-size: 1.3em; /* Tamanho base reduzido para mobile-first */
+            max-width: 90vw; /* Usar largura da viewport */
+            line-height: 1.5; /* Aumentar um pouco para legibilidade */
         }
 
         .line.visible {
             opacity: 1;
-            transform: translateY(0); /* Posição final */
+            transform: translateY(0);
         }
 
         /* Estilos Específicos da Seção & Animações */
 
-        /* Introdução */
-        #intro {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), var(--background-color-dark));
-        }
+        #intro { background: linear-gradient(to bottom, rgba(0,0,0,0.8), var(--background-color-dark)); }
+        #problem { background: #2c394b; }
 
-        /* Problema */
-        #problem {
-            background: #2c394b;
-        }
+        #founders .founders-names .line { font-size: 1.8em; font-weight: 700; }
+        #founders .project-intro { font-size: 1.5em; margin-top: 25px; }
+        #founders .orby-text { color: var(--accent-color); font-weight: 900; }
 
-        /* Fundadoras */
-        #founders .founders-names .line {
-            font-size: 2em;
-            font-weight: 700;
-        }
-        #founders .project-intro {
-            font-size: 1.8em;
-            margin-top: 30px;
-        }
-        #founders .orby-text {
-            color: var(--accent-color);
-            font-weight: 900;
-        }
-
-        /* Detalhes do Projeto */
-        /* (Nenhum estilo específico além do padrão) */
-
-        /* Objetivo */
-        #goal {
-            background: #120a2e; /* Tom roxo escuro para esta seção */
-        }
-        .glitch-container {
-            position: relative;
-            display: inline-block;
-        }
+        #goal { background: #120a2e; }
+        .glitch-container { position: relative; display: inline-block; }
         .glitch-text {
             position: relative;
-            font-size: 2em;
-            font-weight: 900;
-            color: var(--text-color); /* Texto original permanece visível (branco) */
-        }
-
-        /* Animação Glitch (CORRIGIDA) */
-        @keyframes glitch {
-            0% { clip-path: inset(40% 0 40% 0); transform: translateX(-1px); }
-            10% { clip-path: inset(80% 0 5% 0); transform: translateX(1px); }
-            20% { clip-path: inset(10% 0 70% 0); transform: translateX(-1px); }
-            30% { clip-path: inset(60% 0 10% 0); transform: translateX(1px); }
-            40% { clip-path: inset(10% 0 60% 0); transform: translateX(-2px); }
-            50% { clip-path: inset(80% 0 5% 0); transform: translateX(2px); }
-            60% { clip-path: inset(20% 0 50% 0); transform: translateX(-1px); }
-            70% { clip-path: inset(70% 0 20% 0); transform: translateX(1px); }
-            80% { clip-path: inset(5% 0 80% 0); transform: translateX(-2px); }
-            90% { clip-path: inset(40% 0 40% 0); transform: translateX(2px); }
-            100% { clip-path: inset(80% 0 5% 0); transform: translateX(-1px); }
-        }
-
-        .glitch-container::before,
-        .glitch-container::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* background: transparent; /* CORRIGIDO: Sem background */
-            color: var(--text-color); /* Cor base do texto nos pseudo-elementos (pode ser a mesma) */
-            overflow: hidden; /* Garante que o clip-path funcione */
-            pointer-events: none;
-        }
-
-        .glitch-container::before {
-            left: -2px;
-            text-shadow: 2px 0 var(--glitch-color-1); /* Sombra Ciano */
-            /* A animação só será aplicada quando .active estiver presente */
-            animation: none;
-        }
-
-        .glitch-container::after {
-            left: 2px;
-            text-shadow: -2px 0 var(--glitch-color-2); /* Sombra Magenta */
-             /* A animação só será aplicada quando .active estiver presente */
-            animation: none;
-        }
-
-        /* Aplica a animação APENAS quando o container está ativo */
-        .glitch-container.active::before {
-            animation: glitch 0.4s infinite linear alternate-reverse; /* Duração ajustada */
-        }
-        .glitch-container.active::after {
-            animation: glitch 0.4s infinite linear alternate; /* Duração ajustada */
-        }
-
-        /* CORRIGIDO: Não precisamos mais esconder o texto original
-        .glitch-container.active .glitch-text.visible {
-            color: transparent;
-        } */
-
-        /* Garante que os pseudo-elementos tenham conteúdo quando ativos */
-        .glitch-container.active::before,
-        .glitch-container.active::after {
-             content: attr(data-text);
-        }
-        /* Esconde os pseudo-elementos quando não ativos (bom para performance) */
-        .glitch-container:not(.active)::before,
-        .glitch-container:not(.active)::after {
-             content: none;
-             animation: none; /* Garante que a animação pare */
-        }
-
-
-        /* Luta/Futuro */
-        #struggle-future {
-            background: #3a2a3b; /* Tom mais escuro e rico, arroxeado */
-            position: relative; /* Para posicionar as frases de sobreposição */
-        }
-        #struggle-future .line {
-            position: relative; /* Garante que o texto principal esteja acima das frases de sobreposição */
-            z-index: 1;
-        }
-        .overlay-phrases {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around; /* Distribui as frases verticalmente */
-            align-items: center;
-            font-size: 3em; /* Tamanho grande */
-            font-weight: 900; /* Bem forte */
-            color: rgba(255, 255, 255, 0.1); /* Sutil, como marca d'água */
-            pointer-events: none; /* Não interage com o mouse */
-            z-index: 0; /* Fica atrás do texto principal */
-        }
-        .overlay-phrase {
-            opacity: 0; /* Começa invisível */
-            transform: scale(0.8); /* Começa menor */
-            transition: opacity 1s ease-out, transform 1s ease-out; /* Animação suave */
-        }
-        .overlay-phrase.visible {
-            opacity: 0.2; /* Torna um pouco mais visível quando ativo */
-            transform: scale(1); /* Tamanho normal */
-        }
-
-        /* Determinação */
-        #determination {
-            background: #1f2833; /* Cor forte e sólida */
-        }
-        #determination .line {
-             font-size: 1.8em;
-             font-weight: 300;
-             margin: 20px 0;
-             transition: opacity 1s ease-out, transform 1s ease-out, font-weight 1s ease-out, color 1s ease-out;
-        }
-        #determination .line:nth-child(2).visible {
-            font-weight: 700;
-        }
-        #determination .line:nth-child(3).visible {
-             font-weight: 900;
-             color: var(--accent-color);
-        }
-
-
-        /* Transformação */
-        #transformation {
-            background: linear-gradient(45deg, #e94560, #ff7e5f, #feb47b, #86a8e7, #91eacb); /* Gradiente vibrante */
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-        }
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        #transformation .line {
-            font-size: 1.6em;
-        }
-        #transformation .build-more {
-             font-size: 2em;
-             font-weight: 700;
-        }
-        .product-list {
-            margin-top: 40px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        .product-item {
-            padding: 10px 20px;
-            border: 2px solid var(--text-color);
-            border-radius: 5px;
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            font-weight: 700;
-        }
-        .product-item.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-
-        /* Processo */
-        #process {
-             background: #0a1a1a; /* Sensação de tecnologia/código */
-        }
-        #process .line {
-             font-family: monospace;
-             white-space: pre;
-             overflow: hidden;
-             border-right: .15em solid orange; /* Cursor de digitação */
-             animation: none; /* Sobrescreve animação padrão */
-             margin: 20px auto;
-             width: fit-content; /* Ajusta largura ao conteúdo */
-        }
-        #process .line.typing {
-             /* Duração da digitação baseada no JS, cursor pisca aqui */
-             animation: blink-caret .75s step-end infinite;
-             width: fit-content;
-        }
-        /* Animação de digitação será controlada via JS para sincronia */
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: orange }
-        }
-        #process .line.typing.visible {
-             opacity: 1;
-             transform: none;
-        }
-        #process .line:not(.typing) {
-             border-right: none; /* Esconde cursor quando não digita */
-        }
-
-
-        /* Clímax */
-        #climax {
-            background: var(--background-color-dark);
-            transition: background-color 1s ease-in-out, opacity var(--transition-speed) ease-in-out, visibility var(--transition-speed) ease-in-out;
-        }
-        #climax.active {
-             background: var(--background-color-light); /* Transição para branco */
-        }
-        #climax .big-text {
-            font-size: 4em;
+            font-size: 1.8em; /* Reduzido */
             font-weight: 900;
             color: var(--text-color);
-            transition: color 1s ease-in-out;
         }
-        #climax.active .big-text {
-            color: var(--background-color-dark); /* Muda cor do texto no fundo branco */
-        }
+        #goal .goal-motivation { margin-top: 15px; font-size: 1.1em;} /* Ajuste de espaçamento e tamanho */
 
+        /* Animação Glitch */
+        @keyframes glitch { /* ... (keyframes mantidos) ... */
+            0% { clip-path: inset(40% 0 40% 0); transform: translateX(-1px); } 10% { clip-path: inset(80% 0 5% 0); transform: translateX(1px); } 20% { clip-path: inset(10% 0 70% 0); transform: translateX(-1px); } 30% { clip-path: inset(60% 0 10% 0); transform: translateX(1px); } 40% { clip-path: inset(10% 0 60% 0); transform: translateX(-2px); } 50% { clip-path: inset(80% 0 5% 0); transform: translateX(2px); } 60% { clip-path: inset(20% 0 50% 0); transform: translateX(-1px); } 70% { clip-path: inset(70% 0 20% 0); transform: translateX(1px); } 80% { clip-path: inset(5% 0 80% 0); transform: translateX(-2px); } 90% { clip-path: inset(40% 0 40% 0); transform: translateX(2px); } 100% { clip-path: inset(80% 0 5% 0); transform: translateX(-1px); }
+        }
+        .glitch-container::before, .glitch-container::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; color: var(--text-color); overflow: hidden; pointer-events: none; animation: none; }
+        .glitch-container::before { left: -2px; text-shadow: 2px 0 var(--glitch-color-1); }
+        .glitch-container::after { left: 2px; text-shadow: -2px 0 var(--glitch-color-2); }
+        .glitch-container.active::before { animation: glitch 0.4s infinite linear alternate-reverse; }
+        .glitch-container.active::after { animation: glitch 0.4s infinite linear alternate; }
+        .glitch-container.active::before, .glitch-container.active::after { content: attr(data-text); }
+        .glitch-container:not(.active)::before, .glitch-container:not(.active)::after { content: none; animation: none; }
 
-        /* Final */
-        #ending {
-            background: var(--background-color-light);
-            color: var(--background-color-dark);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        #ending .line {
-            color: var(--background-color-dark);
-        }
-        .logo-animation {
-            margin-bottom: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        #orby-logo {
-            width: 150px;
-            height: auto;
-            margin-bottom: 20px;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: opacity 1.5s ease-out, transform 1.5s ease-out;
-            /* Atraso via JS/ativação da seção */
-        }
-        #ending.active #orby-logo {
-            opacity: 1;
-            transform: scale(1);
-        }
-        .tagline {
-            margin-top: 10px;
-            font-size: 1.2em;
-            font-weight: 700;
-            color: var(--background-color-dark);
-        }
-        .tagline-word {
-            display: inline-block;
-            opacity: 0;
-            transform: translateX(-20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            margin: 0 5px;
-        }
-        /* Atraso via CSS quando a seção está ativa */
+        #struggle-future { background: #3a2a3b; position: relative; }
+        #struggle-future .line { position: relative; z-index: 1; }
+        .overlay-phrases { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: space-around; align-items: center; font-size: 2.5em; /* Reduzido */ font-weight: 900; color: rgba(255, 255, 255, 0.1); pointer-events: none; z-index: 0; }
+        .overlay-phrase { opacity: 0; transform: scale(0.8); transition: opacity 1s ease-out, transform 1s ease-out; }
+        .overlay-phrase.visible { opacity: 0.2; transform: scale(1); }
+
+        #determination { background: #1f2833; }
+        #determination .line { font-size: 1.5em; /* Reduzido */ font-weight: 300; margin: 15px 0; transition: opacity 1s ease-out, transform 1s ease-out, font-weight 1s ease-out, color 1s ease-out; }
+        #determination .line:nth-child(2).visible { font-weight: 700; }
+        #determination .line:nth-child(3).visible { font-weight: 900; color: var(--accent-color); }
+
+        #transformation { background: linear-gradient(45deg, #e94560, #ff7e5f, #feb47b, #86a8e7, #91eacb); background-size: 400% 400%; animation: gradientShift 15s ease infinite; }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        #transformation .line { font-size: 1.4em; /* Reduzido */ }
+        #transformation .build-more { font-size: 1.6em; /* Reduzido */ font-weight: 700; }
+        .product-list { margin-top: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; /* Reduzido */ }
+        .product-item { padding: 8px 15px; /* Reduzido */ border: 2px solid var(--text-color); border-radius: 5px; opacity: 0; transform: scale(0.9); transition: opacity 0.6s ease-out, transform 0.6s ease-out; font-weight: 700; font-size: 0.9em; /* Adicionado para mobile */ }
+        .product-item.visible { opacity: 1; transform: scale(1); }
+
+        #process { background: #0a1a1a; }
+        #process .line { font-family: monospace; white-space: pre-wrap; /* Permite quebra de linha no mobile */ overflow: hidden; border-right: .15em solid orange; animation: none; margin: 15px auto; width: fit-content; max-width: 95%; /* Evita que ultrapasse demais */ font-size: 1.1em; /* Reduzido para monospace */ }
+        #process .line.typing { animation: blink-caret .75s step-end infinite; width: fit-content; }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: orange } }
+        #process .line.typing.visible { opacity: 1; transform: none; }
+        #process .line:not(.typing) { border-right: none; }
+
+        #climax { background: var(--background-color-dark); transition: background-color 1s ease-in-out, opacity var(--transition-speed) ease-in-out, visibility var(--transition-speed) ease-in-out; }
+        #climax.active { background: var(--background-color-light); }
+        #climax .big-text { font-size: 3em; /* Reduzido */ font-weight: 900; color: var(--text-color); transition: color 1s ease-in-out; }
+        #climax.active .big-text { color: var(--text-color-dark); } /* Usar variável */
+
+        #ending { background: var(--background-color-light); color: var(--text-color-dark); display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        #ending .line { color: var(--text-color-dark); } /* Usar variável */
+        .logo-animation { margin-bottom: 30px; display: flex; flex-direction: column; align-items: center; }
+        #orby-logo { width: 120px; /* Reduzido */ height: auto; margin-bottom: 15px; opacity: 0; transform: scale(0.8); transition: opacity 1.5s ease-out, transform 1.5s ease-out; }
+        #ending.active #orby-logo { opacity: 1; transform: scale(1); }
+        .tagline { margin-top: 10px; font-size: 1.1em; /* Reduzido */ font-weight: 700; color: var(--text-color-dark); /* Usar variável */ }
+        .tagline-word { display: inline-block; opacity: 0; transform: translateX(-20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; margin: 0 4px; /* Reduzido */ }
         #ending.active .tagline-word:nth-child(1) { transition-delay: 2.5s; }
         #ending.active .tagline-word:nth-child(2) { transition-delay: 2.8s; }
         #ending.active .tagline-word:nth-child(3) { transition-delay: 3.1s; }
-        #ending.active .tagline-word {
-             opacity: 1;
-             transform: translateX(0);
-        }
-        .call-to-action {
-            margin-top: 40px;
-        }
-        #ending .cta-line {
-            color: var(--background-color-dark);
-            font-size: 1.3em;
+        #ending.active .tagline-word { opacity: 1; transform: translateX(0); }
+        .call-to-action { margin-top: 30px; }
+        #ending .cta-line { color: var(--text-color-dark); /* Usar variável */ font-size: 1.2em; /* Reduzido */ }
+
+        /* Botões de Compartilhamento */
+        .share-buttons { margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;}
+        .share-button { padding: 8px 15px; background-color: var(--background-color-dark); color: var(--background-color-light); text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s; font-size: 0.9em; }
+        .share-button:hover { background-color: var(--accent-color); }
+
+
+        /* --- Media Queries para Telas Maiores --- */
+        @media (min-width: 768px) {
+            .line {
+                font-size: 1.5em; /* Retorna ao tamanho maior */
+                max-width: 800px; /* Limita largura em telas maiores */
+                margin: 10px 0; /* Retorna margem */
+            }
+            #welcome-screen h1 {
+                 font-size: 3em;
+                 max-width: 80%;
+            }
+             #start-button {
+                 padding: 18px 40px;
+                 font-size: 1.3em;
+            }
+            #founders .founders-names .line { font-size: 2em; }
+            #founders .project-intro { font-size: 1.8em; margin-top: 30px; }
+            .glitch-text { font-size: 2em; }
+            #goal .goal-motivation { font-size: 1.2em; }
+            .overlay-phrases { font-size: 3em; }
+            #determination .line { font-size: 1.8em; margin: 20px 0;}
+            #transformation .line { font-size: 1.6em; }
+            #transformation .build-more { font-size: 2em; }
+            .product-list { margin-top: 40px; gap: 20px; }
+            .product-item { padding: 10px 20px; font-size: 1em; }
+            #process .line { font-size: 1.2em; white-space: pre; /* Mantém sem quebra */}
+            #climax .big-text { font-size: 4em; }
+            #orby-logo { width: 150px; margin-bottom: 20px; }
+            .tagline { font-size: 1.2em; }
+            .tagline-word { margin: 0 5px; }
+            #ending .cta-line { font-size: 1.3em; }
+            .share-button { font-size: 1em;}
         }
 
-        /* Opcional: Estilos para botões de compartilhamento (se adicionados) */
-        .share-buttons {
-            margin-top: 30px;
-            display: flex;
-            gap: 15px;
-        }
-        .share-button {
-            /* Estilizar botões aqui */
-            padding: 8px 15px;
-            background-color: var(--background-color-dark);
-            color: var(--background-color-light);
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .share-button:hover {
-            background-color: var(--accent-color);
-        }
+         @media (min-width: 1024px) {
+              /* Ajustes finos para telas ainda maiores, se necessário */
+              .line { line-height: 1.6; }
+              #climax .big-text { font-size: 4.5em; }
+              .overlay-phrases { font-size: 3.5em; }
+         }
 
     </style>
     <!-- Import Map (se necessário para módulos JS futuros) -->
@@ -467,7 +319,17 @@
     </script>
 </head>
 <body>
-    <!-- Usar <main> para conteúdo principal por semântica e acessibilidade -->
+
+    <!-- Tela de Boas-Vindas -->
+    <div id="welcome-screen">
+        <h1>Também Podemos Sonhar</h1>
+        <button id="start-button">Começar</button>
+    </div>
+
+    <!-- Player de Áudio (oculto) -->
+    <audio id="manifesto-audio" src="https://reprograma-t.github.io/audio.mp3" preload="auto"></audio>
+
+    <!-- Container Principal do Manifesto -->
     <main id="manifesto-container" aria-label="Manifesto Também Podemos Sonhar">
 
         <!-- Seção 1: Intro -->
@@ -497,7 +359,6 @@
 
         <!-- Seção 5: Objetivo -->
         <section id="goal" class="manifesto-section" aria-labelledby="goal-line-1">
-             <!-- Container para aplicar o efeito Glitch -->
             <div class="glitch-container" data-text="“Nosso objetivo? Entrar na lista da Forbes.”">
                  <p class="line glitch-text" id="goal-line-1">“Nosso objetivo? Entrar na lista da Forbes.”</p>
             </div>
@@ -506,8 +367,7 @@
 
          <!-- Seção 6: Luta / Futuro -->
          <section id="struggle-future" class="manifesto-section" aria-labelledby="future-line-1">
-             <!-- Frases de fundo que aparecem sutilmente -->
-             <div class="overlay-phrases" aria-hidden="true"> <!-- aria-hidden pois são decorativas -->
+             <div class="overlay-phrases" aria-hidden="true">
                  <span class="overlay-phrase">também posso</span>
                  <span class="overlay-phrase">também sou capaz</span>
                  <span class="overlay-phrase">mereço</span>
@@ -522,11 +382,10 @@
             <p class="line">“E si não formos nós... quem será?”</p>
         </section>
 
-        <!-- Seção 8: Transformação / O que está sendo construído -->
+        <!-- Seção 8: Transformação -->
         <section id="transformation" class="manifesto-section" aria-labelledby="transformation-line-1">
             <p class="line" id="transformation-line-1">“Estamos construindo mais que tecnologia.”</p>
             <p class="line build-more">“Estamos criando uma escola. Um legado. Um espaço onde travestis também programam, lideram, inovam.”</p>
-            <!-- Lista de "produtos" ou entregáveis -->
             <div class="product-list" aria-label="Entregáveis do projeto">
                 <span class="product-item">e-book</span>
                 <span class="product-item">diário didático</span>
@@ -535,9 +394,8 @@
             </div>
         </section>
 
-        <!-- Seção 9: Processo / Resistência -->
+        <!-- Seção 9: Processo -->
         <section id="process" class="manifesto-section" aria-labelledby="process-line-1">
-            <!-- Linhas com efeito de digitação -->
             <p class="line" id="process-line-1">“Cada linha de código é resistência.”</p>
             <p class="line">“Cada passo documentado é uma ponte para outras subirem.”</p>
         </section>
@@ -547,12 +405,10 @@
             <p class="line big-text" id="climax-line-1">O topo também pode ser travesti.</p>
         </section>
 
-        <!-- Seção 11: Final / Chamada para Ação -->
+        <!-- Seção 11: Final -->
         <section id="ending" class="manifesto-section" aria-labelledby="ending-cta-1">
             <div class="logo-animation">
-                <!-- Logo em imagem da URL fornecida -->
                 <img id="orby-logo" src="https://reprograma-t.github.io/logo.png" alt="Orby Chat Logo">
-                <!-- Tagline com animação por palavra -->
                 <div class="tagline" aria-label="Tagline: Travestis. Visionárias. Fundadoras.">
                     <span class="tagline-word">Travestis.</span>
                     <span class="tagline-word">Visionárias.</span>
@@ -564,14 +420,15 @@
                 <p class="line cta-line">Porque quando uma travesti sobe, ela puxa muitas outras junto.</p>
             </div>
 
-            <!-- Opcional: Adicionar botões de compartilhamento aqui -->
-            <!--
+            <!-- Botões de Compartilhamento -->
             <div class="share-buttons">
-                <a href="https://www.facebook.com/sharer/sharer.php?u=URL_DO_SEU_MANIFESTO" target="_blank" class="share-button" aria-label="Compartilhar no Facebook">Facebook</a>
-                <a href="https://twitter.com/intent/tweet?url=URL_DO_SEU_MANIFESTO&text=Também Podemos Sonhar - Manifesto Orby Chat&hashtags=TambémPodemosSonhar,OrbyChat,TravestisNaTecnologia" target="_blank" class="share-button" aria-label="Compartilhar no Twitter">Twitter</a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=URL_DO_SEU_MANIFESTO&title=Também Podemos Sonhar - Manifesto Orby Chat&summary=Travestis criando tecnologia..." target="_blank" class="share-button" aria-label="Compartilhar no LinkedIn">LinkedIn</a>
+                 <!-- Substitua URL_DO_MANIFESTO pela URL real -->
+                <a href="https://www.facebook.com/sharer/sharer.php?u=URL_DO_MANIFESTO" target="_blank" class="share-button" aria-label="Compartilhar no Facebook">Facebook</a>
+                <a href="https://twitter.com/intent/tweet?url=URL_DO_MANIFESTO&text=Também Podemos Sonhar - Manifesto Orby Chat&hashtags=TambémPodemosSonhar,OrbyChat,TravestisNaTecnologia" target="_blank" class="share-button" aria-label="Compartilhar no Twitter">Twitter</a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=URL_DO_MANIFESTO&title=Também Podemos Sonhar - Manifesto Orby Chat&summary=Travestis criando tecnologia, educação e um futuro mais inclusivo. Conheça nosso manifesto." target="_blank" class="share-button" aria-label="Compartilhar no LinkedIn">LinkedIn</a>
+                 <a href="https://api.whatsapp.com/send?text=Conheça o manifesto 'Também Podemos Sonhar' da Orby Chat: URL_DO_MANIFESTO %23TambémPodemosSonhar %23OrbyChat %23TravestisNaTecnologia" target="_blank" class="share-button" aria-label="Compartilhar no WhatsApp">WhatsApp</a>
             </div>
-            -->
+
         </section>
 
     </main> <!-- Fim do #manifesto-container -->
@@ -580,50 +437,86 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Orby Chat",
-        "url": "https://reprograma-t.github.io", /* URL principal do projeto/organização */
-        "logo": "https://reprograma-t.github.io/logo.png", /* Logo principal */
-        "description": "Rede social e plataforma educacional criada por travestis para promover inclusão na tecnologia.",
-        "founders": [
-        {
-            "@type": "Person",
-            "name": "Kelly"
+        "@type": "CreativeWork", /* Alterado para CreativeWork, mais adequado para um manifesto */
+        "name": "Também Podemos Sonhar - Manifesto Orby Chat",
+        "headline": "Manifesto Também Podemos Sonhar",
+        "author": {
+            "@type": "Organization",
+            "name": "Orby Chat",
+            "url": "https://reprograma-t.github.io", /* URL principal do projeto */
+            "logo": "https://reprograma-t.github.io/logo.png",
+             "founders": [ { "@type": "Person", "name": "Kelly" }, { "@type": "Person", "name": "Larissa" }, { "@type": "Person", "name": "Luanny" } ]
         },
-        {
-            "@type": "Person",
-            "name": "Larissa"
+         "publisher": { /* Adicionado Publisher */
+            "@type": "Organization",
+            "name": "Orby Chat",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://reprograma-t.github.io/logo.png"
+            }
         },
-        {
-            "@type": "Person",
-            "name": "Luanny"
-        }
-        ],
-        "sameAs": [ /* Opcional: Adicione links para redes sociais da Orby Chat */
-            /* "https://twitter.com/orbychat", */
-            /* "https://www.instagram.com/orbychat/" */
-        ]
+        "description": "Manifesto 'Também Podemos Sonhar' - Uma iniciativa de travestis criando tecnologia, educação e inclusão através do Orby Chat.",
+         "keywords": "travestis, tecnologia, inclusão, Orby Chat, Kelly, Larissa, Luanny, diversidade, empreendedorismo LGBTQIA+, manifesto",
+        "url": "https://reprograma-t.github.io/manifesto.json", /* URL específica do manifesto */
+        "inLanguage": "pt-BR"
     }
     </script>
 
-    <!-- Script de Animação -->
+    <!-- Script de Animação e Interação -->
     <script>
+        // Seletores Globais
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const startButton = document.getElementById('start-button');
+        const manifestoContainer = document.getElementById('manifesto-container');
+        const audio = document.getElementById('manifesto-audio');
         const sections = document.querySelectorAll('.manifesto-section');
+
         let currentSectionIndex = 0; // Índice da seção atual
+        let manifestoHasStarted = false; // Flag para evitar múltiplos inícios
 
-        // Pega os valores das variáveis CSS para usar nos cálculos de tempo
+        // Variáveis de Tempo (em milissegundos)
         const computedStyle = getComputedStyle(document.documentElement);
-        const lineDelay = parseFloat(computedStyle.getPropertyValue('--line-delay')) * 1000; // ms
-        const sectionDelay = parseFloat(computedStyle.getPropertyValue('--section-delay')) * 1000; // ms
-        const transitionSpeed = parseFloat(computedStyle.getPropertyValue('--transition-speed')) * 1000; // ms
-        const TYPING_SPEED_MS_PER_CHAR = 50; // Velocidade de digitação estimada
+        const lineDelay = parseFloat(computedStyle.getPropertyValue('--line-delay')) * 1000;
+        const sectionDelay = parseFloat(computedStyle.getPropertyValue('--section-delay')) * 1000;
+        const transitionSpeed = parseFloat(computedStyle.getPropertyValue('--transition-speed')) * 1000;
+        const TYPING_SPEED_MS_PER_CHAR = 50;
 
-        // Função para mostrar uma seção específica e suas linhas
+        // --- Função Principal para Iniciar o Manifesto ---
+        function startManifestoSequence() {
+            if (manifestoHasStarted) return; // Impede execução múltipla
+            manifestoHasStarted = true;
+
+             console.log("Iniciando sequência do manifesto...");
+
+            // 1. Toca o áudio
+             audio.play().then(() => {
+                 console.log("Áudio iniciado.");
+             }).catch(error => {
+                 console.error("Falha ao iniciar áudio:", error);
+                 // Continua mesmo se o áudio falhar
+             });
+
+            // 2. Esconde a tela de boas-vindas
+            welcomeScreen.classList.add('hidden');
+
+             // 3. Mostra o container do manifesto após a transição da tela de boas-vindas
+            setTimeout(() => {
+                manifestoContainer.classList.add('visible');
+                 // 4. Inicia a animação da primeira seção após o container ficar visível
+                 setTimeout(() => {
+                     showSection(currentSectionIndex);
+                 }, 500); // Pequeno atraso para garantir visibilidade do container
+             }, 600); // Tempo da transição de opacidade da welcome-screen
+        }
+
+        // --- Função para Mostrar Seção e Linhas ---
         function showSection(index) {
             if (index >= sections.length) {
-                console.log('Fim do manifesto');
-                // Opcionalmente, adicione botões de compartilhamento ou loop
-                return; // Para a execução
+                console.log('Fim do manifesto.');
+                // Tornar os botões de compartilhamento focáveis no final (se não for loop)
+                const shareButtons = document.querySelectorAll('.share-button');
+                shareButtons.forEach(btn => btn.setAttribute('tabindex', '0'));
+                return;
             }
 
             const currentSection = sections[index];
@@ -634,169 +527,181 @@
                 previousSection.classList.remove('active');
             }
 
+             // Limpeza de animações da seção anterior antes de mostrar a nova
+             if (previousSection && previousSection.id === 'goal') {
+                 const glitchContainer = previousSection.querySelector('.glitch-container');
+                 if (glitchContainer) glitchContainer.classList.remove('active');
+             }
+              if (previousSection && previousSection.id === 'process') {
+                 const prevLines = previousSection.querySelectorAll('.line');
+                 prevLines.forEach(line => {
+                      line.style.animation = '';
+                      line.style.width = '';
+                      line.classList.remove('typing');
+                 });
+             }
+
             // Mostra a seção atual
             currentSection.classList.add('active');
 
-            // --- Animações específicas da seção (algumas acionadas por .active no CSS) ---
-            if (currentSection.id === 'struggle-future') {
-                const overlayPhrases = currentSection.querySelectorAll('.overlay-phrase');
-                const linesInStruggle = currentSection.querySelectorAll('.line');
-                // Atraso para frases = tempo das linhas + buffer
-                const delayForOverlays = (linesInStruggle.length > 0 ? (linesInStruggle.length - 1) * lineDelay + transitionSpeed : 0) + 500;
+            // Animações específicas da seção (algumas CSS via .active, outras JS)
+            handleSectionSpecificAnimations(currentSection, index);
+
+            // Animação das Linhas
+            animateLines(currentSection);
+
+            // Calcula Duração e Chama a Próxima Seção
+            calculateAndProceedToNextSection(currentSection, index);
+        }
+
+        // --- Funções Auxiliares ---
+
+        function handleSectionSpecificAnimations(section, index) {
+            const lines = section.querySelectorAll('.line');
+            const baseDelay = (lines.length > 0 ? (lines.length - 1) * lineDelay + transitionSpeed : 0) + 500; // Tempo após linhas
+
+            if (section.id === 'struggle-future') {
+                const overlayPhrases = section.querySelectorAll('.overlay-phrase');
                 overlayPhrases.forEach((phrase, i) => {
-                    setTimeout(() => phrase.classList.add('visible'), delayForOverlays + i * 500);
+                    setTimeout(() => phrase.classList.add('visible'), baseDelay + i * 500);
                 });
-            } else if (currentSection.id === 'transformation') {
-                const productItems = currentSection.querySelectorAll('.product-item');
-                const linesInTransformation = currentSection.querySelectorAll('.line');
-                 // Atraso para produtos = tempo das linhas + buffer
-                const delayForProducts = (linesInTransformation.length > 0 ? (linesInTransformation.length - 1) * lineDelay + transitionSpeed : 0) + 500;
+            } else if (section.id === 'transformation') {
+                const productItems = section.querySelectorAll('.product-item');
                 productItems.forEach((item, i) => {
-                    setTimeout(() => item.classList.add('visible'), delayForProducts + i * 300);
+                    setTimeout(() => item.classList.add('visible'), baseDelay + i * 300);
                 });
             }
-             // Outras seções como 'climax', 'ending' (logo, tagline) têm animações
-             // majoritariamente controladas via CSS pela classe .active
+            // Logo e Tagline no #ending são controlados pelo CSS com delays em .active
+        }
 
-            // --- Animação das Linhas ---
-            const lines = currentSection.querySelectorAll('.line');
-            let cumulativeTime = 0; // Tempo acumulado para início da animação da linha atual
+        function animateLines(section) {
+            const lines = section.querySelectorAll('.line');
+            let cumulativeTime = 0; // Para timing da digitação
 
             lines.forEach((line, i) => {
                 let delayForThisLine;
 
-                if (currentSection.id === 'process') {
-                    // Na seção 'process', o delay depende do fim da digitação anterior
-                    if (i === 0) {
-                        delayForThisLine = lineDelay; // Primeira linha usa delay padrão
-                    } else {
-                        // Calcula tempo da linha anterior + buffer
+                if (section.id === 'process') {
+                    if (i === 0) delayForThisLine = lineDelay;
+                    else {
                         const prevLine = lines[i - 1];
                         const prevTypingDuration = (prevLine.textContent || '').length * TYPING_SPEED_MS_PER_CHAR;
-                        // Inicia após o tempo acumulado anterior + duração da digitação anterior + pausa
-                        delayForThisLine = cumulativeTime + prevTypingDuration + 500;
+                        delayForThisLine = cumulativeTime + prevTypingDuration + 500; // Tempo acumulado + digitação + pausa
                     }
-                    cumulativeTime = delayForThisLine; // Atualiza tempo acumulado para a próxima linha
+                    cumulativeTime = delayForThisLine;
                 } else {
-                    // Para outras seções, o delay é escalonado normalmente
                     delayForThisLine = i * lineDelay;
                 }
 
-                 // Atraso para ativar o Glitch DEPOIS da linha ficar visível
-                 if (currentSection.id === 'goal' && line.classList.contains('glitch-text')) {
+                // Ativar Glitch DEPOIS da linha visível
+                if (section.id === 'goal' && line.classList.contains('glitch-text')) {
                     setTimeout(() => {
-                        const glitchContainer = currentSection.querySelector('.glitch-container');
-                        if (glitchContainer) {
-                           glitchContainer.classList.add('active');
-                        }
-                    }, delayForThisLine + transitionSpeed); // Atraso = delay da linha + duração da animação da linha
+                        const glitchContainer = section.querySelector('.glitch-container');
+                        if (glitchContainer) glitchContainer.classList.add('active');
+                    }, delayForThisLine + transitionSpeed);
                 }
 
-
-                // Define o timeout para tornar a linha visível
+                // Tornar linha visível
                 setTimeout(() => {
                     line.classList.add('visible');
 
-                    // Inicia animação de digitação para a seção 'process'
-                    if (currentSection.id === 'process' && line.classList.contains('line')) {
-                        const text = line.textContent || '';
-                        const typingDuration = text.length * TYPING_SPEED_MS_PER_CHAR;
-
-                        // Adiciona a classe para mostrar o cursor piscando
-                        line.classList.add('typing');
-                        // Define a animação de digitação via JS para controle preciso da duração
-                        line.style.width = '0'; // Começa sem largura
-                        line.style.animation = `typing ${typingDuration / 1000}s steps(${text.length}, end) forwards, blink-caret .75s step-end infinite`;
-
-                        // Remove a classe 'typing' e a animação de digitação após terminar
-                        // para manter o texto visível e remover o cursor
-                        setTimeout(() => {
-                            line.classList.remove('typing');
-                            line.style.animation = ''; // Remove animações inline
-                             // Garante que a largura final seja mantida
-                            line.style.width = 'fit-content';
-                        }, delayForThisLine + typingDuration + 100); // Espera terminar a digitação + buffer
+                    // Animação de digitação
+                    if (section.id === 'process') {
+                        animateTyping(line, delayForThisLine);
                     }
-
                 }, delayForThisLine);
             });
+        }
 
-            // --- Calcula a Duração Total da Seção Atual ---
+        function animateTyping(line, startDelay) {
+            const text = line.textContent || '';
+            const typingDuration = text.length * TYPING_SPEED_MS_PER_CHAR;
+
+            line.classList.add('typing'); // Mostra cursor
+            line.style.width = '0'; // Reseta largura
+             // Aplica animação via JS para controlar duração
+            line.style.animation = `typing ${typingDuration / 1000}s steps(${text.length || 1}, end) forwards, blink-caret .75s step-end infinite`;
+
+            // Limpa animação e classe após terminar
+            setTimeout(() => {
+                line.classList.remove('typing');
+                line.style.animation = '';
+                line.style.width = 'fit-content'; // Garante largura final
+            }, typingDuration + 100); // Tempo da digitação + buffer
+        }
+
+
+        function calculateAndProceedToNextSection(section, index) {
+            const lines = section.querySelectorAll('.line');
             let sectionDuration = 0;
             const lastLineIndex = lines.length > 0 ? lines.length - 1 : -1;
 
             if (lastLineIndex === -1) {
-                sectionDuration = 0; // Seção sem linhas
-            } else if (currentSection.id === 'process') {
-                // Duração é até o fim da digitação da última linha
+                sectionDuration = 0;
+            } else if (section.id === 'process') {
+                 // Recalcular tempo acumulado até a última linha iniciar
+                 let processCumulativeTime = 0;
+                 for(let i = 0; i <= lastLineIndex; i++) {
+                      if (i === 0) processCumulativeTime = lineDelay;
+                      else {
+                           const prevLine = lines[i-1];
+                           const prevTypingDuration = (prevLine.textContent || '').length * TYPING_SPEED_MS_PER_CHAR;
+                           processCumulativeTime += prevTypingDuration + 500;
+                      }
+                 }
                 const lastLine = lines[lastLineIndex];
                 const lastLineTypingDuration = (lastLine.textContent || '').length * TYPING_SPEED_MS_PER_CHAR;
-                sectionDuration = cumulativeTime + lastLineTypingDuration + 500; // Tempo acumulado + digitação da última + buffer
+                sectionDuration = processCumulativeTime + lastLineTypingDuration + 500;
             } else {
-                 // Duração normal: delay da última linha + sua animação de entrada
-                 sectionDuration = lastLineIndex * lineDelay + transitionSpeed;
+                sectionDuration = lastLineIndex * lineDelay + transitionSpeed; // Tempo das linhas
 
-                 // Considera tempos extras de animações específicas que ocorrem *depois* das linhas
-                 if (currentSection.id === 'transformation') {
-                    const productItems = currentSection.querySelectorAll('.product-item');
+                // Adicionar tempos de animações específicas PÓS-linhas
+                 const baseDelayAfterLines = sectionDuration + 500;
+
+                if (section.id === 'transformation') {
+                    const productItems = section.querySelectorAll('.product-item');
                     if (productItems.length > 0) {
-                        const delayForProductsStart = (lines.length > 0 ? (lines.length - 1) * lineDelay + transitionSpeed : 0) + 500;
                         const lastProductDelay = (productItems.length - 1) * 300;
-                        const productAnimationDuration = 600; // Duração da animação do item
-                        const totalProductTime = delayForProductsStart + lastProductDelay + productAnimationDuration;
-                        sectionDuration = Math.max(sectionDuration, totalProductTime);
+                        const productAnimationDuration = 600;
+                        sectionDuration = Math.max(sectionDuration, baseDelayAfterLines + lastProductDelay + productAnimationDuration);
                     }
-                 } else if (currentSection.id === 'struggle-future') {
-                    const overlayPhrases = currentSection.querySelectorAll('.overlay-phrase');
-                     if (overlayPhrases.length > 0) {
-                        const delayForOverlaysStart = (lines.length > 0 ? (lines.length - 1) * lineDelay + transitionSpeed : 0) + 500;
+                } else if (section.id === 'struggle-future') {
+                    const overlayPhrases = section.querySelectorAll('.overlay-phrase');
+                    if (overlayPhrases.length > 0) {
                         const lastOverlayDelay = (overlayPhrases.length - 1) * 500;
                         const overlayAnimationDuration = 1000;
-                        const totalOverlayTime = delayForOverlaysStart + lastOverlayDelay + overlayAnimationDuration;
-                        sectionDuration = Math.max(sectionDuration, totalOverlayTime);
-                     }
-                 } else if (currentSection.id === 'ending') {
-                    // Duração baseada no mais longo: linhas CTA ou logo+tagline
-                    const ctaLinesDuration = sectionDuration; // Já calculado acima
-
-                    const logoAnimationTime = 1500; // Duração CSS
-                    const lastTaglineWordDelay = 3100; // Delay CSS
-                    const taglineWordAnimationTime = 600; // Duração CSS
+                        sectionDuration = Math.max(sectionDuration, baseDelayAfterLines + lastOverlayDelay + overlayAnimationDuration);
+                    }
+                } else if (section.id === 'ending') {
+                    const ctaLinesDuration = sectionDuration; // Tempo até última linha CTA
+                    const logoAnimationTime = 1500;
+                    const lastTaglineWordDelay = 3100;
+                    const taglineWordAnimationTime = 600;
                     const logoTaglineTotalTime = Math.max(logoAnimationTime, lastTaglineWordDelay + taglineWordAnimationTime);
-
-                    sectionDuration = Math.max(ctaLinesDuration, logoTaglineTotalTime) + 500; // Pega o maior tempo + buffer
-                 }
+                    // Adiciona tempo dos botões de share aparecerem (se houver animação)
+                    sectionDuration = Math.max(ctaLinesDuration, logoTaglineTotalTime) + 1000; // Pega maior tempo + buffer
+                }
             }
 
-
-            // --- Chama a Próxima Seção ---
+            // Chama a próxima seção
             setTimeout(() => {
-                // Limpeza antes de passar para a próxima seção
-                if (currentSection.id === 'goal') {
-                    const glitchContainer = currentSection.querySelector('.glitch-container');
-                     if (glitchContainer) {
-                       glitchContainer.classList.remove('active');
-                    }
-                }
-                // Remover estilos inline da animação de digitação
-                if (currentSection.id === 'process') {
-                    lines.forEach(line => {
-                         line.style.animation = '';
-                         line.style.width = ''; // Reseta largura se necessário
-                    });
-                }
-
                 showSection(index + 1);
-            }, sectionDuration + sectionDelay); // Tempo total da seção + delay padrão entre seções
+            }, sectionDuration + sectionDelay);
         }
 
-        // --- Inicia a Sequência do Manifesto ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // Pequeno atraso inicial
-            setTimeout(() => {
-                showSection(currentSectionIndex);
-            }, 500);
+
+        // --- Event Listener Inicial ---
+        startButton.addEventListener('click', startManifestoSequence);
+
+        // Opcional: Permitir iniciar com Enter se o botão estiver focado
+        startButton.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                startManifestoSequence();
+            }
         });
+
+        // Nota: A sequência SÓ COMEÇA com a interação do usuário no botão.
+
     </script>
 
 </body>
