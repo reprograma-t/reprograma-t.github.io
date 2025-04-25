@@ -1,20 +1,56 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" dir="ltr"> <!-- Adicionado dir="ltr" para acessibilidade -->
 <head>
+    <!-- Meta Tags Básicas -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Também Podemos Sonhar - Manifesto</title>
+    <meta name="description" content="Manifesto 'Também Podemos Sonhar' - Uma iniciativa de travestis criando tecnologia, educação e inclusão através do Orby Chat.">
+    <meta name="keywords" content="travestis, tecnologia, inclusão, Orby Chat, Kelly, Larissa, Luanny, diversidade, empreendedorismo LGBTQIA+, manifesto">
+    <meta name="author" content="Orby Chat">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <!-- IMPORTANTE: Atualize esta URL para a URL final onde o manifesto será hospedado -->
+    <meta property="og:url" content="https://reprograma-t.github.io/manifesto">
+    <meta property="og:title" content="Também Podemos Sonhar - Manifesto Orby Chat">
+    <meta property="og:description" content="Travestis criando tecnologia, educação e um futuro mais inclusivo. Conheça nosso manifesto.">
+    <!-- IMPORTANTE: Crie e hospede esta imagem no caminho especificado -->
+    <meta property="og:image" content="https://reprograma-t.github.io/logo.png"> <!-- Imagem 1200x630px recomendada -->
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- IMPORTANTE: Atualize esta URL para a URL final onde o manifesto será hospedado -->
+    <meta name="twitter:url" content="https://reprograma-t.github.io/manifesto">
+    <meta name="twitter:title" content="Também Podemos Sonhar - Manifesto Orby Chat">
+    <meta name="twitter:description" content="Travestis criando tecnologia, educação e um futuro mais inclusivo. Conheça nosso manifesto.">
+    <!-- IMPORTANTE: Crie e hospede esta imagem no caminho especificado -->
+    <meta name="twitter:image" content="https://reprograma-t.github.io/logo.png"> <!-- Imagem 1200x630px recomendada -->
+
+    <!-- Favicon e ícones -->
+    <!-- IMPORTANTE: Crie e hospede estes ícones nos caminhos especificados -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://reprograma-t.github.io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://reprograma-t.github.io/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://reprograma-t.github.io/apple-touch-icon.png">
+    <!-- Opcional: Crie um arquivo manifest.json para PWA -->
+    <link rel="manifest" href="https://reprograma-t.github.io/site.webmanifest">
+
+    <!-- Título otimizado -->
+    <title>Também Podemos Sonhar - Manifesto Orby Chat por Kelly, Larissa e Luanny</title>
+
+    <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Estilos CSS -->
     <style>
         :root {
             --background-color-dark: #1a1a2e; /* Cor de fundo escura */
             --background-color-light: #f0f0f0; /* Cor de fundo clara */
             --text-color: #ffffff;             /* Cor do texto padrão (para fundo escuro) */
-            --accent-color: #e94560;           /* Cor de destaque de exemplo */
-            --glitch-color-1: #0ff;            /* Cor 1 para efeito glitch */
-            --glitch-color-2: #f0f;            /* Cor 2 para efeito glitch */
+            --accent-color: #e94560;           /* Cor de destaque */
+            --glitch-color-1: #0ff;            /* Cor 1 para efeito glitch (ciano) */
+            --glitch-color-2: #f0f;            /* Cor 2 para efeito glitch (magenta) */
             --transition-speed: 0.8s;          /* Velocidade da transição padrão */
             --line-delay: 1.5s;                /* Tempo entre linhas consecutivas em uma seção (em segundos) */
             --section-delay: 2s;               /* Tempo entre mostrar seções (em segundos) */
@@ -34,6 +70,7 @@
             transition: background-color var(--transition-speed) ease-in-out; /* Transição suave da cor de fundo */
         }
 
+        /* Usar <main> para semântica e acessibilidade */
         #manifesto-container {
             position: relative;
             width: 100vw;
@@ -82,12 +119,12 @@
 
         /* Introdução */
         #intro {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), var(--background-color-dark)); /* Gradiente sutil no topo */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), var(--background-color-dark));
         }
 
         /* Problema */
         #problem {
-            background: #2c394b; /* Tom azulado escuro */
+            background: #2c394b;
         }
 
         /* Fundadoras */
@@ -100,76 +137,96 @@
             margin-top: 30px;
         }
         #founders .orby-text {
-            color: var(--accent-color); /* Usa a cor de destaque */
+            color: var(--accent-color);
             font-weight: 900;
         }
+
+        /* Detalhes do Projeto */
+        /* (Nenhum estilo específico além do padrão) */
 
         /* Objetivo */
         #goal {
-            background: #120a2e; /* Tom roxo escuro */
+            background: #120a2e; /* Tom roxo escuro para esta seção */
         }
         .glitch-container {
             position: relative;
-            display: inline-block; /* Necessário para conter pseudo-elementos posicionados absolutamente */
+            display: inline-block;
         }
         .glitch-text {
-            position: relative; /* Para que os pseudo-elementos fiquem sobre ele */
+            position: relative;
             font-size: 2em;
             font-weight: 900;
+            color: var(--text-color); /* Texto original permanece visível (branco) */
         }
 
-        /* Animação Glitch */
-        @keyframes glitch { /* Define os passos da animação de falha (glitch) */
-            0% { clip-path: inset(40% 0 40% 0); }
-            10% { clip-path: inset(80% 0 5% 0); }
-            20% { clip-path: inset(10% 0 70% 0); }
-            30% { clip-path: inset(60% 0 10% 0); }
-            40% { clip-path: inset(10% 0 60% 0); }
-            50% { clip-path: inset(80% 0 5% 0); }
-            60% { clip-path: inset(20% 0 50% 0); }
-            70% { clip-path: inset(70% 0 20% 0); }
-            80% { clip-path: inset(5% 0 80% 0); }
-            90% { clip-path: inset(40% 0 40% 0); }
-            100% { clip-path: inset(80% 0 5% 0); }
+        /* Animação Glitch (CORRIGIDA) */
+        @keyframes glitch {
+            0% { clip-path: inset(40% 0 40% 0); transform: translateX(-1px); }
+            10% { clip-path: inset(80% 0 5% 0); transform: translateX(1px); }
+            20% { clip-path: inset(10% 0 70% 0); transform: translateX(-1px); }
+            30% { clip-path: inset(60% 0 10% 0); transform: translateX(1px); }
+            40% { clip-path: inset(10% 0 60% 0); transform: translateX(-2px); }
+            50% { clip-path: inset(80% 0 5% 0); transform: translateX(2px); }
+            60% { clip-path: inset(20% 0 50% 0); transform: translateX(-1px); }
+            70% { clip-path: inset(70% 0 20% 0); transform: translateX(1px); }
+            80% { clip-path: inset(5% 0 80% 0); transform: translateX(-2px); }
+            90% { clip-path: inset(40% 0 40% 0); transform: translateX(2px); }
+            100% { clip-path: inset(80% 0 5% 0); transform: translateX(-1px); }
         }
 
         .glitch-container::before,
         .glitch-container::after {
-            content: attr(data-text); /* Usa o atributo 'data-text' para guardar o texto original */
+            content: attr(data-text);
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--background-color-dark); /* Corresponde ao fundo da seção para cobrir o texto original */
-            pointer-events: none; /* Não interfere com cliques */
+            /* background: transparent; /* CORRIGIDO: Sem background */
+            color: var(--text-color); /* Cor base do texto nos pseudo-elementos (pode ser a mesma) */
+            overflow: hidden; /* Garante que o clip-path funcione */
+            pointer-events: none;
         }
 
         .glitch-container::before {
             left: -2px;
-            text-shadow: 1px 0 var(--glitch-color-1); /* Sombra colorida para efeito glitch */
-            animation: glitch 0.5s infinite linear alternate-reverse; /* Aplica a animação glitch */
+            text-shadow: 2px 0 var(--glitch-color-1); /* Sombra Ciano */
+            /* A animação só será aplicada quando .active estiver presente */
+            animation: none;
         }
 
         .glitch-container::after {
             left: 2px;
-            text-shadow: -1px 0 var(--glitch-color-2); /* Sombra colorida diferente */
-            animation: glitch 0.5s infinite linear alternate; /* Aplica a animação glitch (direção oposta) */
+            text-shadow: -2px 0 var(--glitch-color-2); /* Sombra Magenta */
+             /* A animação só será aplicada quando .active estiver presente */
+            animation: none;
         }
 
-        /* Quando o glitch está ativo, esconde o texto original e mostra os pseudo-elementos */
-        .glitch-container.active .glitch-text.visible {
-            color: transparent; /* Esconde o texto original */
+        /* Aplica a animação APENAS quando o container está ativo */
+        .glitch-container.active::before {
+            animation: glitch 0.4s infinite linear alternate-reverse; /* Duração ajustada */
         }
+        .glitch-container.active::after {
+            animation: glitch 0.4s infinite linear alternate; /* Duração ajustada */
+        }
+
+        /* CORRIGIDO: Não precisamos mais esconder o texto original
+        .glitch-container.active .glitch-text.visible {
+            color: transparent;
+        } */
+
+        /* Garante que os pseudo-elementos tenham conteúdo quando ativos */
         .glitch-container.active::before,
         .glitch-container.active::after {
-             content: attr(data-text); /* Copia o texto para os pseudo-elementos */
+             content: attr(data-text);
         }
-        /* Quando não está ativo, esconde os pseudo-elementos */
+        /* Esconde os pseudo-elementos quando não ativos (bom para performance) */
         .glitch-container:not(.active)::before,
         .glitch-container:not(.active)::after {
              content: none;
+             animation: none; /* Garante que a animação pare */
         }
+
 
         /* Luta/Futuro */
         #struggle-future {
@@ -208,30 +265,30 @@
 
         /* Determinação */
         #determination {
-            background: #1f2833; /* Cor forte e sólida, cinza-azulado escuro */
+            background: #1f2833; /* Cor forte e sólida */
         }
         #determination .line {
              font-size: 1.8em;
-             font-weight: 300; /* Começa leve */
+             font-weight: 300;
              margin: 20px 0;
-             transition: opacity 1s ease-out, transform 1s ease-out, font-weight 1s ease-out, color 1s ease-out; /* Transições suaves */
+             transition: opacity 1s ease-out, transform 1s ease-out, font-weight 1s ease-out, color 1s ease-out;
         }
-        /* Aplica estilos diferentes para linhas específicas quando visíveis */
         #determination .line:nth-child(2).visible {
-            font-weight: 700; /* Segunda linha mais forte */
+            font-weight: 700;
         }
         #determination .line:nth-child(3).visible {
-             font-weight: 900; /* Terceira linha muito forte */
-             color: var(--accent-color); /* Usa a cor de destaque */
+             font-weight: 900;
+             color: var(--accent-color);
         }
+
 
         /* Transformação */
         #transformation {
             background: linear-gradient(45deg, #e94560, #ff7e5f, #feb47b, #86a8e7, #91eacb); /* Gradiente vibrante */
-            background-size: 400% 400%; /* Tamanho grande para animação suave */
-            animation: gradientShift 15s ease infinite; /* Animação do gradiente */
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
         }
-        @keyframes gradientShift { /* Animação que move a posição do fundo do gradiente */
+        @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
@@ -246,17 +303,17 @@
         .product-list {
             margin-top: 40px;
             display: flex;
-            flex-wrap: wrap; /* Quebra linha se necessário */
-            justify-content: center; /* Centraliza os itens */
-            gap: 20px; /* Espaço entre os itens */
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
         }
         .product-item {
             padding: 10px 20px;
-            border: 2px solid var(--text-color); /* Borda na cor do texto */
+            border: 2px solid var(--text-color);
             border-radius: 5px;
-            opacity: 0; /* Começa invisível */
-            transform: scale(0.9); /* Começa ligeiramente menor */
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Animação de entrada */
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
             font-weight: 700;
         }
         .product-item.visible {
@@ -264,133 +321,144 @@
             transform: scale(1);
         }
 
+
         /* Processo */
         #process {
-             background: #0a1a1a; /* Sensação de tecnologia/código, verde bem escuro */
+             background: #0a1a1a; /* Sensação de tecnologia/código */
         }
         #process .line {
-             font-family: monospace; /* Fonte tipo código */
-             white-space: pre; /* Mantém espaços e quebras de linha como no código */
-             overflow: hidden; /* Esconde o texto antes de digitar */
+             font-family: monospace;
+             white-space: pre;
+             overflow: hidden;
              border-right: .15em solid orange; /* Cursor de digitação */
-             animation: none; /* Sobrescreve a animação padrão da linha .line */
-             margin: 20px auto; /* Centraliza linhas de bloco (se width for definido) */
-             width: fit-content; /* Ajusta a largura ao conteúdo para o cursor ficar no final */
+             animation: none; /* Sobrescreve animação padrão */
+             margin: 20px auto;
+             width: fit-content; /* Ajusta largura ao conteúdo */
         }
         #process .line.typing {
-             /* Animação de digitação e cursor piscando */
-             animation: typing 2s steps(40, end), blink-caret .75s step-end infinite;
-             width: fit-content; /* Garante que a largura se ajuste */
+             /* Duração da digitação baseada no JS, cursor pisca aqui */
+             animation: blink-caret .75s step-end infinite;
+             width: fit-content;
         }
-        @keyframes typing { /* Animação que revela o texto como se estivesse sendo digitado */
+        /* Animação de digitação será controlada via JS para sincronia */
+        @keyframes typing {
             from { width: 0 }
             to { width: 100% }
         }
-        @keyframes blink-caret { /* Animação que faz o cursor piscar */
+        @keyframes blink-caret {
             from, to { border-color: transparent }
             50% { border-color: orange }
         }
-        /* Precisa da classe visible para aparecer, mesmo com animação de digitação */
         #process .line.typing.visible {
              opacity: 1;
-             transform: none; /* Reseta qualquer transform da classe .line */
+             transform: none;
         }
-        /* Esconde o cursor quando a linha não está no estado 'typing' */
         #process .line:not(.typing) {
-             border-right: none;
+             border-right: none; /* Esconde cursor quando não digita */
         }
+
 
         /* Clímax */
         #climax {
-            background: var(--background-color-dark); /* Começa escuro */
-            transition: background-color 1s ease-in-out, opacity var(--transition-speed) ease-in-out, visibility var(--transition-speed) ease-in-out; /* Adiciona transição de fundo */
+            background: var(--background-color-dark);
+            transition: background-color 1s ease-in-out, opacity var(--transition-speed) ease-in-out, visibility var(--transition-speed) ease-in-out;
         }
         #climax.active {
              background: var(--background-color-light); /* Transição para branco */
         }
         #climax .big-text {
-            font-size: 4em; /* Texto bem grande */
-            font-weight: 900; /* Texto bem forte */
-            color: var(--text-color); /* Cor do texto inicial (branco) */
-            transition: color 1s ease-in-out; /* Transição suave da cor do texto */
+            font-size: 4em;
+            font-weight: 900;
+            color: var(--text-color);
+            transition: color 1s ease-in-out;
         }
         #climax.active .big-text {
-            color: var(--background-color-dark); /* Muda a cor do texto no fundo branco */
+            color: var(--background-color-dark); /* Muda cor do texto no fundo branco */
         }
+
 
         /* Final */
         #ending {
-            background: var(--background-color-light); /* Começa claro */
-            color: var(--background-color-dark); /* Texto escuro sobre claro */
+            background: var(--background-color-light);
+            color: var(--background-color-dark);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* opacity e visibility gerenciados por .manifesto-section.active */
         }
         #ending .line {
-            color: var(--background-color-dark); /* Garante a cor escura do texto */
+            color: var(--background-color-dark);
         }
-
         .logo-animation {
             margin-bottom: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-
         #orby-logo {
-            width: 150px; /* Tamanho do logo */
-            height: auto; /* Mantém proporção */
+            width: 150px;
+            height: auto;
             margin-bottom: 20px;
-            opacity: 0; /* Começa invisível */
-            transform: scale(0.8); /* Começa menor */
-            transition: opacity 1.5s ease-out, transform 1.5s ease-out; /* Animação de entrada longa */
-            /* O atraso é gerenciado pela ativação da seção .active */
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+            /* Atraso via JS/ativação da seção */
         }
-
         #ending.active #orby-logo {
             opacity: 1;
             transform: scale(1);
         }
-
         .tagline {
             margin-top: 10px;
             font-size: 1.2em;
             font-weight: 700;
-            color: var(--background-color-dark); /* Texto escuro */
+            color: var(--background-color-dark);
         }
-
         .tagline-word {
-            display: inline-block; /* Permite aplicar transform */
-            opacity: 0; /* Começa invisível */
-            transform: translateX(-20px); /* Começa ligeiramente à esquerda */
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Animação de entrada */
-            margin: 0 5px; /* Espaçamento entre palavras */
+            display: inline-block;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            margin: 0 5px;
         }
-
-        /* Atrasar animações das palavras da tagline usando CSS */
-        #ending.active .tagline-word:nth-child(1) { transition-delay: 2.5s; } /* Primeira palavra atrasa mais */
-        #ending.active .tagline-word:nth-child(2) { transition-delay: 2.8s; } /* Segunda palavra */
-        #ending.active .tagline-word:nth-child(3) { transition-delay: 3.1s; } /* Terceira palavra */
-
-        /* Quando a seção final está ativa, anima as palavras */
+        /* Atraso via CSS quando a seção está ativa */
+        #ending.active .tagline-word:nth-child(1) { transition-delay: 2.5s; }
+        #ending.active .tagline-word:nth-child(2) { transition-delay: 2.8s; }
+        #ending.active .tagline-word:nth-child(3) { transition-delay: 3.1s; }
         #ending.active .tagline-word {
              opacity: 1;
              transform: translateX(0);
         }
-
         .call-to-action {
             margin-top: 40px;
         }
-
         #ending .cta-line {
-            /* cta-line herda estilos de .line, garante cor escura */
             color: var(--background-color-dark);
             font-size: 1.3em;
-             /* A animação de entrada (.line.visible) é tratada pelo JS */
         }
+
+        /* Opcional: Estilos para botões de compartilhamento (se adicionados) */
+        .share-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+        .share-button {
+            /* Estilizar botões aqui */
+            padding: 8px 15px;
+            background-color: var(--background-color-dark);
+            color: var(--background-color-light);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .share-button:hover {
+            background-color: var(--accent-color);
+        }
+
     </style>
+    <!-- Import Map (se necessário para módulos JS futuros) -->
     <script type="importmap">
       {
         "imports": {
@@ -399,66 +467,67 @@
     </script>
 </head>
 <body>
-    <div id="manifesto-container">
+    <!-- Usar <main> para conteúdo principal por semântica e acessibilidade -->
+    <main id="manifesto-container" aria-label="Manifesto Também Podemos Sonhar">
 
         <!-- Seção 1: Intro -->
-        <section id="intro" class="manifesto-section">
-            <p class="line">“Há homens. Há mulheres. Mas onde estão as travestis... nos lugares de poder?”</p>
+        <section id="intro" class="manifesto-section" aria-labelledby="intro-line-1">
+            <p class="line" id="intro-line-1">“Há homens. Há mulheres. Mas onde estão as travestis... nos lugares de poder?”</p>
         </section>
 
         <!-- Seção 2: Problema -->
-        <section id="problem" class="manifesto-section">
-            <p class="line">“Não por falta de talento, mas por falta de acesso, de respeito... de espaço.”</p>
+        <section id="problem" class="manifesto-section" aria-labelledby="problem-line-1">
+            <p class="line" id="problem-line-1">“Não por falta de talento, mas por falta de acesso, de respeito... de espaço.”</p>
         </section>
 
         <!-- Seção 3: Fundadoras -->
-        <section id="founders" class="manifesto-section">
-             <div class="founders-names">
+        <section id="founders" class="manifesto-section" aria-labelledby="founders-intro">
+             <div class="founders-names" aria-label="Fundadoras">
                 <p class="line name">Kelly.</p>
                 <p class="line name">Larissa.</p>
                 <p class="line name">Luanny.</p>
             </div>
-            <p class="line project-intro">“Somos três travestis. E estamos criando algo inédito: <span class="orby-text">Orby Chat</span>.”</p>
+            <p class="line project-intro" id="founders-intro">“Somos três travestis. E estamos criando algo inédito: <span class="orby-text">Orby Chat</span>.”</p>
         </section>
 
         <!-- Seção 4: Detalhes do Projeto -->
-        <section id="project-details" class="manifesto-section">
-             <p class="line">“Uma rede social feita de estudo, de resistência, de sonho e de verdade.”</p>
+        <section id="project-details" class="manifesto-section" aria-labelledby="details-line-1">
+             <p class="line" id="details-line-1">“Uma rede social feita de estudo, de resistência, de sonho e de verdade.”</p>
         </section>
 
         <!-- Seção 5: Objetivo -->
-        <section id="goal" class="manifesto-section">
+        <section id="goal" class="manifesto-section" aria-labelledby="goal-line-1">
              <!-- Container para aplicar o efeito Glitch -->
             <div class="glitch-container" data-text="“Nosso objetivo? Entrar na lista da Forbes.”">
-                 <p class="line glitch-text">“Nosso objetivo? Entrar na lista da Forbes.”</p>
+                 <p class="line glitch-text" id="goal-line-1">“Nosso objetivo? Entrar na lista da Forbes.”</p>
             </div>
             <p class="line goal-motivation">“Não pelo dinheiro. Mas pelo direito de sermos referência.”</p>
         </section>
 
          <!-- Seção 6: Luta / Futuro -->
-         <section id="struggle-future" class="manifesto-section">
+         <section id="struggle-future" class="manifesto-section" aria-labelledby="future-line-1">
              <!-- Frases de fundo que aparecem sutilmente -->
-             <div class="overlay-phrases">
+             <div class="overlay-phrases" aria-hidden="true"> <!-- aria-hidden pois são decorativas -->
                  <span class="overlay-phrase">também posso</span>
                  <span class="overlay-phrase">também sou capaz</span>
                  <span class="overlay-phrase">mereço</span>
             </div>
-            <p class="line future-statement">“Porque o futuro não pode ser contado sem nós.”</p>
+            <p class="line future-statement" id="future-line-1">“Porque o futuro não pode ser contado sem nós.”</p>
         </section>
 
         <!-- Seção 7: Determinação -->
-        <section id="determination" class="manifesto-section">
-            <p class="line">“Não sabemos si vamos conseguir.”</p>
+        <section id="determination" class="manifesto-section" aria-labelledby="determination-line-1">
+            <p class="line" id="determination-line-1">“Não sabemos si vamos conseguir.”</p>
             <p class="line">“Mas alguém tem que tentar primeiro.”</p>
             <p class="line">“E si não formos nós... quem será?”</p>
         </section>
 
         <!-- Seção 8: Transformação / O que está sendo construído -->
-        <section id="transformation" class="manifesto-section">
-            <p class="line">“Estamos construindo mais que tecnologia.”</p>
+        <section id="transformation" class="manifesto-section" aria-labelledby="transformation-line-1">
+            <p class="line" id="transformation-line-1">“Estamos construindo mais que tecnologia.”</p>
             <p class="line build-more">“Estamos criando uma escola. Um legado. Um espaço onde travestis também programam, lideram, inovam.”</p>
             <!-- Lista de "produtos" ou entregáveis -->
-            <div class="product-list">
+            <div class="product-list" aria-label="Entregáveis do projeto">
                 <span class="product-item">e-book</span>
                 <span class="product-item">diário didático</span>
                 <span class="product-item">comunidade viva</span>
@@ -467,58 +536,100 @@
         </section>
 
         <!-- Seção 9: Processo / Resistência -->
-        <section id="process" class="manifesto-section">
+        <section id="process" class="manifesto-section" aria-labelledby="process-line-1">
             <!-- Linhas com efeito de digitação -->
-            <p class="line">“Cada linha de código é resistência.”</p>
+            <p class="line" id="process-line-1">“Cada linha de código é resistência.”</p>
             <p class="line">“Cada passo documentado é uma ponte para outras subirem.”</p>
         </section>
 
         <!-- Seção 10: Clímax -->
-        <section id="climax" class="manifesto-section">
-            <p class="line big-text">O topo também pode ser travesti.</p>
+        <section id="climax" class="manifesto-section" aria-labelledby="climax-line-1">
+            <p class="line big-text" id="climax-line-1">O topo também pode ser travesti.</p>
         </section>
 
         <!-- Seção 11: Final / Chamada para Ação -->
-        <section id="ending" class="manifesto-section">
+        <section id="ending" class="manifesto-section" aria-labelledby="ending-cta-1">
             <div class="logo-animation">
                 <!-- Logo em imagem da URL fornecida -->
                 <img id="orby-logo" src="https://reprograma-t.github.io/logo.png" alt="Orby Chat Logo">
                 <!-- Tagline com animação por palavra -->
-                <div class="tagline">
+                <div class="tagline" aria-label="Tagline: Travestis. Visionárias. Fundadoras.">
                     <span class="tagline-word">Travestis.</span>
                     <span class="tagline-word">Visionárias.</span>
                     <span class="tagline-word">Fundadoras.</span>
                 </div>
             </div>
             <div class="call-to-action">
-                <p class="line cta-line">Invista. Compartilhe. Sonhe com a gente.</p>
+                <p class="line cta-line" id="ending-cta-1">Invista. Compartilhe. Sonhe com a gente.</p>
                 <p class="line cta-line">Porque quando uma travesti sobe, ela puxa muitas outras junto.</p>
             </div>
+
+            <!-- Opcional: Adicionar botões de compartilhamento aqui -->
+            <!--
+            <div class="share-buttons">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=URL_DO_SEU_MANIFESTO" target="_blank" class="share-button" aria-label="Compartilhar no Facebook">Facebook</a>
+                <a href="https://twitter.com/intent/tweet?url=URL_DO_SEU_MANIFESTO&text=Também Podemos Sonhar - Manifesto Orby Chat&hashtags=TambémPodemosSonhar,OrbyChat,TravestisNaTecnologia" target="_blank" class="share-button" aria-label="Compartilhar no Twitter">Twitter</a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=URL_DO_SEU_MANIFESTO&title=Também Podemos Sonhar - Manifesto Orby Chat&summary=Travestis criando tecnologia..." target="_blank" class="share-button" aria-label="Compartilhar no LinkedIn">LinkedIn</a>
+            </div>
+            -->
         </section>
 
-    </div>
+    </main> <!-- Fim do #manifesto-container -->
+
+    <!-- Schema Markup para SEO (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Orby Chat",
+        "url": "https://reprograma-t.github.io", /* URL principal do projeto/organização */
+        "logo": "https://reprograma-t.github.io/logo.png", /* Logo principal */
+        "description": "Rede social e plataforma educacional criada por travestis para promover inclusão na tecnologia.",
+        "founders": [
+        {
+            "@type": "Person",
+            "name": "Kelly"
+        },
+        {
+            "@type": "Person",
+            "name": "Larissa"
+        },
+        {
+            "@type": "Person",
+            "name": "Luanny"
+        }
+        ],
+        "sameAs": [ /* Opcional: Adicione links para redes sociais da Orby Chat */
+            /* "https://twitter.com/orbychat", */
+            /* "https://www.instagram.com/orbychat/" */
+        ]
+    }
+    </script>
+
+    <!-- Script de Animação -->
     <script>
         const sections = document.querySelectorAll('.manifesto-section');
         let currentSectionIndex = 0; // Índice da seção atual
 
         // Pega os valores das variáveis CSS para usar nos cálculos de tempo
         const computedStyle = getComputedStyle(document.documentElement);
-        const lineDelay = parseFloat(computedStyle.getPropertyValue('--line-delay')) * 1000; // Converte para milissegundos
-        const sectionDelay = parseFloat(computedStyle.getPropertyValue('--section-delay')) * 1000; // Converte para milissegundos
-        const transitionSpeed = parseFloat(computedStyle.getPropertyValue('--transition-speed')) * 1000; // Converte para milissegundos
+        const lineDelay = parseFloat(computedStyle.getPropertyValue('--line-delay')) * 1000; // ms
+        const sectionDelay = parseFloat(computedStyle.getPropertyValue('--section-delay')) * 1000; // ms
+        const transitionSpeed = parseFloat(computedStyle.getPropertyValue('--transition-speed')) * 1000; // ms
+        const TYPING_SPEED_MS_PER_CHAR = 50; // Velocidade de digitação estimada
 
         // Função para mostrar uma seção específica e suas linhas
         function showSection(index) {
             if (index >= sections.length) {
                 console.log('Fim do manifesto');
-                // Opcionalmente, faça algo no final, ex: mostrar mensagem final ou repetir
-                return; // Para a execução se não houver mais seções
+                // Opcionalmente, adicione botões de compartilhamento ou loop
+                return; // Para a execução
             }
 
             const currentSection = sections[index];
             const previousSection = sections[index - 1];
 
-            // Esconde a seção anterior (se existir)
+            // Esconde a seção anterior
             if (previousSection) {
                 previousSection.classList.remove('active');
             }
@@ -526,159 +637,167 @@
             // Mostra a seção atual
             currentSection.classList.add('active');
 
-            // --- Animações específicas da seção ---
-            // Essas animações são acionadas pela classe 'active' na seção,
-            // mas algumas podem precisar de lógica adicional ou timing específico.
-
-            if (currentSection.id === 'goal') {
-                const glitchContainer = currentSection.querySelector('.glitch-container');
-                // Adiciona a classe 'active' ao container do glitch APENAS quando a linha estiver visível (tratado abaixo)
-                // Mas a remoção será feita antes de passar para a próxima seção (veja no final da função)
-            } else if (currentSection.id === 'struggle-future') {
+            // --- Animações específicas da seção (algumas acionadas por .active no CSS) ---
+            if (currentSection.id === 'struggle-future') {
                 const overlayPhrases = currentSection.querySelectorAll('.overlay-phrase');
-                // Escalonar a revelação das frases de sobreposição APÓS as linhas principais aparecerem
                 const linesInStruggle = currentSection.querySelectorAll('.line');
-                const delayForOverlays = linesInStruggle.length * lineDelay + 500; // Atraso baseado nas linhas + buffer
+                // Atraso para frases = tempo das linhas + buffer
+                const delayForOverlays = (linesInStruggle.length > 0 ? (linesInStruggle.length - 1) * lineDelay + transitionSpeed : 0) + 500;
                 overlayPhrases.forEach((phrase, i) => {
-                    setTimeout(() => {
-                        phrase.classList.add('visible');
-                    }, delayForOverlays + i * 500); // Escalonamento das frases
+                    setTimeout(() => phrase.classList.add('visible'), delayForOverlays + i * 500);
                 });
             } else if (currentSection.id === 'transformation') {
                 const productItems = currentSection.querySelectorAll('.product-item');
                 const linesInTransformation = currentSection.querySelectorAll('.line');
-                const delayForProducts = linesInTransformation.length * lineDelay + 500; // Atraso após as linhas
-                // Escalonar a revelação dos itens de produto após as linhas
+                 // Atraso para produtos = tempo das linhas + buffer
+                const delayForProducts = (linesInTransformation.length > 0 ? (linesInTransformation.length - 1) * lineDelay + transitionSpeed : 0) + 500;
                 productItems.forEach((item, i) => {
-                    setTimeout(() => {
-                        item.classList.add('visible');
-                    }, delayForProducts + i * 300);
+                    setTimeout(() => item.classList.add('visible'), delayForProducts + i * 300);
                 });
-            } else if (currentSection.id === 'process') {
-                // Efeito de digitação tratado abaixo na animação das linhas
-            } else if (currentSection.id === 'climax') {
-                // Transição CSS trata a mudança de fundo/cor em 'active'
-            } else if (currentSection.id === 'ending') {
-                // Transições CSS tratam as animações do logo e da tagline em 'active'
-                // As classes .active no #ending e os transition-delay no CSS cuidam do timing
             }
+             // Outras seções como 'climax', 'ending' (logo, tagline) têm animações
+             // majoritariamente controladas via CSS pela classe .active
 
             // --- Animação das Linhas ---
             const lines = currentSection.querySelectorAll('.line');
-            let totalTimeForLines = 0; // Para calcular a duração total da animação das linhas nesta seção
+            let cumulativeTime = 0; // Tempo acumulado para início da animação da linha atual
 
             lines.forEach((line, i) => {
-                let delayForThisLine = i * lineDelay; // Atraso base para cada linha
+                let delayForThisLine;
 
-                // Lógica especial para a seção 'process' (digitação)
                 if (currentSection.id === 'process') {
-                     // O atraso da linha atual depende da duração da digitação da linha anterior
-                    if (i > 0) {
-                         const prevLine = lines[i - 1];
-                         // Estima a duração da digitação (ex: 50ms por caractere)
-                         const typingDurationPrev = (prevLine.textContent || '').length * 50;
-                         // O atraso é o tempo total acumulado até agora + duração da digitação anterior + pequeno buffer
-                         delayForThisLine = totalTimeForLines + typingDurationPrev + 500;
+                    // Na seção 'process', o delay depende do fim da digitação anterior
+                    if (i === 0) {
+                        delayForThisLine = lineDelay; // Primeira linha usa delay padrão
                     } else {
-                         delayForThisLine = lineDelay; // Primeiro linha usa o delay padrão
+                        // Calcula tempo da linha anterior + buffer
+                        const prevLine = lines[i - 1];
+                        const prevTypingDuration = (prevLine.textContent || '').length * TYPING_SPEED_MS_PER_CHAR;
+                        // Inicia após o tempo acumulado anterior + duração da digitação anterior + pausa
+                        delayForThisLine = cumulativeTime + prevTypingDuration + 500;
                     }
-                    totalTimeForLines = delayForThisLine; // Atualiza o tempo total acumulado
-                } else if (currentSection.id === 'goal' && line.classList.contains('glitch-text')) {
-                    // Ativa o glitch *depois* que a linha ficou visível
+                    cumulativeTime = delayForThisLine; // Atualiza tempo acumulado para a próxima linha
+                } else {
+                    // Para outras seções, o delay é escalonado normalmente
+                    delayForThisLine = i * lineDelay;
+                }
+
+                 // Atraso para ativar o Glitch DEPOIS da linha ficar visível
+                 if (currentSection.id === 'goal' && line.classList.contains('glitch-text')) {
                     setTimeout(() => {
                         const glitchContainer = currentSection.querySelector('.glitch-container');
-                        glitchContainer.classList.add('active');
+                        if (glitchContainer) {
+                           glitchContainer.classList.add('active');
+                        }
                     }, delayForThisLine + transitionSpeed); // Atraso = delay da linha + duração da animação da linha
                 }
+
 
                 // Define o timeout para tornar a linha visível
                 setTimeout(() => {
                     line.classList.add('visible');
 
-                    // Se for a seção 'process', inicia a animação de digitação
+                    // Inicia animação de digitação para a seção 'process'
                     if (currentSection.id === 'process' && line.classList.contains('line')) {
-                        // Usa um pequeno timeout para garantir que a linha esteja posicionada antes de adicionar 'typing'
+                        const text = line.textContent || '';
+                        const typingDuration = text.length * TYPING_SPEED_MS_PER_CHAR;
+
+                        // Adiciona a classe para mostrar o cursor piscando
+                        line.classList.add('typing');
+                        // Define a animação de digitação via JS para controle preciso da duração
+                        line.style.width = '0'; // Começa sem largura
+                        line.style.animation = `typing ${typingDuration / 1000}s steps(${text.length}, end) forwards, blink-caret .75s step-end infinite`;
+
+                        // Remove a classe 'typing' e a animação de digitação após terminar
+                        // para manter o texto visível e remover o cursor
                         setTimeout(() => {
-                            line.classList.add('typing');
-                            // Estima a duração da digitação para remover a classe 'typing' (e o cursor) depois
-                            const typingDuration = (line.textContent || '').length * 50;
-                            setTimeout(() => {
-                                line.classList.remove('typing');
-                            }, typingDuration + 100); // +100ms de buffer
-                        }, 50); // Pequeno atraso após a classe 'visible' ser adicionada
+                            line.classList.remove('typing');
+                            line.style.animation = ''; // Remove animações inline
+                             // Garante que a largura final seja mantida
+                            line.style.width = 'fit-content';
+                        }, delayForThisLine + typingDuration + 100); // Espera terminar a digitação + buffer
                     }
 
                 }, delayForThisLine);
             });
 
             // --- Calcula a Duração Total da Seção Atual ---
-            // Isso determina quando a próxima seção deve ser chamada.
             let sectionDuration = 0;
-            const lastLineIndex = lines.length > 0 ? lines.length - 1 : 0;
+            const lastLineIndex = lines.length > 0 ? lines.length - 1 : -1;
 
-            if (lines.length === 0) {
-                sectionDuration = 0; // Se não houver linhas, a duração base é zero
+            if (lastLineIndex === -1) {
+                sectionDuration = 0; // Seção sem linhas
             } else if (currentSection.id === 'process') {
-                // Para 'process', a duração depende da última linha terminar de digitar
+                // Duração é até o fim da digitação da última linha
                 const lastLine = lines[lastLineIndex];
-                const lastLineTypingDuration = (lastLine.textContent || '').length * 50;
-                sectionDuration = totalTimeForLines + lastLineTypingDuration + 500; // Tempo acumulado + digitação da última + buffer
+                const lastLineTypingDuration = (lastLine.textContent || '').length * TYPING_SPEED_MS_PER_CHAR;
+                sectionDuration = cumulativeTime + lastLineTypingDuration + 500; // Tempo acumulado + digitação da última + buffer
             } else {
-                // Para outras seções, é o delay da última linha + sua animação
-                sectionDuration = lastLineIndex * lineDelay + transitionSpeed;
-            }
+                 // Duração normal: delay da última linha + sua animação de entrada
+                 sectionDuration = lastLineIndex * lineDelay + transitionSpeed;
 
-            // Adiciona tempo extra para animações específicas da seção que ocorrem *depois* das linhas
-            if (currentSection.id === 'transformation') {
-                const productItems = currentSection.querySelectorAll('.product-item');
-                const lastProductDelay = (productItems.length - 1) * 300; // Delay do último item
-                const productAnimationDuration = 600; // Duração da animação do item (opacity/transform)
-                const totalProductTime = sectionDuration + lastProductDelay + productAnimationDuration; // sectionDuration aqui é o tempo até a última linha aparecer
-                 sectionDuration = Math.max(sectionDuration, totalProductTime) + 500; // Pega o maior tempo e adiciona buffer
-            } else if (currentSection.id === 'struggle-future') {
-                 const overlayPhrases = currentSection.querySelectorAll('.overlay-phrase');
-                 const lastOverlayDelay = (overlayPhrases.length - 1) * 500;
-                 const overlayAnimationDuration = 1000; // Duração da animação da frase
-                 const delayForOverlaysStart = lines.length * lineDelay + 500;
-                 const totalOverlayTime = delayForOverlaysStart + lastOverlayDelay + overlayAnimationDuration;
-                 sectionDuration = Math.max(sectionDuration, totalOverlayTime) + 500; // Pega o maior tempo e adiciona buffer
-            } else if (currentSection.id === 'ending') {
-                // A duração do final depende do mais longo entre as linhas CTA e a animação do logo/tagline
-                const ctaLinesDuration = sectionDuration; // Calculado acima baseado nas linhas .cta-line
+                 // Considera tempos extras de animações específicas que ocorrem *depois* das linhas
+                 if (currentSection.id === 'transformation') {
+                    const productItems = currentSection.querySelectorAll('.product-item');
+                    if (productItems.length > 0) {
+                        const delayForProductsStart = (lines.length > 0 ? (lines.length - 1) * lineDelay + transitionSpeed : 0) + 500;
+                        const lastProductDelay = (productItems.length - 1) * 300;
+                        const productAnimationDuration = 600; // Duração da animação do item
+                        const totalProductTime = delayForProductsStart + lastProductDelay + productAnimationDuration;
+                        sectionDuration = Math.max(sectionDuration, totalProductTime);
+                    }
+                 } else if (currentSection.id === 'struggle-future') {
+                    const overlayPhrases = currentSection.querySelectorAll('.overlay-phrase');
+                     if (overlayPhrases.length > 0) {
+                        const delayForOverlaysStart = (lines.length > 0 ? (lines.length - 1) * lineDelay + transitionSpeed : 0) + 500;
+                        const lastOverlayDelay = (overlayPhrases.length - 1) * 500;
+                        const overlayAnimationDuration = 1000;
+                        const totalOverlayTime = delayForOverlaysStart + lastOverlayDelay + overlayAnimationDuration;
+                        sectionDuration = Math.max(sectionDuration, totalOverlayTime);
+                     }
+                 } else if (currentSection.id === 'ending') {
+                    // Duração baseada no mais longo: linhas CTA ou logo+tagline
+                    const ctaLinesDuration = sectionDuration; // Já calculado acima
 
-                // Tempo para logo e tagline (baseado nos delays do CSS)
-                const logoAnimationTime = 1500; // Duração da animação do logo
-                const lastTaglineWordDelay = 3100; // Delay CSS da última palavra
-                const taglineWordAnimationTime = 600; // Duração da animação da palavra
-                const logoTaglineTotalTime = Math.max(logoAnimationTime, lastTaglineWordDelay + taglineWordAnimationTime);
+                    const logoAnimationTime = 1500; // Duração CSS
+                    const lastTaglineWordDelay = 3100; // Delay CSS
+                    const taglineWordAnimationTime = 600; // Duração CSS
+                    const logoTaglineTotalTime = Math.max(logoAnimationTime, lastTaglineWordDelay + taglineWordAnimationTime);
 
-                sectionDuration = Math.max(ctaLinesDuration, logoTaglineTotalTime) + 1000; // Pega o maior tempo + buffer final
+                    sectionDuration = Math.max(ctaLinesDuration, logoTaglineTotalTime) + 500; // Pega o maior tempo + buffer
+                 }
             }
 
 
             // --- Chama a Próxima Seção ---
-            // Define um timeout para mostrar a próxima seção após a duração calculada da seção atual + delay entre seções
             setTimeout(() => {
                 // Limpeza antes de passar para a próxima seção
                 if (currentSection.id === 'goal') {
-                    currentSection.querySelector('.glitch-container').classList.remove('active');
+                    const glitchContainer = currentSection.querySelector('.glitch-container');
+                     if (glitchContainer) {
+                       glitchContainer.classList.remove('active');
+                    }
                 }
-                // Opcional: remover 'visible' das linhas se quiser que elas animem novamente ao voltar
-                // lines.forEach(line => line.classList.remove('visible'));
+                // Remover estilos inline da animação de digitação
+                if (currentSection.id === 'process') {
+                    lines.forEach(line => {
+                         line.style.animation = '';
+                         line.style.width = ''; // Reseta largura se necessário
+                    });
+                }
 
-                // Chama a função recursivamente para a próxima seção
                 showSection(index + 1);
             }, sectionDuration + sectionDelay); // Tempo total da seção + delay padrão entre seções
-
         }
 
         // --- Inicia a Sequência do Manifesto ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Usa um pequeno atraso inicial antes da primeira seção aparecer
+            // Pequeno atraso inicial
             setTimeout(() => {
                 showSection(currentSectionIndex);
-            }, 500); // Atraso menor para a primeira seção
+            }, 500);
         });
     </script>
+
 </body>
 </html>
