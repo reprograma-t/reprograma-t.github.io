@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apresentação Detalhada: Reprograma-T</title>
+    <title>Apresentação: Reprograma-T</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
+        /* O CSS permanece o mesmo da versão anterior. */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
         :root {
@@ -85,6 +86,15 @@
         .module-subtitle { font-size: 1rem; margin-bottom: 20px; opacity: 0.8; }
         .module-description { font-size: 1.05rem; }
 
+        .slide ul { list-style: none; text-align: left; max-width: 600px; margin: 20px 0; }
+        .slide ul li { margin-bottom: 15px; padding-left: 20px; position: relative; }
+        .slide ul li::before { content: '✨'; position: absolute; left: -10px; color: var(--cor-destaque-dourado); }
+        .slide ul strong { color: var(--cor-destaque-roxo); display: block; font-size: 1.1rem; }
+        
+        /* Estilo específico para a lista de conceitos filosóficos */
+        .philosophy-list p { text-align: left; margin-bottom: 12px; font-size: 1rem; max-width: 650px;}
+        .philosophy-list strong { color: var(--cor-destaque-dourado); }
+
         .slideshow-footer { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; border-top: 1px solid var(--cor-borda); flex-shrink: 0; }
         .nav-button { background-color: transparent; border: 2px solid var(--cor-destaque-roxo); color: var(--cor-destaque-roxo); padding: 10px 20px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent; }
         .nav-button:hover:not(:disabled) { background-color: var(--cor-destaque-roxo); color: var(--cor-fundo-slide); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(157, 141, 241, 0.3); }
@@ -98,7 +108,7 @@
             .slideshow-header { padding: 10px 15px; }
             .logo { height: 30px; margin-right: 10px; }
             .platform-title { font-size: 1.2rem; }
-            .slide { padding: 15px; }
+            .slide { padding: 15px; overflow-y: auto; } /* Permite rolagem SÓ se necessário em telas muito pequenas */
             .slide h1 { font-size: 1.6rem; }
             .slide h2 { font-size: 1.4rem; }
             .slide h3 { font-size: 1.2rem; }
@@ -107,6 +117,7 @@
             .module-title { font-size: 1.4rem; }
             .module-subtitle { font-size: 0.9rem; }
             .module-description { font-size: 0.95rem; }
+            .philosophy-list p { font-size: 0.9rem; margin-bottom: 10px; }
             .slideshow-footer { padding: 10px 15px; }
             .nav-button { padding: 8px 16px; font-size: 0.9rem; flex-grow: 1; text-align: center; }
             .slide-counter { padding: 0 10px; }
@@ -142,7 +153,7 @@
             <div class="slide">
                 <h2>Um Sonho de Bilhões de Vidas</h2>
                 <p>Sim, a meta financeira é de 1 bilhão de dólares. O objetivo é a Forbes.</p>
-                <p class="quote">Não pelo glamour. Não pela vaidade.<br>É para <span class="highlight">romper uma barreira</span>. Para dizer ao mundo: <span class="highlight">nós estamos aqui.</span></p>
+                <p class="quote">Não pelo glamour ou vaidade, mas para <span class="highlight">romper uma barreira</span>. Para dizer ao mundo: <span class="highlight">nós estamos aqui.</span></p>
                 <p>Mas é insignificante chegar lá sozinha.</p>
             </div>
             
@@ -165,12 +176,22 @@
                 <p><strong>2. Comunicação Consciente (CNV):</strong> Ensinar a falar e a ouvir com o coração.</p>
                 <p><strong>3. Crescimento Pessoal:</strong> Oferecer ferramentas para a cura e o autoconhecimento.</p>
             </div>
+            
+            <!-- ✨ NOVO SLIDE INSERIDO AQUI ✨ -->
+            <div class="slide">
+                <h2>A Base Filosófica</h2>
+                <div class="philosophy-list">
+                    <p><strong>CNV:</strong> Um caminho para se comunicar sem julgar, atacar ou se calar, baseado em observação, sentimento, necessidade e pedido.</p>
+                    <p><strong>Ikigai:</strong> Conceito japonês que une propósito e prazer. A razão para se levantar da cama com sentido.</p>
+                    <p><strong>Kintsugi:</strong> A arte de reparar o que foi quebrado com ouro, simbolizando a beleza da resiliência e da cura.</p>
+                </div>
+            </div>
 
             <div class="slide">
                 <i class="fas fa-comments module-icon"></i>
                 <h3 class="module-title">Núcleo Social Consciente</h3>
                 <p class="module-subtitle">Onde postar é uma "Partilha" guiada pela CNV.</p>
-                <p class="module-description">Isso força uma comunicação mais consciente e menos reativa. As interações são reações empáticas (<span class="highlight">Te Entendo, Me Inspirou</span>), focando em validação emocional, não em aprovação social.</p>
+                <p class="module-description">Isso força uma comunicação mais consciente. As interações são empáticas (<span class="highlight">Te Entendo, Me Inspirou</span>), focando em validação emocional, não em aprovação social.</p>
             </div>
             
             <div class="slide">
@@ -184,7 +205,7 @@
                 <i class="fas fa-map-marked-alt module-icon"></i>
                 <h3 class="module-title">Mapa Violeta</h3>
                 <p class="module-subtitle">Geografia da Segurança e Afeto</p>
-                <p class="module-description">Um mapa colaborativo para registrar "alertas de perigo" e "locais acolhedores". Transforma a ansiedade em dados para ação e celebra os refúgios de segurança.</p>
+                <p class="module-description">Um mapa colaborativo para registrar "alertas de perigo" e "locais acolhedores", transformando a ansiedade em dados para ação e celebrando refúgios de segurança.</p>
             </div>
             
             <div class="slide">
@@ -218,22 +239,16 @@
             <div class="slide">
                 <h2>Para Quem é Este Sonho?</h2>
                 <p class="quote">A força do Reprograma-T reside em sua especificidade.</p>
-                <p>É para a <span class="highlight">Comunidade LGBTQIAPN+</span>. Para <span class="highlight">Pessoas Neurodivergentes</span>. Para todos em processo de <span class="highlight">Cura</span>.</p>
+                <p>É para a <span class="highlight">Comunidade LGBTQIAPN+</span>.<br>Para <span class="highlight">Pessoas Neurodivergentes</span>.<br>Para Todos em processo de <span class="highlight">Cura</span>.</p>
             </div>
             
             <div class="slide">
                 <h2>O Manifesto Final</h2>
                 <p class="quote"><strong>Reprograma-T</strong> é um manifesto digital transformado em código. Uma tentativa ambiciosa de construir uma utopia digital funcional.</p>
                 <p>Seu nome é literal: a plataforma busca <span class="highlight">"reprogramar"</span> os padrões de comunicação, a percepção de segurança e a relação que temos com nós mesmos.</p>
+                <h3>É um sonho. E como todo sonho, não tem preço. <br>Mas tem um valor imensurável.</h3>
             </div>
             
-             <div class="slide">
-                <h3>Glossário de Conceitos</h3>
-                <p><strong>CNV:</strong> Comunicar sem julgar, atacar ou se calar.</p>
-                <p><strong>Ikigai:</strong> Onde sua paixão encontra o que o mundo precisa.</p>
-                <p><strong>Kintsugi:</strong> A arte de honrar as cicatrizes, transformando o que foi quebrado em algo mais forte e belo.</p>
-            </div>
-
         </main>
 
         <footer class="slideshow-footer">
