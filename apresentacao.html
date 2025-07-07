@@ -3,361 +3,692 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apresentação: Reprograma-T</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>Reprograma-T: O Ecossistema de Cuidado Digital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <style>
-        /* O CSS permanece o mesmo da versão anterior. */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,700&display=swap');
 
-        :root {
-            --cor-fundo: #0a0a14;
-            --cor-fundo-slide: #1a1a2e;
-            --cor-texto-principal: #e0e0fc;
-            --cor-destaque-roxo: #9d8df1;
-            --cor-destaque-dourado: #f0c419;
-            --cor-destaque-rosa: #f76f8e;
-            --cor-borda: rgba(157, 141, 241, 0.3);
-            --sombra-brilho: 0 0 15px rgba(157, 141, 241, 0.2);
+    :root {
+        --cor-fundo-profundo: #05020a;
+        --cor-fundo-container: #100a1f;
+        --cor-borda: rgba(157, 141, 241, 0.2);
+        --cor-texto-principal: #dcd7f5;
+        --cor-texto-secundario: #a39cc5;
+        --cor-destaque-roxo: #9d8df1;
+        --cor-destaque-dourado: #f0c419;
+        --cor-destaque-rosa: #f76f8e;
+        --sombra-brilho: 0 0 25px rgba(157, 141, 241, 0.15);
+        --transicao-suave: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        height: 100%; /* Garante que o html ocupe toda a altura */
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--cor-fundo-profundo);
+        color: var(--cor-texto-principal);
+        overflow-x: hidden;
+        background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%231a1a2e" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+        min-height: 100%; /* Garante que o body ocupe no mínimo toda a altura */
+        display: flex; /* Habilita flexbox para o body */
+        flex-direction: column; /* Organiza os filhos em coluna */
+    }
+
+    .presentation-container {
+        width: 100%;
+        min-height: 100vh; /* Usa a altura da viewport como altura mínima */
+        display: flex;
+        flex-direction: column;
+        flex: 1; /* Permite que este container cresça para preencher o body */
+    }
+
+    .header {
+        padding: 20px 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(16, 10, 31, 0.8);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--cor-borda);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        width: 100%; /* Garante que o header ocupe a largura total */
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .logo {
+        height: 45px;
+        margin-right: 15px;
+    }
+
+    .platform-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--cor-destaque-dourado);
+        text-shadow: 0 0 8px var(--cor-destaque-dourado);
+    }
+
+    .main-content {
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 50px 20px;
+        flex-grow: 1; /* Faz o conteúdo principal expandir para ocupar o espaço restante */
+        display: flex;
+        flex-direction: column;
+    }
+
+    section {
+        padding: 60px 0;
+        border-bottom: 1px solid var(--cor-borda);
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    section:last-of-type {
+        border-bottom: none; /* Remove a borda da última seção */
+    }
+    
+    section.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .section-title {
+        font-size: 2.8rem;
+        color: var(--cor-destaque-roxo);
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .section-subtitle {
+        font-size: 1.2rem;
+        text-align: center;
+        color: var(--cor-texto-secundario);
+        margin-bottom: 40px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .intro-section p {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 20px;
+    }
+
+    .intro-section .quote {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        font-style: italic;
+        color: var(--cor-destaque-rosa);
+        text-align: center;
+        padding: 20px;
+        border-top: 1px solid var(--cor-borda);
+        border-bottom: 1px solid var(--cor-borda);
+        margin: 40px 0;
+    }
+
+    .highlight {
+        color: var(--cor-destaque-dourado);
+        font-weight: bold;
+    }
+
+    .mindmap {
+        display: flex;
+        justify-content: space-around;
+        align-items: stretch; /* Faz os pilares terem a mesma altura */
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-top: 50px;
+    }
+
+    .pillar-node {
+        background: var(--cor-fundo-container);
+        padding: 30px;
+        border-radius: 15px;
+        border: 1px solid var(--cor-borda);
+        box-shadow: var(--sombra-brilho);
+        text-align: center;
+        width: 280px;
+        transition: var(--transicao-suave);
+        cursor: pointer;
+        display: flex; /* Habilita flex para alinhar conteúdo interno */
+        flex-direction: column; /* Organiza o conteúdo em coluna */
+        justify-content: flex-start; /* Alinha ao topo */
+    }
+
+    .pillar-node:hover {
+        transform: translateY(-10px) scale(1.05);
+        border-color: var(--cor-destaque-roxo);
+    }
+
+    .pillar-node .icon {
+        font-size: 3rem;
+        color: var(--cor-destaque-dourado);
+        margin-bottom: 15px;
+    }
+
+    .pillar-node h3 {
+        font-size: 1.5rem;
+        color: var(--cor-destaque-roxo);
+        margin-bottom: 10px;
+    }
+
+    .pillar-node p {
+        font-size: 0.9rem;
+        color: var(--cor-texto-secundario);
+        flex-grow: 1; /* Faz o parágrafo ocupar espaço para alinhar os botões se houvessem */
+        line-height: 1.6;
+    }
+
+    .module-details {
+        display: none;
+        padding-top: 40px;
+    }
+
+    .module-details.active {
+        display: block;
+    }
+
+    .module-card {
+        background: rgba(26, 26, 46, 0.5);
+        margin-bottom: 40px;
+        padding: 30px;
+        border-radius: 10px;
+        border-left: 5px solid var(--cor-destaque-dourado);
+    }
+
+    .module-card-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .module-card-header .icon {
+        font-size: 2.5rem;
+        color: var(--cor-destaque-dourado);
+    }
+
+    .module-card-title {
+        font-size: 2rem;
+        color: var(--cor-destaque-roxo);
+    }
+
+    .module-card-body p,
+    .module-card-body ul {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        text-align: justify;
+    }
+
+    .module-card-body ul {
+        list-style: none;
+        padding-left: 25px;
+    }
+
+    .module-card-body li {
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+    .module-card-body li::before {
+        content: '✨';
+        position: absolute;
+        left: -25px;
+        color: var(--cor-destaque-rosa);
+    }
+
+    .subsection-title {
+        font-size: 1.3rem;
+        color: var(--cor-texto-principal);
+        margin-top: 30px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid var(--cor-borda);
+        padding-bottom: 8px;
+    }
+
+    .faq-item {
+        background: rgba(0, 0, 0, 0.2);
+        margin-bottom: 10px;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .faq-item summary {
+        padding: 15px 20px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--cor-destaque-roxo);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .faq-item summary::after {
+        content: '\f078';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        transition: transform 0.3s;
+    }
+
+    .faq-item[open] summary::after {
+        transform: rotate(180deg);
+    }
+
+    .faq-item p {
+        padding: 0 20px 15px;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    .glossary-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .glossary-item {
+        background: var(--cor-fundo-container);
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid var(--cor-borda);
+    }
+
+    .glossary-item h4 {
+        color: var(--cor-destaque-dourado);
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+
+    .glossary-item p {
+        font-size: 0.95rem;
+        color: var(--cor-texto-secundario);
+    }
+
+    .conclusion-section h2 {
+        font-size: 2.2rem;
+    }
+
+    .conclusion-section .final-quote {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        font-style: italic;
+        color: var(--cor-destaque-dourado);
+        text-align: center;
+        padding: 30px;
+        border-top: 1px solid var(--cor-borda);
+        border-bottom: 1px solid var(--cor-borda);
+        margin: 40px 0;
+    }
+
+    #back-to-map-btn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: var(--cor-destaque-roxo);
+        color: var(--cor-fundo-container);
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 100;
+        box-shadow: 0 5px 15px rgba(157, 141, 241, 0.4);
+        transition: var(--transicao-suave);
+    }
+
+    #back-to-map-btn:hover {
+        background-color: var(--cor-destaque-dourado);
+        transform: scale(1.1);
+    }
+
+    /* Media Queries para responsividade */
+    @media (max-width: 768px) {
+        .header {
+            padding: 15px 5%;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { height: 100%; overflow: hidden; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--cor-fundo);
-            color: var(--cor-texto-principal);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            background-image: radial-gradient(circle at 15% 15%, rgba(157, 141, 241, 0.1), transparent 35%),
-                              radial-gradient(circle at 85% 85%, rgba(247, 111, 142, 0.1), transparent 35%);
-        }
-
-        .slideshow-container {
-            width: 100%;
-            max-width: 950px;
-            background-color: var(--cor-fundo-slide);
-            border: 1px solid var(--cor-borda);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), var(--sombra-brilho);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            height: 95vh;
-            max-height: 700px;
-        }
-
-        .slideshow-header {
-            padding: 15px 25px;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid var(--cor-borda);
-            flex-shrink: 0;
-        }
-
-        .logo { height: 40px; margin-right: 15px; }
-        .platform-title { font-size: 1.5rem; font-weight: 600; color: var(--cor-destaque-dourado); text-shadow: 0 0 5px var(--cor-destaque-dourado); }
-
-        .slide-content-wrapper { flex-grow: 1; position: relative; overflow: hidden; }
-        .slide {
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%;
-            padding: 20px 40px;
-            opacity: 0; visibility: hidden;
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-            transform: translateY(20px);
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            text-align: center;
-        }
-        .slide.active { opacity: 1; visibility: visible; transform: translateY(0); }
         
-        .slide h1, .slide h2, .slide h3 { color: var(--cor-destaque-roxo); margin-bottom: 20px; line-height: 1.3; }
-        .slide h1 { font-size: 2.5rem; }
-        .slide h2 { font-size: 1.8rem; }
-        .slide h3 { font-size: 1.5rem; color: var(--cor-destaque-rosa); }
-        .slide p { font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px; max-width: 700px; }
-        .slide .highlight { color: var(--cor-destaque-dourado); font-weight: 600; }
-        .slide .quote { font-style: italic; opacity: 0.9; border-left: 3px solid var(--cor-destaque-roxo); padding-left: 20px; margin: 20px 0; text-align: left; }
-        
-        .module-icon { font-size: 3rem; color: var(--cor-destaque-dourado); margin-bottom: 15px; }
-        .module-title { color: var(--cor-destaque-roxo); font-size: 1.6rem; margin-bottom: 10px; }
-        .module-subtitle { font-size: 1rem; margin-bottom: 20px; opacity: 0.8; }
-        .module-description { font-size: 1.05rem; }
-        .module-list { list-style: none; text-align: left; max-width: 600px; margin: 20px 0; font-size: 1rem; }
-        .module-list li { margin-bottom: 10px; }
-        
-        .philosophy-list p { text-align: left; margin-bottom: 12px; font-size: 1rem; max-width: 650px;}
-        .philosophy-list strong { color: var(--cor-destaque-dourado); }
-
-        .slideshow-footer { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; border-top: 1px solid var(--cor-borda); flex-shrink: 0; }
-        .nav-button { background-color: transparent; border: 2px solid var(--cor-destaque-roxo); color: var(--cor-destaque-roxo); padding: 10px 20px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent; }
-        .nav-button:hover:not(:disabled) { background-color: var(--cor-destaque-roxo); color: var(--cor-fundo-slide); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(157, 141, 241, 0.3); }
-        .nav-button:active:not(:disabled) { transform: translateY(0); box-shadow: none; }
-        .nav-button:disabled { opacity: 0.4; cursor: not-allowed; }
-        .slide-counter { font-size: 1rem; font-weight: 600; color: var(--cor-texto-principal); }
-        
-        @media (max-width: 768px) {
-            body { padding: 5px; align-items: flex-start; padding-top: 1vh; }
-            .slideshow-container { height: 98vh; width: 100%; border-radius: 10px; max-height: none; }
-            .slideshow-header { padding: 10px 15px; }
-            .logo { height: 30px; margin-right: 10px; }
-            .platform-title { font-size: 1.2rem; }
-            .slide { padding: 15px; overflow-y: auto; }
-            .slide h1 { font-size: 1.6rem; }
-            .slide h2 { font-size: 1.4rem; }
-            .slide h3 { font-size: 1.2rem; }
-            .slide p { font-size: 0.95rem; line-height: 1.6; }
-            .module-icon { font-size: 2.5rem; }
-            .module-title { font-size: 1.4rem; }
-            .module-subtitle { font-size: 0.9rem; margin-bottom: 15px; }
-            .module-description { font-size: 0.95rem; }
-            .philosophy-list p { font-size: 0.9rem; margin-bottom: 10px; }
-            .slideshow-footer { padding: 10px 15px; }
-            .nav-button { padding: 8px 16px; font-size: 0.9rem; flex-grow: 1; text-align: center; }
-            .slide-counter { padding: 0 10px; }
+        .main-content {
+            padding: 30px 15px;
         }
-    </style>
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .intro-section p {
+            font-size: 1rem;
+        }
+
+        .intro-section .quote {
+            font-size: 1.2rem;
+        }
+
+        .pillar-node {
+            width: 100%; /* Em telas menores, cada pilar ocupa a largura toda */
+        }
+
+        .module-card-title {
+            font-size: 1.5rem;
+        }
+
+        .module-card-body p,
+        .module-card-body ul {
+            font-size: 0.95rem;
+        }
+    }
+
+</style>
 </head>
 <body>
 
-    <div class="slideshow-container">
-        <header class="slideshow-header">
-            <img src="https://reprograma-t.github.io/logo.png" alt="Logo Reprograma-T" class="logo">
-            <span class="platform-title">Reprograma-T</span>
+    <div class="presentation-container">
+        <header class="header">
+            <a href="#" class="logo-container">
+                <img src="https://reprograma-t.github.io/logo.png" alt="Logo Reprograma-T" class="logo">
+                <h1 class="platform-title">Reprograma-T</h1>
+            </a>
         </header>
 
-        <main class="slide-content-wrapper">
+        <main class="main-content">
             
-            <div class="slide active">
-                <h1>Qual é o <span class="highlight">preço</span> do seu sonho?</h1>
-                <p class="quote">Um sonho grande, um sonho pequeno... tudo é sonho. Em comum não há preço. O que existe é o peso.</p>
-            </div>
+            <!-- INTRODUÇÃO -->
+            <section id="intro" class="intro-section">
+                <h2 class="section-title">Qual é o <span class="highlight">preço</span> do seu sonho?</h2>
+                <p>Um sonho grande, um sonho pequeno... tudo é sonho. Em comum não há preço. O que existe é o peso. O peso que carregamos para sequer nos permitirmos sonhar.</p>
+                <p>No dia do meu aniversário(4 de novembro de 2024), minha avó se foi. Ela foi a última pessoa que eu amava de uma forma visceral, e talvez a única que me amou da mesma maneira. Meus aniversários, que são próximos a essa data, nunca mais foram os mesmos. Deixaram de ser sobre comemorar e se tornaram um dia de reflexão.</p>
+                <p class="quote">Eu poderia chamar de luto, mas minha avó me ensinou coisas que hoje são a base dos meus sonhos. Eu chamo de legado.</p>
+                <p>Eu sou Luanny Ravatche. E o sonho que eu vou apresentar hoje se chama <strong>REPROGRAMA-T</strong>. Uma rede social. Um sonho de no mínimo 1 bilhão de dólares. O objetivo é simples: Forbes. Não pelo glamour, não pela vaidade. É para romper uma barreira. Romper uma bolha. E dizer: <span class="highlight">nós estamos aqui.</span></p>
+            </section>
 
-            <div class="slide">
-                <h2>O Legado da Minha Avó</h2>
-                <p>No dia 4 de novembro, minha avó se foi. Ela foi a última pessoa que eu amava e, talvez, a única que verdadeiramente me amou.</p>
-                <p>Meus aniversários nunca mais serão os mesmos. Agora, tenho um dia de reflexão para o resto da minha vida. Eu poderia chamar de luto, mas minha avó me ensinou coisas que hoje são a base dos meus sonhos. Eu chamo de <span class="highlight">legado</span>.</p>
-            </div>
+            <!-- MAPA MENTAL (PILARES) -->
+            <section id="mindmap" class="mindmap-section">
+                <h2 class="section-title">O Ecossistema de Cuidado</h2>
+                <p class="section-subtitle">O Reprograma-T é construído sobre três pilares interconectados. Clique em um pilar para explorar os módulos que o compõem.</p>
+                <div class="mindmap">
+                    <div class="pillar-node" data-target="seguranca-details">
+                        <i class="fas fa-shield-heart icon"></i>
+                        <h3>Segurança Psicológica</h3>
+                        <p>Ferramentas para criar um refúgio digital e físico, onde a vulnerabilidade é protegida e a confiança é a norma.</p>
+                    </div>
+                    <div class="pillar-node" data-target="comunicacao-details">
+                        <i class="fas fa-comments icon"></i>
+                        <h3>Comunicação Consciente</h3>
+                        <p>Módulos que integram a Comunicação Não-Violenta (CNV) para transformar a maneira como nos expressamos e nos conectamos.</p>
+                    </div>
+                    <div class="pillar-node" data-target="crescimento-details">
+                        <i class="fas fa-seedling icon"></i>
+                        <h3>Crescimento e Autonomia</h3>
+                        <p>Recursos para o desenvolvimento pessoal, a cura de traumas, a expressão criativa e a sustentabilidade comunitária.</p>
+                    </div>
+                </div>
+            </section>
 
-            <div class="slide">
-                 <h3>Eu sou Luanny Ravatche.</h3>
-                 <h2>E eu vou apresentar o <span class="highlight">REPROGRAMA-T</span>.</h2>
-            </div>
+            <!-- DETALHES DOS MÓDULOS (Escondidos inicialmente) -->
 
-            <div class="slide">
-                <h2>Um Sonho de Bilhões de Vidas</h2>
-                <p>Sim, a meta financeira é de 1 bilhão de dólares. O objetivo é a Forbes.</p>
-                <p class="quote">Não pelo glamour ou vaidade, mas para <span class="highlight">romper uma barreira</span>. Para dizer ao mundo: <span class="highlight">nós estamos aqui.</span></p>
-                <p>Mas é insignificante chegar lá sozinha.</p>
-            </div>
-            
-            <div class="slide">
-                <h2>O Foco é a Rede Social</h2>
-                <p>Sempre que eu contava minhas ideias, as pessoas diziam 'não'. 'Não dá certo'. 'É complexo demais'.</p>
-                <p>Por isso, criei um protótipo vivo para mostrar, não apenas contar. Meu foco é a rede social, e preciso de pessoas dispostas a quebrar barreiras junto a mim.</p>
-            </div>
+            <!-- PILAR 1: SEGURANÇA -->
+            <div id="seguranca-details" class="module-details">
+                <h2 class="section-title">Pilar: Segurança Psicológica</h2>
+                
+                <div class="module-card">
+                    <div class="module-card-header"><i class="fas fa-map-marked-alt icon"></i><h3 class="module-card-title">Mapa Violeta (Geografia do Afeto)</h3></div>
+                    <div class="module-card-body">
+                        <p>Uma ferramenta de mapeamento geográfico colaborativo. Transforma a ansiedade em dados para ação, ao mesmo tempo que celebra refúgios de segurança (💖 Local Acolhedor) e alerta sobre riscos (🚨 Alerta de Perigo).</p>
+                        <h4 class="subsection-title">Modelo de Negócio</h4>
+                        <p><span class="highlight">Dados Agregados:</span> Relatórios anônimos para ONGs e órgãos governamentais para embasar políticas públicas.</p>
+                        <p><span class="highlight">Parcerias "Lugar de Afeto":</span> Estabelecimentos "Acolhedores" podem se tornar parceiros, recebendo um selo físico e oferecendo benefícios.</p>
+                        <h4 class="subsection-title">FAQ</h4>
+                        <details class="faq-item">
+                            <summary>Como a segurança dos dados de localização é garantida?</summary>
+                            <p>A localização exata nunca é armazenada. O sistema aplica uma ofuscação (arredondamento) nas coordenadas. Os dados são criptografados (AES-256) e jamais vendidos.</p>
+                        </details>
+                    </div>
+                </div>
 
-            <div class="slide">
-                <h2>Conceito: Arquitetura de Cuidado Digital</h2>
-                <p>O Reprograma-T é um <span class="highlight">ecossistema digital</span> de acolhimento e desenvolvimento humano, projetado para ser um espaço seguro e transformador.</p>
-                <p>Um antídoto à toxicidade das redes convencionais.</p>
-            </div>
-
-            <div class="slide">
-                <h2>Os 3 Pilares Fundamentais</h2>
-                <i class="fas fa-hands-helping module-icon"></i>
-                <p><strong>1. Segurança Psicológica:</strong> Criar um refúgio digital.</p>
-                <p><strong>2. Comunicação Consciente (CNV):</strong> Ensinar a falar e a ouvir com o coração.</p>
-                <p><strong>3. Crescimento Pessoal:</strong> Oferecer ferramentas para a cura e o autoconhecimento.</p>
-            </div>
-            
-            <div class="slide">
-                <h2>A Base Filosófica</h2>
-                <div class="philosophy-list">
-                    <p><strong>CNV:</strong> Um caminho para se comunicar sem julgar, atacar ou se calar.</p>
-                    <p><strong>Ikigai:</strong> Onde sua paixão encontra o que o mundo precisa.</p>
-                    <p><strong>Wabi-Sabi:</strong> A beleza encontrada na imperfeição e na impermanência.</p>
-                    <p><strong>Kintsugi:</strong> A arte de honrar as cicatrizes, transformando o que foi quebrado em algo mais forte.</p>
+                <div class="module-card">
+                    <div class="module-card-header"><i class="fas fa-user-friends icon"></i><h3 class="module-card-title">Círculos de Confiança</h3></div>
+                    <div class="module-card-body">
+                        <p>Grupos privados ou secretos que permitem a formação de laços mais profundos e discussões em um ambiente de maior controle e confiança, longe do feed principal.</p>
+                        <h4 class="subsection-title">Modelo de Negócio</h4>
+                        <p><span class="highlight">Círculos Premium:</span> Criadores de conteúdo podem oferecer acesso a Círculos exclusivos como parte de um modelo de assinatura, com a plataforma retendo uma pequena porcentagem.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="slide">
-                <i class="fas fa-comments module-icon"></i>
-                <h3 class="module-title">Núcleo Social Consciente</h3>
-                <p class="module-subtitle">Onde postar é uma "Partilha" guiada pela CNV.</p>
-                <p class="module-description">As interações são empáticas (<span class="highlight">💡 Te Entendo, ✨
-                    Me Inspirou, 🤝 Conectar, 🙏 Agradecer</span>), focando em validação emocional, não em aprovação social.</p>
+            <!-- PILAR 2: COMUNICAÇÃO -->
+            <div id="comunicacao-details" class="module-details">
+                <h2 class="section-title">Pilar: Comunicação Consciente</h2>
+
+                <div class="module-card">
+                    <div class="module-card-header"><i class="fas fa-comments icon"></i><h3 class="module-card-title">Núcleo Social (Partilhas CNV)</h3></div>
+                    <div class="module-card-body">
+                        <p>O feed principal, onde o ato de postar é uma "Partilha" guiada pela CNV (Observação, Sentimento, Necessidade, Pedido). As interações são reações empáticas (💡 Te Entendo, ✨ Me Inspirou), focando em validação emocional.</p>
+                        <h4 class="subsection-title">FAQ</h4>
+                        <details class="faq-item">
+                            <summary>É um app de relacionamento?</summary>
+                            <p>Não. Amizades e amores podem acontecer, mas o foco principal é acolhimento, Comunicação Não-Violenta (CNV) e crescimento pessoal.</p>
+                        </details>
+                    </div>
+                </div>
+                
+                <div class="module-card">
+                    <div class="module-card-header"><i class="fas fa-brain icon"></i><h3 class="module-card-title">Babatá IA (O Guia Empático)</h3></div>
+                    <div class="module-card-body">
+                        <p>Uma IA projetada como um "Guia de Escuta Ativa". Oferece tours pela plataforma, ministra cursos interativos e serve como um ombro amigo digital, disponível 24/7 para conversas de apoio sem julgamento.</p>
+                        <h4 class="subsection-title">Modelo de Negócio</h4>
+                        <p><span class="highlight">Babatá Pro (Futuro):</span> Uma versão avançada com sessões de coaching guiado mais longas e personalizadas, oferecida como um serviço de assinatura de baixo custo.</p>
+                         <h4 class="subsection-title">FAQ</h4>
+                        <details class="faq-item">
+                            <summary>O Babatá é um terapeuta?</summary>
+                            <p>Não. Babatá é uma ferramenta de apoio e escuta ativa, não um substituto para terapia profissional. Ele é treinado para reconhecer situações de crise e sugerir a busca por ajuda especializada.</p>
+                        </details>
+                    </div>
+                </div>
+
+                 <div class="module-card">
+                    <div class="module-card-header"><i class="fas fa-paper-plane icon"></i><h3 class="module-card-title">Mensagens Privadas</h3></div>
+                    <div class="module-card-body">
+                        <p>Um sistema de chat um-para-um, seguro e direto, para que os membros da comunidade possam se comunicar de forma privada e construir laços mais íntimos, complementando a comunicação pública baseada em CNV.</p>
+                    </div>
+                </div>
             </div>
             
-            <div class="slide">
-                <i class="fas fa-brain module-icon"></i>
-                <h3 class="module-title">Babatá IA: A Consciência Onipresente</h3>
-                <p class="module-subtitle">Uma IA projetada como "Guia de Escuta Ativa".</p>
-                <ul class="module-list">
-                    <li><strong>Bot Flutuante:</strong> Oferece Tours Guiados e Cursos interativos (CNV, Ikigai).</li>
-                    <li><strong>Chat Dedicado:</strong> Para conversas mais longas e focadas.</li>
-                </ul>
-                <p class="module-description">Babatá é a personificação da filosofia da plataforma: <span class="highlight">escuta, validação e orientação.</span></p>
-            </div>
-            
-            <div class="slide">
-                <i class="fas fa-map-marked-alt module-icon"></i>
-                <h3 class="module-title">Mapa Violeta: Geografia do Afeto</h3>
-                <p class="module-subtitle">Um mapa colaborativo para registrar experiências no mundo físico.</p>
-                <p class="module-description">Transforma a ansiedade em dados para ação, ao mesmo tempo que celebra refúgios de segurança.</p>
+            <!-- PILAR 3: CRESCIMENTO -->
+            <div id="crescimento-details" class="module-details">
+                <h2 class="section-title">Pilar: Crescimento e Autonomia</h2>
+                
+                <div class="module-card">
+                    <div class="module-card-header"><i class="fas fa-book-open icon"></i><h3 class="module-card-title">Livro Conexão (Terapia Narrativa)</h3></div>
+                    <div class="module-card-body">
+                        <p>Um módulo de terapia narrativa, onde histórias de vida são transformadas em jornadas de cura interativas. O leitor avança pelos capítulos respondendo a questionários de reflexão baseados na CNV.</p>
+                        <h4 class="subsection-title">Modelo de Negócio</h4>
+                        <p><span class="highlight">Livros Patrocinados e Premium:</span> ONGs podem patrocinar a criação de livros sobre temas específicos. Terapeutas e autores parceiros podem publicar "Jornadas Premium" pagas.</p>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-card-header"><i class="fas fa-place-of-worship icon"></i><h3 class="module-card-title">Templo do Afeto (Espiritualidade Inclusiva)</h3></div>
+                    <div class="module-card-body">
+                        <p>Um espaço para explorar a fé de forma inclusiva, livre de dogmas, liderado por "Guias" da própria comunidade que passam por um treinamento de CNV para garantir um ambiente de acolhimento.</p>
+                        <h4 class="subsection-title">Modelo de Negócio</h4>
+                        <p><span class="highlight">Eventos Pagos e Doações:</span> "Guias" podem oferecer workshops pagos. A plataforma pode facilitar um sistema de doações diretas para os Guias.</p>
+                         <h4 class="subsection-title">FAQ</h4>
+                        <details class="faq-item">
+                            <summary>Como me torno um "Guia"?</summary>
+                            <p>É preciso primeiro concluir o curso de CNV na plataforma, depois enviar uma candidatura que passa por revisão comunitária e, por fim, aceitar o nosso código de ética de acolhimento.</p>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-card-header"><i class="fas fa-graduation-cap icon"></i><h3 class="module-card-title">Escola de Saberes</h3></div>
+                    <div class="module-card-body">
+                        <p>Uma plataforma de e-learning integrada, focada em CNV, Ikigai e bem-estar, onde membros podem criar e vender cursos.</p>
+                         <h4 class="subsection-title">Modelo de Negócio</h4>
+                        <p><span class="highlight">Taxa sobre Vendas:</span> A plataforma retém uma porcentagem (ex: 15-20%) sobre a venda de cada curso.</p>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-card-header"><i class="fas fa-store icon"></i><h3 class="module-card-title">Mercado Cósmico (Classificados)</h3></div>
+                    <div class="module-card-body">
+                        <p>Uma área de classificados para a troca de serviços e produtos, fortalecendo a autonomia e o apoio mútuo dentro da comunidade.</p>
+                        <h4 class="subsection-title">Modelo de Negócio</h4>
+                        <p><span class="highlight">Taxa de Serviço:</span> Uma pequena taxa (ex: 5% para criadores independentes, 10% para marcas) é cobrada sobre as transações. ONGs são isentas.</p>
+                        <h4 class="subsection-title">FAQ</h4>
+                        <details class="faq-item">
+                            <summary>Posso vender produtos ou serviços?</summary>
+                            <p>Sim, através do Mercado Cósmico. Cobramos uma taxa simbólica apenas para manter a plataforma (5% para criadores, 10% para marcas). ONGs e projetos sociais são isentos.</p>
+                        </details>
+                    </div>
+                </div>
+
+                 <div class="module-card">
+                    <div class="module-card-header"><i class="fas fa-music icon"></i><h3 class="module-card-title">K-Play (Expressão Artística)</h3></div>
+                    <div class="module-card-body">
+                        <p>Uma ferramenta para composição e compartilhamento de música, oferecendo um canal não-verbal para o processamento de emoções e para a criatividade florescer.</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="slide">
-                 <h3 class="module-title">Categorias do Mapa Violeta</h3>
-                 <ul class="module-list">
-                    <li><span class="highlight">🚨 Alerta de Perigo:</span> Registra uma observação que gerou medo.</li>
-                    <li><span class="highlight">💖 Local Acolhedor:</span> Marca um espaço de segurança e bem-estar.</li>
-                    <li><span class="highlight">🤝 Ponto de Apoio:</span> Indica locais de ajuda prática (ex: ONGs).</li>
-                    <li><span class="highlight">🗣️ Denúncia de "Cisplay":</span> Registra aquela "piada" que só faz rir quem nunca precisou se explicar.</li>
-                 </ul>
-            </div>
-            
-            <div class="slide">
-                <i class="fas fa-book-open module-icon"></i>
-                <h3 class="module-title">Livro Conexão: A Terapia Narrativa</h3>
-                <p class="module-subtitle">Histórias de vida transformadas em jornadas de cura.</p>
-                <p class="module-description">Usuários podem solicitar que suas histórias se tornem um "livro". Ao final de cada capítulo, o leitor responde a um questionário, desbloqueando o próximo passo apenas após a reflexão.</p>
-            </div>
+            <!-- GLOSSÁRIO FILOSÓFICO -->
+            <section id="glossary" class="module-section">
+                <h2 class="section-title">A Base Filosófica</h2>
+                <p class="section-subtitle">Os conceitos que guiam nossa tecnologia e comunidade.</p>
+                <div class="glossary-grid">
+                    <div class="glossary-item">
+                        <h4>CNV (Comunicação Não-Violenta)</h4>
+                        <p>Método de escuta e expressão empática. Um caminho para se comunicar sem julgar, atacar ou se calar.</p>
+                    </div>
+                    <div class="glossary-item">
+                        <h4>Ikigai</h4>
+                        <p>Conceito japonês que une propósito e prazer. O cruzamento entre o que você ama, faz bem, pode ser pago para fazer e o que o mundo precisa.</p>
+                    </div>
+                    <div class="glossary-item">
+                        <h4>Wabi-Sabi</h4>
+                        <p>Filosofia japonesa que valoriza a beleza do imperfeito, impermanente e incompleto. Um convite à aceitação.</p>
+                    </div>
+                    <div class="glossary-item">
+                        <h4>Kintsugi</h4>
+                        <p>Arte de reparar cerâmicas quebradas com ouro. Simboliza cura, resiliência e a beleza do que foi reconstruído com amor.</p>
+                    </div>
+                </div>
+            </section>
 
-             <div class="slide">
-                <h3 class="module-title">Livro Conexão: A Métrica da Empatia</h3>
-                <p class="module-subtitle">Exemplo de Questionário:</p>
-                <p class="quote">"No capítulo, eu conto que nasci na roça."</p>
-                 <ul class="module-list">
-                    <li><strong>Você cresceu na roça?</strong> (Sim/Não) - Mede vivência direta.</li>
-                    <li><strong>Você conhece uma pessoa LGBTQIAPN+ que cresceu na roça?</strong> (Sim/Não) - Mede observação indireta.</li>
-                 </ul>
-                 <p class="module-description">Se ambas as respostas forem "Não", a métrica registra <span class="highlight">"surpresa"</span>, indicando que a história expandiu o universo de referência do leitor.</p>
-            </div>
-            
-            <div class="slide">
-                <i class="fas fa-place-of-worship module-icon"></i>
-                <h3 class="module-title">Templo do Afeto: A Proposta</h3>
-                <p class="module-subtitle">Espiritualidade Descentralizada e Segura</p>
-                <p class="module-description">Um espaço para explorar a fé de forma inclusiva, livre de dogmas e preconceitos, algo frequentemente negado ao nosso público em instituições tradicionais.</p>
-            </div>
+            <!-- FAQ GERAL -->
+             <section id="faq-geral" class="module-section">
+                <h2 class="section-title">Perguntas Frequentes Gerais</h2>
+                 <details class="faq-item">
+                    <summary>Quem pode participar da Reprograma-T?</summary>
+                    <p>Qualquer pessoa alinhada à nossa cultura de respeito. O espaço foi desenhado para priorizar as necessidades da comunidade LGBTQIAPN+, pessoas neurodivergentes e quem busca saúde emocional.</p>
+                </details>
+                 <details class="faq-item">
+                    <summary>A plataforma é paga?</summary>
+                    <p>A entrada e as funcionalidades essenciais são gratuitas. Cursos premium, espaços patrocinados e o Mercado Cósmico geram receita opcional para sustentar o projeto.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Vocês coletam meus dados sensíveis?</summary>
+                    <p>Coletamos o mínimo necessário. Dados sensíveis são criptografados (AES-256) e nunca vendidos.</p>
+                </details>
+                 <details class="faq-item">
+                    <summary>Qual o roadmap do projeto?</summary>
+                    <p>Nosso plano é ter um MVP fechado em < 6 meses, beta público em 12 meses e expansão internacional em 24 meses.</p>
+                </details>
+            </section>
 
-            <div class="slide">
-                <h3 class="module-title">Templo do Afeto: Os "Guias"</h3>
-                <p class="module-subtitle">Liderança Comunitária e Responsável</p>
-                <p class="module-description">Para se tornar um Guia, o usuário deve solicitar permissão e concluir um curso de CNV para evitar discursos de ódio ou fanatismo.</p>
-                <ul class="module-list">
-                    <li>Guias aprovados recebem um perfil exclusivo e destaque quando online.</li>
-                    <li>Apenas Guias podem criar eventos e iniciar transmissões ao vivo.</li>
-                </ul>
-            </div>
+            <!-- CONCLUSÃO -->
+            <section id="conclusion" class="conclusion-section">
+                <h2 class="section-title">O Manifesto Final</h2>
+                <p>Reprograma-T é mais do que um software; é um movimento. É um manifesto digital transformado em código. Uma tentativa ambiciosa de construir uma utopia digital funcional. Seu nome é literal: a plataforma busca <span class="highlight">"reprogramar"</span> os padrões de comunicação, a percepção de segurança e a relação que temos com nós mesmos.</p>
+                <p class="final-quote">É um sonho. E como todo sonho, não tem preço. <br>Mas tem um valor imensurável.</p>
+            </section>
 
-            <div class="slide">
-                <i class="fas fa-store module-icon"></i>
-                <h3 class="module-title">A Economia do Cuidado</h3>
-                <p class="module-subtitle">Mercado Cósmico e Escola de Saberes</p>
-                <p class="module-description">Módulos que criam uma economia circular de apoio e autonomia, permitindo que membros compartilhem habilidades, gerem renda e fortaleçam-se mutuamente.</p>
-            </div>
-
-            <div class="slide">
-                <i class="fas fa-music module-icon"></i>
-                <h3 class="module-title">Expressão Artística (K-Play)</h3>
-                <p class="module-subtitle">A Catarse Além das Palavras</p>
-                <p class="module-description">Uma ferramenta para composição e compartilhamento de música, oferecendo um canal não-verbal para o processamento de emoções e para a criatividade florescer.</p>
-            </div>
-
-            <div class="slide">
-                <i class="fas fa-book-reader module-icon"></i>
-                <h3 class="module-title">Biblioteca Cósmica</h3>
-                <p class="module-subtitle">Espaço para Autores</p>
-                <p class="module-description">Uma área dedicada para que autores autorizados possam divulgar e compartilhar seus livros, sejam eles gratuitos ou pagos, expandindo o conhecimento da comunidade.</p>
-            </div>
-
-            <div class="slide">
-                <i class="fas fa-user-friends module-icon"></i>
-                <h3 class="module-title">Círculos de Confiança</h3>
-                <p class="module-subtitle">Grupos de Interesses</p>
-                <p class="module-description">Ferramenta para que os usuários criem seus próprios grupos, públicos ou privados, para aprofundar conexões e discutir temas de interesse em um ambiente de maior controle.</p>
-            </div>
-
-            <div class="slide">
-                <i class="fas fa-paper-plane module-icon"></i>
-                <h3 class="module-title">Mensagens Privadas</h3>
-                <p class="module-subtitle">Conversas Particulares</p>
-                <p class="module-description">Um sistema de chat um-para-um, seguro e direto, para que os membros da comunidade possam se comunicar de forma privada e construir laços mais íntimos.</p>
-            </div>
-
-            <div class="slide">
-                <h2>Para Quem é Este Sonho?</h2>
-                <p class="quote">A força do Reprograma-T reside em sua especificidade.</p>
-                <p>É para a <span class="highlight">Comunidade LGBTQIAPN+</span>.<br>Para <span class="highlight">Pessoas Neurodivergentes</span>.<br>Para Todos em processo de <span class="highlight">Cura</span>.</p>
-            </div>
-            
-            <div class="slide">
-                <h2>O Manifesto Final</h2>
-                <p class="quote"><strong>Reprograma-T</strong> é um manifesto digital transformado em código. Uma tentativa ambiciosa de construir uma utopia digital funcional.</p>
-                <p>Seu nome é literal: a plataforma busca <span class="highlight">"reprogramar"</span> os padrões de comunicação, a percepção de segurança e a relação que temos com nós mesmos.</p>
-                <h3>É um sonho. E como todo sonho, não tem preço. <br>Mas tem um valor imensurável.</h3>
-            </div>
-            
         </main>
-
-        <footer class="slideshow-footer">
-            <button class="nav-button" id="prev-btn">Anterior</button>
-            <span class="slide-counter" id="slide-counter"></span>
-            <button class="nav-button" id="next-btn">Próximo</button>
-        </footer>
     </div>
+
+    <button id="back-to-map-btn" title="Voltar ao Mapa de Pilares"><i class="fas fa-sitemap"></i></button>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const slides = document.querySelectorAll('.slide');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            const slideCounter = document.getElementById('slide-counter');
-            let currentSlide = 0;
-            const totalSlides = slides.length;
+            const pillarNodes = document.querySelectorAll('.pillar-node');
+            const moduleDetails = document.querySelectorAll('.module-details');
+            const mindmapSection = document.getElementById('mindmap');
+            const backToMapBtn = document.getElementById('back-to-map-btn');
+            const sections = document.querySelectorAll('section');
 
-            function showSlide(index) {
-                slides.forEach(slide => slide.classList.remove('active'));
-                slides[index].classList.add('active');
-                slideCounter.textContent = `${index + 1} / ${totalSlides}`;
-                prevBtn.disabled = index === 0;
-                nextBtn.disabled = index === totalSlides - 1;
-            }
+            // Animação de entrada com Intersection Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Otimização: parar de observar após animar
+                    }
+                });
+            }, { threshold: 0.1 });
 
-            function nextSlide() {
-                if (currentSlide < totalSlides - 1) {
-                    currentSlide++;
-                    showSlide(currentSlide);
-                }
-            }
-
-            function prevSlide() {
-                if (currentSlide > 0) {
-                    currentSlide--;
-                    showSlide(currentSlide);
-                }
-            }
+            sections.forEach(section => observer.observe(section));
             
-            nextBtn.addEventListener('click', nextSlide);
-            prevBtn.addEventListener('click', prevSlide);
-            
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowRight' || e.key === ' ') {
-                    e.preventDefault();
-                    nextSlide();
-                } else if (e.key === 'ArrowLeft') {
-                    e.preventDefault();
-                    prevSlide();
-                }
+            // Lógica do Mapa Mental (Navegação Não-Linear)
+            pillarNodes.forEach(node => {
+                node.addEventListener('click', () => {
+                    const targetId = node.dataset.target;
+                    const targetDetail = document.getElementById(targetId);
+
+                    // Animação de saída do mapa mental
+                    mindmapSection.style.transition = 'opacity 0.5s, transform 0.5s';
+                    mindmapSection.style.opacity = '0';
+                    mindmapSection.style.transform = 'scale(0.9)';
+
+                    setTimeout(() => {
+                        mindmapSection.style.display = 'none';
+                        if (targetDetail) {
+                            targetDetail.classList.add('active');
+                            // Garante que a seção esteja visível (caso o observer ainda não tenha rodado)
+                            targetDetail.classList.add('visible'); 
+                            targetDetail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                        backToMapBtn.style.display = 'block';
+                    }, 500);
+                });
             });
 
-            showSlide(currentSlide);
+            backToMapBtn.addEventListener('click', () => {
+                moduleDetails.forEach(detail => detail.classList.remove('active'));
+                
+                mindmapSection.style.display = 'block';
+                setTimeout(() => {
+                    mindmapSection.style.opacity = '1';
+                    mindmapSection.style.transform = 'scale(1)';
+                    mindmapSection.scrollIntoView({ behavior: 'smooth' });
+                }, 50);
+
+                backToMapBtn.style.display = 'none';
+            });
         });
     </script>
-
 </body>
 </html>
