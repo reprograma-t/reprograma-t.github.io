@@ -85,13 +85,9 @@
         .module-title { color: var(--cor-destaque-roxo); font-size: 1.6rem; margin-bottom: 10px; }
         .module-subtitle { font-size: 1rem; margin-bottom: 20px; opacity: 0.8; }
         .module-description { font-size: 1.05rem; }
-
-        .slide ul { list-style: none; text-align: left; max-width: 600px; margin: 20px 0; }
-        .slide ul li { margin-bottom: 15px; padding-left: 20px; position: relative; }
-        .slide ul li::before { content: '✨'; position: absolute; left: -10px; color: var(--cor-destaque-dourado); }
-        .slide ul strong { color: var(--cor-destaque-roxo); display: block; font-size: 1.1rem; }
+        .module-list { list-style: none; text-align: left; max-width: 600px; margin: 20px 0; font-size: 1rem; }
+        .module-list li { margin-bottom: 10px; }
         
-        /* Estilo específico para a lista de conceitos filosóficos */
         .philosophy-list p { text-align: left; margin-bottom: 12px; font-size: 1rem; max-width: 650px;}
         .philosophy-list strong { color: var(--cor-destaque-dourado); }
 
@@ -108,14 +104,14 @@
             .slideshow-header { padding: 10px 15px; }
             .logo { height: 30px; margin-right: 10px; }
             .platform-title { font-size: 1.2rem; }
-            .slide { padding: 15px; overflow-y: auto; } /* Permite rolagem SÓ se necessário em telas muito pequenas */
+            .slide { padding: 15px; overflow-y: auto; }
             .slide h1 { font-size: 1.6rem; }
             .slide h2 { font-size: 1.4rem; }
             .slide h3 { font-size: 1.2rem; }
             .slide p { font-size: 0.95rem; line-height: 1.6; }
             .module-icon { font-size: 2.5rem; }
             .module-title { font-size: 1.4rem; }
-            .module-subtitle { font-size: 0.9rem; }
+            .module-subtitle { font-size: 0.9rem; margin-bottom: 15px; }
             .module-description { font-size: 0.95rem; }
             .philosophy-list p { font-size: 0.9rem; margin-bottom: 10px; }
             .slideshow-footer { padding: 10px 15px; }
@@ -177,13 +173,13 @@
                 <p><strong>3. Crescimento Pessoal:</strong> Oferecer ferramentas para a cura e o autoconhecimento.</p>
             </div>
             
-            <!-- ✨ NOVO SLIDE INSERIDO AQUI ✨ -->
             <div class="slide">
                 <h2>A Base Filosófica</h2>
                 <div class="philosophy-list">
-                    <p><strong>CNV:</strong> Um caminho para se comunicar sem julgar, atacar ou se calar, baseado em observação, sentimento, necessidade e pedido.</p>
-                    <p><strong>Ikigai:</strong> Conceito japonês que une propósito e prazer. A razão para se levantar da cama com sentido.</p>
-                    <p><strong>Kintsugi:</strong> A arte de reparar o que foi quebrado com ouro, simbolizando a beleza da resiliência e da cura.</p>
+                    <p><strong>CNV:</strong> Um caminho para se comunicar sem julgar, atacar ou se calar.</p>
+                    <p><strong>Ikigai:</strong> Onde sua paixão encontra o que o mundo precisa.</p>
+                    <p><strong>Wabi-Sabi:</strong> A beleza encontrada na imperfeição e na impermanência.</p>
+                    <p><strong>Kintsugi:</strong> A arte de honrar as cicatrizes, transformando o que foi quebrado em algo mais forte.</p>
                 </div>
             </div>
 
@@ -191,41 +187,76 @@
                 <i class="fas fa-comments module-icon"></i>
                 <h3 class="module-title">Núcleo Social Consciente</h3>
                 <p class="module-subtitle">Onde postar é uma "Partilha" guiada pela CNV.</p>
-                <p class="module-description">Isso força uma comunicação mais consciente. As interações são empáticas (<span class="highlight">Te Entendo, Me Inspirou</span>), focando em validação emocional, não em aprovação social.</p>
+                <p class="module-description">As interações são empáticas (<span class="highlight">💡Te Entendo, ✨Me Inspirou</span>), focando em validação emocional, não em aprovação social.</p>
             </div>
             
             <div class="slide">
                 <i class="fas fa-brain module-icon"></i>
-                <h3 class="module-title">Babatá IA</h3>
-                <p class="module-subtitle">A Consciência Onipresente</p>
-                <p class="module-description">Uma IA projetada como "Guia de Escuta Ativa". Ela modela o comportamento esperado: escuta, validação e orientação, atuando como um agente de desenvolvimento pessoal.</p>
+                <h3 class="module-title">Babatá IA: A Consciência Onipresente</h3>
+                <p class="module-subtitle">Uma IA projetada como "Guia de Escuta Ativa".</p>
+                <ul class="module-list">
+                    <li><strong>Bot Flutuante:</strong> Oferece Tours Guiados e Cursos interativos (CNV, Ikigai).</li>
+                    <li><strong>Chat Dedicado:</strong> Para conversas mais longas e focadas.</li>
+                </ul>
+                <p class="module-description">Babatá é a personificação da filosofia da plataforma: <span class="highlight">escuta, validação e orientação.</span></p>
             </div>
             
             <div class="slide">
                 <i class="fas fa-map-marked-alt module-icon"></i>
-                <h3 class="module-title">Mapa Violeta</h3>
-                <p class="module-subtitle">Geografia da Segurança e Afeto</p>
-                <p class="module-description">Um mapa colaborativo para registrar "alertas de perigo" e "locais acolhedores", transformando a ansiedade em dados para ação e celebrando refúgios de segurança.</p>
+                <h3 class="module-title">Mapa Violeta: Geografia do Afeto</h3>
+                <p class="module-subtitle">Um mapa colaborativo para registrar experiências no mundo físico.</p>
+                <p class="module-description">Transforma a ansiedade em dados para ação, ao mesmo tempo que celebra refúgios de segurança.</p>
+            </div>
+
+            <div class="slide">
+                 <h3 class="module-title">Categorias do Mapa Violeta</h3>
+                 <ul class="module-list">
+                    <li><span class="highlight">🚨 Alerta de Perigo:</span> Registra uma observação que gerou medo.</li>
+                    <li><span class="highlight">💖 Local Acolhedor:</span> Marca um espaço de segurança e bem-estar.</li>
+                    <li><span class="highlight">🤝 Ponto de Apoio:</span> Indica locais de ajuda prática (ex: ONGs).</li>
+                    <li><span class="highlight">🗣️ Denúncia de "Cisplay":</span> Registra aquela "piada" que só faz rir quem nunca precisou se explicar.</li>
+                 </ul>
             </div>
             
             <div class="slide">
                 <i class="fas fa-book-open module-icon"></i>
-                <h3 class="module-title">Livro Conexão</h3>
-                <p class="module-subtitle">A Terapia Narrativa</p>
-                <p class="module-description">Histórias de vida são transformadas em jornadas de cura com reflexões guiadas pela CNV. Um mecanismo de cura em dupla via: para quem escreve e para quem lê.</p>
+                <h3 class="module-title">Livro Conexão: A Terapia Narrativa</h3>
+                <p class="module-subtitle">Histórias de vida transformadas em jornadas de cura.</p>
+                <p class="module-description">Usuários podem solicitar que suas histórias se tornem um "livro". Ao final de cada capítulo, o leitor responde a um questionário, desbloqueando o próximo passo apenas após a reflexão.</p>
+            </div>
+
+             <div class="slide">
+                <h3 class="module-title">Livro Conexão: A Métrica da Empatia</h3>
+                <p class="module-subtitle">Exemplo de Questionário:</p>
+                <p class="quote">"No capítulo, eu conto que nasci na roça."</p>
+                 <ul class="module-list">
+                    <li><strong>Você cresceu na roça?</strong> (Sim/Não) - Mede vivência direta.</li>
+                    <li><strong>Você conhece uma pessoa LGBTQIAPN+ que cresceu na roça?</strong> (Sim/Não) - Mede observação indireta.</li>
+                 </ul>
+                 <p class="module-description">Se ambas as respostas forem "Não", a métrica registra <span class="highlight">"surpresa"</span>, indicando que a história expandiu o universo de referência do leitor.</p>
             </div>
             
             <div class="slide">
                 <i class="fas fa-place-of-worship module-icon"></i>
-                <h3 class="module-title">Templo do Afeto</h3>
-                <p class="module-subtitle">Espiritualidade Descentralizada</p>
-                <p class="module-description">Um espaço para explorar a fé e a conexão com o transcendente de forma inclusiva e não-dogmática, algo frequentemente negado ao nosso público em instituições tradicionais.</p>
+                <h3 class="module-title">Templo do Afeto: A Proposta</h3>
+                <p class="module-subtitle">Espiritualidade Descentralizada e Segura</p>
+                <p class="module-description">Um espaço para explorar a fé de forma inclusiva, livre de dogmas e preconceitos, algo frequentemente negado ao nosso público em instituições tradicionais.</p>
+            </div>
+
+            <div class="slide">
+                <h3 class="module-title">Templo do Afeto: Os "Guias"</h3>
+                <p class="module-subtitle">Liderança Comunitária e Responsável</p>
+                <p class="module-description">Para se tornar um Guia, o usuário deve solicitar permissão e concluir um curso de CNV para evitar discursos de ódio ou fanatismo.</p>
+                <ul class="module-list">
+                    <li>Guias aprovados recebem um perfil exclusivo e destaque quando online.</li>
+                    <li>Apenas Guias podem criar eventos e iniciar transmissões ao vivo.</li>
+                </ul>
             </div>
 
             <div class="slide">
                 <i class="fas fa-store module-icon"></i>
                 <h3 class="module-title">A Economia do Cuidado</h3>
-                <p class="module-subtitle">Escola de Saberes & Mercado Cósmico</p>
+                <p class="module-subtitle">Mercado Cósmico e Escola de Saberes</p>
                 <p class="module-description">Módulos que criam uma economia circular de apoio e autonomia, permitindo que membros compartilhem habilidades, gerem renda e fortaleçam-se mutuamente.</p>
             </div>
 
@@ -234,6 +265,27 @@
                 <h3 class="module-title">Expressão Artística (K-Play)</h3>
                 <p class="module-subtitle">A Catarse Além das Palavras</p>
                 <p class="module-description">Uma ferramenta para composição e compartilhamento de música, oferecendo um canal não-verbal para o processamento de emoções e para a criatividade florescer.</p>
+            </div>
+
+            <div class="slide">
+                <i class="fas fa-book-reader module-icon"></i>
+                <h3 class="module-title">Biblioteca Cósmica</h3>
+                <p class="module-subtitle">Espaço para Autores</p>
+                <p class="module-description">Uma área dedicada para que autores autorizados possam divulgar e compartilhar seus livros, sejam eles gratuitos ou pagos, expandindo o conhecimento da comunidade.</p>
+            </div>
+
+            <div class="slide">
+                <i class="fas fa-user-friends module-icon"></i>
+                <h3 class="module-title">Círculos de Confiança</h3>
+                <p class="module-subtitle">Grupos de Interesses</p>
+                <p class="module-description">Ferramenta para que os usuários criem seus próprios grupos, públicos ou privados, para aprofundar conexões e discutir temas de interesse em um ambiente de maior controle.</p>
+            </div>
+
+            <div class="slide">
+                <i class="fas fa-paper-plane module-icon"></i>
+                <h3 class="module-title">Mensagens Privadas</h3>
+                <p class="module-subtitle">Conversas Particulares</p>
+                <p class="module-description">Um sistema de chat um-para-um, seguro e direto, para que os membros da comunidade possam se comunicar de forma privada e construir laços mais íntimos.</p>
             </div>
 
             <div class="slide">
