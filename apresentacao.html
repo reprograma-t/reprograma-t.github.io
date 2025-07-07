@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apresentação: Reprograma-T</title>
+    <title>Apresentação Detalhada: Reprograma-T</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
-        /* --- ESTILOS GERAIS E TEMA --- */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
         :root {
@@ -19,17 +19,8 @@
             --sombra-brilho: 0 0 15px rgba(157, 141, 241, 0.2);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100%;
-            overflow: hidden; /* Impede a rolagem do corpo da página */
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; overflow: hidden; }
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--cor-fundo);
@@ -37,15 +28,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            background-image: radial-gradient(circle at 20% 20%, rgba(157, 141, 241, 0.1), transparent 30%),
-                              radial-gradient(circle at 80% 80%, rgba(247, 111, 142, 0.1), transparent 30%);
+            padding: 10px;
+            background-image: radial-gradient(circle at 15% 15%, rgba(157, 141, 241, 0.1), transparent 35%),
+                              radial-gradient(circle at 85% 85%, rgba(247, 111, 142, 0.1), transparent 35%);
         }
 
-        /* --- CONTAINER PRINCIPAL DO SLIDESHOW --- */
         .slideshow-container {
             width: 100%;
-            max-width: 900px;
+            max-width: 950px;
             background-color: var(--cor-fundo-slide);
             border: 1px solid var(--cor-borda);
             border-radius: 15px;
@@ -53,11 +43,10 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            height: 90vh; /* Ocupa 90% da altura da tela */
-            max-height: 650px; /* Limite máximo para telas muito altas */
+            height: 95vh;
+            max-height: 700px;
         }
 
-        /* --- CABEÇALHO COM LOGO --- */
         .slideshow-header {
             padding: 15px 25px;
             display: flex;
@@ -69,47 +58,33 @@
         .logo { height: 40px; margin-right: 15px; }
         .platform-title { font-size: 1.5rem; font-weight: 600; color: var(--cor-destaque-dourado); text-shadow: 0 0 5px var(--cor-destaque-dourado); }
 
-        /* --- ÁREA DE CONTEÚDO DOS SLIDES --- */
-        .slide-content-wrapper {
-            flex-grow: 1; /* Ocupa todo o espaço vertical disponível */
-            position: relative;
-            overflow: hidden;
-        }
-
+        .slide-content-wrapper { flex-grow: 1; position: relative; overflow: hidden; }
         .slide {
-            position: absolute;
-            top: 0; left: 0;
+            position: absolute; top: 0; left: 0;
             width: 100%; height: 100%;
             padding: 20px 40px;
-            opacity: 0;
-            visibility: hidden;
+            opacity: 0; visibility: hidden;
             transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-            transform: translateX(30px);
-            
-            /* ✨ CORREÇÃO: Usando Flexbox para centralizar o conteúdo perfeitamente */
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Centraliza verticalmente */
-            align-items: center; /* Centraliza horizontalmente */
+            transform: translateY(20px);
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
             text-align: center;
         }
-
-        .slide.active { opacity: 1; visibility: visible; transform: translateX(0); }
+        .slide.active { opacity: 1; visibility: visible; transform: translateY(0); }
         
         .slide h1, .slide h2, .slide h3 { color: var(--cor-destaque-roxo); margin-bottom: 20px; line-height: 1.3; }
         .slide h1 { font-size: 2.5rem; }
         .slide h2 { font-size: 1.8rem; }
-        .slide h3 { font-size: 1.4rem; color: var(--cor-destaque-rosa); }
-        .slide p { font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px; max-width: 650px; }
+        .slide h3 { font-size: 1.5rem; color: var(--cor-destaque-rosa); }
+        .slide p { font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px; max-width: 700px; }
         .slide .highlight { color: var(--cor-destaque-dourado); font-weight: 600; }
-        .slide .quote { font-style: italic; opacity: 0.9; border-left: 3px solid var(--cor-destaque-roxo); padding-left: 15px; margin: 20px 0; text-align: left; }
+        .slide .quote { font-style: italic; opacity: 0.9; border-left: 3px solid var(--cor-destaque-roxo); padding-left: 20px; margin: 20px 0; text-align: left; }
         
-        .slide ul { list-style: none; text-align: left; max-width: 600px; margin: 20px 0; }
-        .slide ul li { margin-bottom: 15px; padding-left: 20px; position: relative; }
-        .slide ul li::before { content: '✨'; position: absolute; left: -10px; color: var(--cor-destaque-dourado); }
-        .slide ul strong { color: var(--cor-destaque-roxo); display: block; font-size: 1.1rem; }
+        .module-icon { font-size: 3rem; color: var(--cor-destaque-dourado); margin-bottom: 15px; }
+        .module-title { color: var(--cor-destaque-roxo); font-size: 1.6rem; margin-bottom: 10px; }
+        .module-subtitle { font-size: 1rem; margin-bottom: 20px; opacity: 0.8; }
+        .module-description { font-size: 1.05rem; }
 
-        /* --- CONTROLES DE NAVEGAÇÃO E RODAPÉ --- */
         .slideshow-footer { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; border-top: 1px solid var(--cor-borda); flex-shrink: 0; }
         .nav-button { background-color: transparent; border: 2px solid var(--cor-destaque-roxo); color: var(--cor-destaque-roxo); padding: 10px 20px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent; }
         .nav-button:hover:not(:disabled) { background-color: var(--cor-destaque-roxo); color: var(--cor-fundo-slide); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(157, 141, 241, 0.3); }
@@ -117,7 +92,6 @@
         .nav-button:disabled { opacity: 0.4; cursor: not-allowed; }
         .slide-counter { font-size: 1rem; font-weight: 600; color: var(--cor-texto-principal); }
         
-        /* --- RESPONSIVIDADE PARA CELULARES --- */
         @media (max-width: 768px) {
             body { padding: 5px; align-items: flex-start; padding-top: 1vh; }
             .slideshow-container { height: 98vh; width: 100%; border-radius: 10px; max-height: none; }
@@ -126,12 +100,13 @@
             .platform-title { font-size: 1.2rem; }
             .slide { padding: 15px; }
             .slide h1 { font-size: 1.6rem; }
-            .slide h2 { font-size: 1.3rem; }
-            .slide h3 { font-size: 1.1rem; }
+            .slide h2 { font-size: 1.4rem; }
+            .slide h3 { font-size: 1.2rem; }
             .slide p { font-size: 0.95rem; line-height: 1.6; }
-            .slide .quote { font-size: 0.95rem; }
-            .slide ul strong { font-size: 1rem; }
-            .slide ul li { font-size: 0.9rem; margin-bottom: 12px; }
+            .module-icon { font-size: 2.5rem; }
+            .module-title { font-size: 1.4rem; }
+            .module-subtitle { font-size: 0.9rem; }
+            .module-description { font-size: 0.95rem; }
             .slideshow-footer { padding: 10px 15px; }
             .nav-button { padding: 8px 16px; font-size: 0.9rem; flex-grow: 1; text-align: center; }
             .slide-counter { padding: 0 10px; }
@@ -148,8 +123,6 @@
 
         <main class="slide-content-wrapper">
             
-            <!-- ✨ SLIDES REORGANIZADOS PARA ENCAIXE PERFEITO ✨ -->
-
             <div class="slide active">
                 <h1>Qual é o <span class="highlight">preço</span> do seu sonho?</h1>
                 <p class="quote">Um sonho grande, um sonho pequeno... tudo é sonho. Em comum não há preço. O que existe é o peso.</p>
@@ -167,9 +140,9 @@
             </div>
 
             <div class="slide">
-                <h2>Um Sonho de Bilhões</h2>
-                <p>Sim, a meta é valer 1 bilhão de dólares e chegar à capa da Forbes.</p>
-                <p class="quote">Não pelo glamour ou vaidade, mas para <span class="highlight">romper uma barreira</span>. Para dizer ao mundo: <span class="highlight">nós estamos aqui.</span></p>
+                <h2>Um Sonho de Bilhões de Vidas</h2>
+                <p>Sim, a meta financeira é de 1 bilhão de dólares. O objetivo é a Forbes.</p>
+                <p class="quote">Não pelo glamour. Não pela vaidade.<br>É para <span class="highlight">romper uma barreira</span>. Para dizer ao mundo: <span class="highlight">nós estamos aqui.</span></p>
                 <p>Mas é insignificante chegar lá sozinha.</p>
             </div>
             
@@ -181,45 +154,71 @@
 
             <div class="slide">
                 <h2>Conceito: Arquitetura de Cuidado Digital</h2>
-                <p>O Reprograma-T é um ecossistema digital de acolhimento e desenvolvimento humano, projetado para ser um espaço seguro e transformador.</p>
-                <p class="highlight">Um antídoto à toxicidade das redes convencionais.</p>
+                <p>O Reprograma-T é um <span class="highlight">ecossistema digital</span> de acolhimento e desenvolvimento humano, projetado para ser um espaço seguro e transformador.</p>
+                <p>Um antídoto à toxicidade das redes convencionais.</p>
             </div>
 
             <div class="slide">
                 <h2>Os 3 Pilares Fundamentais</h2>
-                <ul>
-                    <li><strong>Segurança Psicológica:</strong> Criar um refúgio digital.</li>
-                    <li><strong>Comunicação Consciente (CNV):</strong> Ensinar a falar e a ouvir com o coração.</li>
-                    <li><strong>Crescimento Pessoal:</strong> Oferecer ferramentas para a cura e o autoconhecimento.</li>
-                </ul>
+                <i class="fas fa-hands-helping module-icon"></i>
+                <p><strong>1. Segurança Psicológica:</strong> Criar um refúgio digital.</p>
+                <p><strong>2. Comunicação Consciente (CNV):</strong> Ensinar a falar e a ouvir com o coração.</p>
+                <p><strong>3. Crescimento Pessoal:</strong> Oferecer ferramentas para a cura e o autoconhecimento.</p>
             </div>
 
             <div class="slide">
-                <h2>Módulos de Cuidado (1/2)</h2>
-                 <ul>
-                    <li><strong>Núcleo Social Consciente:</strong> Onde postar é uma "Partilha" guiada pela CNV e as interações são empáticas.</li>
-                    <li><strong>Babatá IA:</strong> Uma IA de "Escuta Ativa" que oferece tours, cursos e apoio emocional.</li>
-                    <li><strong>Mapa Violeta:</strong> Um mapa colaborativo para registrar "alertas de perigo" e "locais acolhedores".</li>
-                </ul>
+                <i class="fas fa-comments module-icon"></i>
+                <h3 class="module-title">Núcleo Social Consciente</h3>
+                <p class="module-subtitle">Onde postar é uma "Partilha" guiada pela CNV.</p>
+                <p class="module-description">Isso força uma comunicação mais consciente e menos reativa. As interações são reações empáticas (<span class="highlight">Te Entendo, Me Inspirou</span>), focando em validação emocional, não em aprovação social.</p>
             </div>
             
             <div class="slide">
-                <h2>Módulos de Cuidado (2/2)</h2>
-                 <ul>
-                    <li><strong>Livro Conexão:</strong> Histórias de vida transformadas em jornadas de cura com reflexões guiadas.</li>
-                    <li><strong>Templo do Afeto:</strong> Um espaço para espiritualidade inclusiva e não-dogmática.</li>
-                    <li><strong>Economia do Cuidado:</strong> Uma "Escola de Saberes" e um "Mercado Cósmico" para autonomia e apoio mútuo.</li>
-                </ul>
+                <i class="fas fa-brain module-icon"></i>
+                <h3 class="module-title">Babatá IA</h3>
+                <p class="module-subtitle">A Consciência Onipresente</p>
+                <p class="module-description">Uma IA projetada como "Guia de Escuta Ativa". Ela modela o comportamento esperado: escuta, validação e orientação, atuando como um agente de desenvolvimento pessoal.</p>
+            </div>
+            
+            <div class="slide">
+                <i class="fas fa-map-marked-alt module-icon"></i>
+                <h3 class="module-title">Mapa Violeta</h3>
+                <p class="module-subtitle">Geografia da Segurança e Afeto</p>
+                <p class="module-description">Um mapa colaborativo para registrar "alertas de perigo" e "locais acolhedores". Transforma a ansiedade em dados para ação e celebra os refúgios de segurança.</p>
+            </div>
+            
+            <div class="slide">
+                <i class="fas fa-book-open module-icon"></i>
+                <h3 class="module-title">Livro Conexão</h3>
+                <p class="module-subtitle">A Terapia Narrativa</p>
+                <p class="module-description">Histórias de vida são transformadas em jornadas de cura com reflexões guiadas pela CNV. Um mecanismo de cura em dupla via: para quem escreve e para quem lê.</p>
+            </div>
+            
+            <div class="slide">
+                <i class="fas fa-place-of-worship module-icon"></i>
+                <h3 class="module-title">Templo do Afeto</h3>
+                <p class="module-subtitle">Espiritualidade Descentralizada</p>
+                <p class="module-description">Um espaço para explorar a fé e a conexão com o transcendente de forma inclusiva e não-dogmática, algo frequentemente negado ao nosso público em instituições tradicionais.</p>
+            </div>
+
+            <div class="slide">
+                <i class="fas fa-store module-icon"></i>
+                <h3 class="module-title">A Economia do Cuidado</h3>
+                <p class="module-subtitle">Escola de Saberes & Mercado Cósmico</p>
+                <p class="module-description">Módulos que criam uma economia circular de apoio e autonomia, permitindo que membros compartilhem habilidades, gerem renda e fortaleçam-se mutuamente.</p>
+            </div>
+
+            <div class="slide">
+                <i class="fas fa-music module-icon"></i>
+                <h3 class="module-title">Expressão Artística (K-Play)</h3>
+                <p class="module-subtitle">A Catarse Além das Palavras</p>
+                <p class="module-description">Uma ferramenta para composição e compartilhamento de música, oferecendo um canal não-verbal para o processamento de emoções e para a criatividade florescer.</p>
             </div>
 
             <div class="slide">
                 <h2>Para Quem é Este Sonho?</h2>
                 <p class="quote">A força do Reprograma-T reside em sua especificidade.</p>
-                <ul>
-                    <li>Para a Comunidade <span class="highlight">LGBTQIAPN+</span>.</li>
-                    <li>Para Pessoas <span class="highlight">Neurodivergentes</span>.</li>
-                    <li>Para Todos em Processo de <span class="highlight">Cura</span>.</li>
-                </ul>
+                <p>É para a <span class="highlight">Comunidade LGBTQIAPN+</span>. Para <span class="highlight">Pessoas Neurodivergentes</span>. Para todos em processo de <span class="highlight">Cura</span>.</p>
             </div>
             
             <div class="slide">
@@ -230,11 +229,9 @@
             
              <div class="slide">
                 <h3>Glossário de Conceitos</h3>
-                <ul>
-                    <li><strong>CNV:</strong> Comunicar sem julgar, atacar ou se calar.</li>
-                    <li><strong>Ikigai:</strong> Onde sua paixão encontra o que o mundo precisa.</li>
-                    <li><strong>Kintsugi:</strong> A arte de honrar as cicatrizes, transformando o que foi quebrado em algo mais forte e belo.</li>
-                </ul>
+                <p><strong>CNV:</strong> Comunicar sem julgar, atacar ou se calar.</p>
+                <p><strong>Ikigai:</strong> Onde sua paixão encontra o que o mundo precisa.</p>
+                <p><strong>Kintsugi:</strong> A arte de honrar as cicatrizes, transformando o que foi quebrado em algo mais forte e belo.</p>
             </div>
 
         </main>
@@ -252,7 +249,6 @@
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
             const slideCounter = document.getElementById('slide-counter');
-            
             let currentSlide = 0;
             const totalSlides = slides.length;
 
