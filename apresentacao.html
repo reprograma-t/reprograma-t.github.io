@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação: Reprograma-T</title>
+    <style>
+        /* --- ESTILOS GERAIS E TEMA --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --cor-fundo: #0a0a14;
+            --cor-fundo-slide: #1a1a2e;
+            --cor-texto-principal: #e0e0fc;
+            --cor-destaque-roxo: #9d8df1;
+            --cor-destaque-dourado: #f0c419;
+            --cor-destaque-rosa: #f76f8e;
+            --cor-borda: rgba(157, 141, 241, 0.3);
+            --sombra-brilho: 0 0 15px rgba(157, 141, 241, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto-principal);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow: hidden;
+            background-image: radial-gradient(circle at 20% 20%, rgba(157, 141, 241, 0.1), transparent 30%),
+                              radial-gradient(circle at 80% 80%, rgba(247, 111, 142, 0.1), transparent 30%);
+        }
+
+        /* --- CONTAINER PRINCIPAL DO SLIDESHOW --- */
+        .slideshow-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: var(--cor-fundo-slide);
+            border: 1px solid var(--cor-borda);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), var(--sombra-brilho);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            height: 90vh;
+            max-height: 600px;
+        }
+
+        /* --- CABEÇALHO COM LOGO --- */
+        .slideshow-header {
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--cor-borda);
+            flex-shrink: 0;
+        }
+
+        .logo {
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        .platform-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--cor-destaque-dourado);
+            text-shadow: 0 0 5px var(--cor-destaque-dourado);
+        }
+
+        /* --- ÁREA DE CONTEÚDO DOS SLIDES --- */
+        .slide-content-wrapper {
+            flex-grow: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 30px 40px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            transform: translateX(20px);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .slide h1, .slide h2, .slide h3 {
+            color: var(--cor-destaque-roxo);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .slide h1 { font-size: 2.5rem; }
+        .slide h2 { font-size: 1.8rem; }
+        .slide h3 { font-size: 1.4rem; color: var(--cor-destaque-rosa); }
+
+        .slide p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            text-align: center;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .slide .highlight {
+            color: var(--cor-destaque-dourado);
+            font-weight: 600;
+        }
+        
+        .slide .quote {
+            font-style: italic;
+            opacity: 0.9;
+            border-left: 3px solid var(--cor-destaque-roxo);
+            padding-left: 15px;
+            margin: 20px auto;
+        }
+
+        .slide .module-list {
+            list-style: none;
+            text-align: left;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .slide .module-list li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .slide .module-list li::before {
+            content: '✨';
+            position: absolute;
+            left: -10px;
+            color: var(--cor-destaque-dourado);
+        }
+
+        .slide .module-list strong {
+            color: var(--cor-destaque-roxo);
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        /* --- CONTROLES DE NAVEGAÇÃO E RODAPÉ --- */
+        .slideshow-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            border-top: 1px solid var(--cor-borda);
+            flex-shrink: 0;
+        }
+
+        .nav-button {
+            background-color: transparent;
+            border: 2px solid var(--cor-destaque-roxo);
+            color: var(--cor-destaque-roxo);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background-color: var(--cor-destaque-roxo);
+            color: var(--cor-fundo-slide);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(157, 141, 241, 0.3);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--cor-texto-principal);
+        }
+        
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .slideshow-container { height: 95vh; max-height: none; }
+            .slide { padding: 20px; }
+            .slide h1 { font-size: 1.8rem; }
+            .slide h2 { font-size: 1.4rem; }
+            .slide p { font-size: 1rem; }
+            .platform-title { font-size: 1.2rem; }
+            .logo { height: 30px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="slideshow-container">
+        <header class="slideshow-header">
+            <img src="https://reprograma-t.github.io/logo.png" alt="Logo Reprograma-T" class="logo">
+            <span class="platform-title">Reprograma-T</span>
+        </header>
+
+        <main class="slide-content-wrapper">
+            <!-- Slide 1: Introdução Pessoal e o Sonho -->
+            <div class="slide active">
+                <h1>Qual é o <span class="highlight">preço</span> do seu sonho?</h1>
+                <p class="quote">Um sonho grande, um sonho pequeno... tudo é sonho. Em comum não há preço, seja pequeno ou grande. O que existe é o peso.</p>
+                <p>No dia 4 de novembro, minha avó se foi. Ela foi a última pessoa que eu amava e, talvez, a única que verdadeiramente me amou. Meus aniversários nunca mais serão os mesmos. Agora, tenho um dia de reflexão para o resto da minha vida.</p>
+                <p>Eu poderia chamar de luto, mas minha avó me ensinou coisas que hoje são a base dos meus sonhos. Eu chamo de legado.</p>
+                <h2>Eu sou Luanny Ravatche. E eu vou apresentar o <span class="highlight">REPROGRAMA-T</span>.</h2>
+            </div>
+
+            <!-- Slide 2: A Visão e a Barreira -->
+            <div class="slide">
+                <h2>Um Sonho de Bilhões.</h2>
+                <p>Sim, a meta é valer no mínimo 1 bilhão de dólares. O objetivo é a Forbes.</p>
+                <p class="quote">Não... não é por glamour. Não é por vaidade.<br>É para <span class="highlight">romper uma barreira</span>. Romper uma bolha. E dizer: <span class="highlight">nós estamos aqui.</span></p>
+                <p>Mas é insignificante chegar lá sozinha. A verdadeira meta é levar o máximo de pessoas comigo. Meu foco é a rede social, um ecossistema completo. Tudo o que existe até agora é um conceito, um exemplo vivo, criado porque sempre que eu contava minhas ideias, as pessoas diziam 'não'.</p>
+                <h3>Preciso de pessoas dispostas a quebrar barreiras junto a mim.</h3>
+            </div>
+            
+            <!-- Slide 3: Conceito Central -->
+            <div class="slide">
+                <h2>Conceito Central: Uma Arquitetura de Cuidado Digital</h2>
+                <p>O Reprograma-T transcende a definição de uma simples "rede social". É um ecossistema digital de acolhimento e desenvolvimento humano, projetado para ser um espaço seguro e transformador.</p>
+                <p>Sua arquitetura é fundamentada em três pilares interconectados:</p>
+                <ul class="module-list">
+                    <li><strong>Segurança Psicológica:</strong> Criar um refúgio digital.</li>
+                    <li><strong>Comunicação Consciente (CNV):</strong> Ensinar a falar e a ouvir com o coração.</li>
+                    <li><strong>Crescimento Pessoal:</strong> Oferecer ferramentas para a cura e o autoconhecimento.</li>
+                </ul>
+                <p>É um antídoto à toxicidade das redes convencionais, direcionado a públicos que enfrentam vulnerabilidades sistêmicas, como a comunidade <span class="highlight">LGBTQIAPN+</span> e pessoas <span class="highlight">neurodivergentes</span>.</p>
+            </div>
+
+            <!-- Slide 4: Módulos Principais (Parte 1) -->
+            <div class="slide">
+                <h2>A Anatomia do Ecossistema (1/2)</h2>
+                <ul class="module-list">
+                    <li><strong>Núcleo Social Consciente:</strong> Onde postar é uma "Partilha" guiada pela CNV (Observação, Sentimento, Necessidade, Pedido) e as interações são empáticas, focadas em validação.</li>
+                    <li><strong>Babatá IA (A Consciência Onipresente):</strong> Uma IA projetada como "Guia de Escuta Ativa", que oferece tours, ministra cursos e serve como ferramenta de apoio emocional.</li>
+                    <li><strong>Mapa Violeta (Geografia do Afeto):</strong> Um mapa colaborativo para registrar "alertas de perigo" e "locais acolhedores", transformando experiências em dados para ação e segurança comunitária.</li>
+                     <li><strong>Livro Conexão (Terapia Narrativa):</strong> Um módulo de storytelling interativo onde histórias de vida são transformadas em jornadas de cura com reflexões guiadas pela CNV.</li>
+                </ul>
+            </div>
+            
+             <!-- Slide 5: Módulos Principais (Parte 2) -->
+            <div class="slide">
+                <h2>A Anatomia do Ecossistema (2/2)</h2>
+                <ul class="module-list">
+                    <li><strong>Templo do Afeto (Espiritualidade Inclusiva):</strong> Um hub para eventos ao vivo focados em fé e espiritualidade, de forma não-dogmática e acolhedora para todos.</li>
+                    <li><strong>Economia do Cuidado (Saberes & Mercado):</strong> Uma "Escola de Saberes" para cursos e um "Mercado Cósmico" (classificados) que criam uma economia circular de apoio e autonomia.</li>
+                    <li><strong>Expressão Artística (K-Play):</strong> Uma ferramenta para composição e compartilhamento de música, oferecendo um canal não-verbal para catarse e criatividade.</li>
+                </ul>
+            </div>
+
+            <!-- Slide 6: Público-Alvo -->
+            <div class="slide">
+                <h2>Para Quem é Este Sonho?</h2>
+                <p class="quote">O Reprograma-T não tenta ser para todos. Sua força reside em sua especificidade.</p>
+                <ul class="module-list">
+                    <li><strong>Para a Comunidade LGBTQIAPN+:</strong> Um espaço livre de ódio, que valida suas experiências e sua espiritualidade.</li>
+                    <li><strong>Para Pessoas Neurodivergentes:</strong> Um ambiente com comunicação estruturada e menor sobrecarga sensorial e social.</li>
+                    <li><strong>Para Pessoas em Processo de Cura:</strong> Ferramentas terapêuticas acessíveis e integradas à experiência social.</li>
+                </ul>
+            </div>
+            
+            <!-- Slide 7: Conclusão -->
+            <div class="slide">
+                <h2>O Manifesto Final</h2>
+                <p class="quote"><strong>Reprograma-T</strong> é um manifesto digital transformado em código. É uma tentativa ambiciosa de construir uma utopia digital funcional.</p>
+                <p>Seu nome é literal: a plataforma busca ativamente <span class="highlight">"reprogramar"</span> os padrões de comunicação, a percepção de segurança e, em última análise, a relação que temos com nós mesmos.</p>
+                <p>É uma fusão de rede social, ferramenta de terapia, espaço de fé e rede de apoio mútuo.</p>
+                <h3>É um sonho. E como todo sonho, não tem preço. <br>Mas tem um valor imensurável.</h3>
+            </div>
+
+        </main>
+
+        <footer class="slideshow-footer">
+            <button class="nav-button" id="prev-btn">Anterior</button>
+            <span class="slide-counter" id="slide-counter"></span>
+            <button class="nav-button" id="next-btn">Próximo</button>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const slideCounter = document.getElementById('slide-counter');
+            
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+
+            function showSlide(index) {
+                // Remove a classe 'active' de todos os slides
+                slides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+                
+                // Adiciona a classe 'active' ao slide atual
+                slides[index].classList.add('active');
+                
+                // Atualiza o contador
+                slideCounter.textContent = `${index + 1} / ${totalSlides}`;
+                
+                // Habilita/desabilita os botões de navegação
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === totalSlides - 1;
+            }
+
+            function nextSlide() {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            }
+
+            function prevSlide() {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            }
+            
+            // Adiciona os event listeners
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            
+            // Navegação pelo teclado (setas esquerda e direita)
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                }
+            });
+
+            // Inicializa a apresentação
+            showSlide(currentSlide);
+        });
+    </script>
+
+</body>
+</html>
